@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>my-first-blog | Hexo</title>
+    <title>Java中到底是值传递还是引用传递 | Hexo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="Java 求值策略">
+    <meta name="keywords" content="Java，求值策略">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.3">
@@ -146,7 +146,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>my-first-blog</span>
+            <span>Java中到底是值传递还是引用传递</span>
             
         </div>
         
@@ -159,7 +159,7 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">my-first-blog</h1>
+        <h1 class="title">Java中到底是值传递还是引用传递</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-07-15T11:51:31.000Z" itemprop="datePublished" class="page-time">
@@ -190,10 +190,10 @@
 
 
 <div class="container body-wrap">
-    <article id="post-my-first-blog"
+    <article id="post-Java中到底是值传递还是引用传递"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">my-first-blog</h1>
+        <h1 class="post-card-title">Java中到底是值传递还是引用传递</h1>
         <div class="post-meta">
             <time class="post-time" title="2019-07-15 19:51:31" datetime="2019-07-15T11:51:31.000Z"  itemprop="datePublished">2019-07-15</time>
 
@@ -209,10 +209,8 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <p>##Java中到底是值传递还是引用传递？  </p>
-<p>我们先回顾一下基本概念</p>
-<p>###实参和形参  </p>
-<p>参数在编程语言中是执行程序需要的数据，这个数据一般保存在变量中。在Java中定义一个方法时，可以定义一些参数，<br>举个例子：    </p>
+            <h2 id="Java中到底是值传递还是引用传递？"><a href="#Java中到底是值传递还是引用传递？" class="headerlink" title="Java中到底是值传递还是引用传递？"></a>Java中到底是值传递还是引用传递？</h2><p>我们先回顾一下基本概念</p>
+<h3 id="实参和形参"><a href="#实参和形参" class="headerlink" title="实参和形参"></a>实参和形参</h3><p>参数在编程语言中是执行程序需要的数据，这个数据一般保存在变量中。在Java中定义一个方法时，可以定义一些参数，<br>举个例子：    </p>
 <pre><code>public class Example {
 
 public static void main(String[] args) {
@@ -223,11 +221,10 @@ public static void sayYourName(String name) {// 形式参数是name
         System.out.println(name);
     }  
 }</code></pre><p>上面的代码中定义一个名为sayYourName的方法，如果想要执行这个方法，那么你需要传入一个String类型的变量给这个方法，定义这个方法时声明的String类型的name就是形式参数，而在这个方法执行时传入的myName就是实际参数。</p>
-<p>####小结  </p>
-<blockquote>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><blockquote>
 <p>实际参数是调用有参方法的时候真正传递的内容，而形式参数是用于接收实参内容的参数。  </p>
 </blockquote>
-<p>###传参的几种方式<br> 按值传递(call by value)  </p>
+<h3 id="传参的几种方式"><a href="#传参的几种方式" class="headerlink" title="传参的几种方式"></a>传参的几种方式</h3><p> 按值传递(call by value)  </p>
 <blockquote>
 <p>按值传递，就是指在调用函数时，将实参对应的值做一个拷贝指向函数对应的形参。在函数内改变形参对应的值并不会影响外部实参的值  </p>
 </blockquote>
@@ -290,7 +287,7 @@ public static void sayYourName(String name) {// 形式参数是name
 
 <p>只要是按值传递，不管传递的参数类型是值类型还是引用类型，都会在调用栈上面创建一个实参的副本，区别只是如果传递的参数类型是值类型，该副本就是实际参数的值的复制，而对于引用类型来说，引用类型的实例(即对象)是保存在堆中的，在栈上只有一个该实例的引用（一般情况下是该实例在堆中的内存地址），此时，实际参数的副本并不是该对象，而是引用的副本。</p>
 <p><strong>所以，综上所述，对于Java的函数调用方式最准确的描述是：参数藉由值传递方式，传递的值是个引用。（句中两个“值”不是一个意思，第一个值是evaluation result，第二个值是value content）</strong></p>
-<p>##举例<br>说到Java是值传递还是引用传递，一般都会举下面三个例子，我们来一一说明一下：<br>第一个例子，基本类型参数传值：  </p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>说到Java是值传递还是引用传递，一般都会举下面三个例子，我们来一一说明一下：<br>第一个例子，基本类型参数传值：  </p>
 <pre><code>public class Example {
     public static void main(String[] args) {
         int i = 10;
@@ -364,7 +361,7 @@ public static void sayYourName(String name) {// 形式参数是name
 }  </code></pre><p>这个例子和上面第三个例子很相似，区别在于：<br>changValue方法中将一个新的原始对象的引用赋值给了形参e<br><strong>如果Java是按引用传递的话，e = new Example();就是修改了实参ex的引用，即就是改变了原始对象<br>如果Java是按值传递的话，实参ex不会有任何变化</strong>  </p>
 <p>结果：<strong>20</strong>  </p>
 <p>这个结果说明：<strong>changValue方法并没有修改到ex的引用，也就是说，e只是ex的副本，对e的引用进行的所有操作都不会影响到ex，所以我们<br>从上述代码运行的结果也可以证明Java中是只有值传递的</strong></p>
-<p>##参考<br><a href="http://www.hollischuang.com/archives/2275" target="_blank">为什么说Java中只有值传递</a><br><a href="http://menzhongxin.com/2017/02/07/%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92-%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E5%92%8C%E6%8C%89%E5%85%B1%E4%BA%AB%E4%BC%A0%E9%80%92/" target="_blank">按值传递、按引用传递、按共享传递</a><br><a href="https://www.zhihu.com/question/20628016/answer/28970414" target="_blank">为什么 Java 只有值传递，但 C# 既有值传递，又有引用传递，这种语言设计有哪些好处？</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.hollischuang.com/archives/2275" target="_blank">为什么说Java中只有值传递</a><br><a href="http://menzhongxin.com/2017/02/07/%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92-%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E5%92%8C%E6%8C%89%E5%85%B1%E4%BA%AB%E4%BC%A0%E9%80%92/" target="_blank">按值传递、按引用传递、按共享传递</a><br><a href="https://www.zhihu.com/question/20628016/answer/28970414" target="_blank">为什么 Java 只有值传递，但 C# 既有值传递，又有引用传递，这种语言设计有哪些好处？</a></p>
 
         </div>
         
@@ -372,12 +369,12 @@ public static void sayYourName(String name) {// 形式参数是name
     <div class="content">
         
 <span class="post-time">
-    最後更新時間：<time datetime="2019-07-15T11:53:40.846Z" itemprop="dateUpdated">2019-07-15 19:53:40</time>
+    Last updated: <time datetime="2019-07-15T11:57:23.771Z" itemprop="dateUpdated">2019-07-15 19:57:23</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2019/07/15/my-first-blog/" target="_blank" rel="external">http://yoursite.com/2019/07/15/my-first-blog/</a>
+        转载注明出处，原文地址：<a href="/2019/07/15/Java中到底是值传递还是引用传递/" target="_blank" rel="external">http://yoursite.com/2019/07/15/Java中到底是值传递还是引用传递/</a>
         
     </div>
     <footer>
@@ -397,7 +394,7 @@ public static void sayYourName(String name) {// 形式参数是name
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java-求值策略/">Java 求值策略</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java，求值策略/">Java，求值策略</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -406,7 +403,7 @@ public static void sayYourName(String name) {// 形式参数是name
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/15/my-first-blog/&title=《my-first-blog》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/15/Java中到底是值传递还是引用传递/&title=《Java中到底是值传递还是引用传递》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -418,7 +415,7 @@ public static void sayYourName(String name) {// 形式参数是name
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/15/my-first-blog/&title=《my-first-blog》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/15/Java中到底是值传递还是引用传递/&title=《Java中到底是值传递还是引用传递》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -456,6 +453,14 @@ public static void sayYourName(String name) {// 形式参数是name
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java中到底是值传递还是引用传递？"><span class="post-toc-number">1.</span> <span class="post-toc-text">Java中到底是值传递还是引用传递？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实参和形参"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">实参和形参</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#小结"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">小结</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传参的几种方式"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">传参的几种方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#举例"><span class="post-toc-number">2.</span> <span class="post-toc-text">举例</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">3.</span> <span class="post-toc-text">参考</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
@@ -549,7 +554,7 @@ public static void sayYourName(String name) {// 形式参数是name
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/15/my-first-blog/&title=《my-first-blog》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/07/15/Java中到底是值传递还是引用传递/&title=《Java中到底是值传递还是引用传递》 — Hexo&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -561,7 +566,7 @@ public static void sayYourName(String name) {// 形式参数是name
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/15/my-first-blog/&title=《my-first-blog》 — Hexo&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/07/15/Java中到底是值传递还是引用传递/&title=《Java中到底是值传递还是引用传递》 — Hexo&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -573,7 +578,7 @@ public static void sayYourName(String name) {// 形式参数是name
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNklEQVR42u3aQY6EMAwF0b7/pRlpVrMh1Ldh1DiVVQs1gcfCcmx/Pngdv4tcP/6s9fVjuT5PLBkyZLyWQbYjj+H3niHPfiOqDBkyNmCsg2kacNdIvgN/rgwZMmSswygJjmlYlyFDhoy7GDxMr+/l/5QhQ8bODBIKay+XBtbHz+IyZMh4ISNtDPzn7wf7GzJkyHgJo3PgJKW0tKlZeysZMmTMZpBULH3AXe3M+AgtQ4aMoYz+6EO/WEYSwTVJhgwZsxm1jVJe7TpJOmXIkLEPIw2+5Mhau57uf9HlkCFDxggGb1vWjqBpWslr/jJkyNiHUSvc39VDJCE+aGrKkCFjKKPWqqydHGujG3GolSFDxlAGaR/WHskTRBJFT6/LkCFjAwYPuGlYvKvQdvEpZciQMZrReUWeSvKSHBmtiLuyMmTIGMFIRxx4YS49DLeCuAwZMjZgdAJiOq7BR82CmREZMmQMZfAmZfowcm8nPT0tt8mQIWMbRpqcddJKnnqe7i9DhozRDH4zP/RyBh9HkyFDxs6MWuk/LYSRz5F+MtSJlSFDxghGunWaAvLQyQ/D6C4ZMmQMYhzh4uMUtUJ/MdDLkCFjNKNT0E9HLtKBs864hgwZMuYxSJDtB+J7Ay7KGWXIkDGOkQ498HYmP9amx9eL6TYZMmRszKiNXPCwXmwJyJAhQ0aj3EaSvPSTtVJDGTJkvJZRO8SSFDBNEEkaGnc5ZMiQ8XJGvzHAWwL9wY4HW5gyZMj4RsYPza56wLLgdhcAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aQY7iQAwFUO5/aWY7rR7S/5djRGterZBIQr0sysb24xGv51/r1bfX9776fH1ve+XhwsPDwxts/fvKea/uncOun3D9u3h4eHh7vPzR20f/9SvO94yHh4f3ObwkeFxv7vo5yTV4eHh4v4uXFAsOtxKn6Xh4eHifwGvT2bwc0IaHtpxxW60FDw8PL+blXaTP+bzS38PDw8Mbd9XPigVtCEnCwOHT8PDw8BZ4+YGbDxO04LPhrWI8Cw8PD+9W3iSR3QDPr/+yZzw8PLw1XttkSoar2gGCyYBCXYzAw8PDW+bliW/OyF9TG7T+8V8BDw8Pb42Xb2WU5h6NC+RjBI/2Zjw8PLwBb/LoOtktO/6Ho1d4eHh4C7x2mCkHnLW+2mQ9SrXx8PDwFniTAkG+rby+Oin4FpEHDw8Pb8DLj9qWsTEc0Dbq8PDw8DZ4e0Fi0kKbxLc3xUA8PLz/kvcM1vyH23ZXXkr+ITzg4eHhLfAmZYJJOXUeWg4jHh4eHt4aL9no2dBAHormYwd4eHh4G7w2UW4T7rZcmyfTURDCw8PDW+AlB/c87W6T7Lb4WwQnPDw8vJt4k1JpfvS3Y1ttSQIPDw/v/bzbYstNAaZtkr28Cw8PD2+Z1zLaptfZGEE+1oCHh4f3Tt6kfdUGhuTefKSgnobAw8PDu5WXF2HzLeZtrfzbPKjg4eHh7fHOSgDz0u1oFCB5fXh4eHi38p7lKt5ZPCiQFDjOUn88PDy8Dd4onsSFg3ZAISkQtyk7Hh4e3r28JBjkaXd+ZE+uz4MQHh4e3h6vHQg4O/rbEasbFh4eHt4H8K63lbyUee5fjBHg4eHhfQAvCQ/zckOO+SGo4OHh4a3x8pT3bPipHSm4rfWFh4eHt8Br/9G3hdd8FGAydDUqZODh4eGlvD85y5xxVzaMBQAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 

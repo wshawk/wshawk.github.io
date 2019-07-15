@@ -3,12 +3,10 @@
   
     
     <entry>
-      <title><![CDATA[my-first-blog]]></title>
-      <url>/2019/07/15/my-first-blog/</url>
-      <content type="html"><![CDATA[<p>##Java中到底是值传递还是引用传递？  </p>
-<p>我们先回顾一下基本概念</p>
-<p>###实参和形参  </p>
-<p>参数在编程语言中是执行程序需要的数据，这个数据一般保存在变量中。在Java中定义一个方法时，可以定义一些参数，<br>举个例子：    </p>
+      <title><![CDATA[Java中到底是值传递还是引用传递]]></title>
+      <url>/2019/07/15/Java%E4%B8%AD%E5%88%B0%E5%BA%95%E6%98%AF%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</url>
+      <content type="html"><![CDATA[<h2 id="Java中到底是值传递还是引用传递？"><a href="#Java中到底是值传递还是引用传递？" class="headerlink" title="Java中到底是值传递还是引用传递？"></a>Java中到底是值传递还是引用传递？</h2><p>我们先回顾一下基本概念</p>
+<h3 id="实参和形参"><a href="#实参和形参" class="headerlink" title="实参和形参"></a>实参和形参</h3><p>参数在编程语言中是执行程序需要的数据，这个数据一般保存在变量中。在Java中定义一个方法时，可以定义一些参数，<br>举个例子：    </p>
 <pre><code>public class Example {
 
 public static void main(String[] args) {
@@ -19,11 +17,10 @@ public static void sayYourName(String name) {// 形式参数是name
         System.out.println(name);
     }  
 }</code></pre><p>上面的代码中定义一个名为sayYourName的方法，如果想要执行这个方法，那么你需要传入一个String类型的变量给这个方法，定义这个方法时声明的String类型的name就是形式参数，而在这个方法执行时传入的myName就是实际参数。</p>
-<p>####小结  </p>
-<blockquote>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><blockquote>
 <p>实际参数是调用有参方法的时候真正传递的内容，而形式参数是用于接收实参内容的参数。  </p>
 </blockquote>
-<p>###传参的几种方式<br> 按值传递(call by value)  </p>
+<h3 id="传参的几种方式"><a href="#传参的几种方式" class="headerlink" title="传参的几种方式"></a>传参的几种方式</h3><p> 按值传递(call by value)  </p>
 <blockquote>
 <p>按值传递，就是指在调用函数时，将实参对应的值做一个拷贝指向函数对应的形参。在函数内改变形参对应的值并不会影响外部实参的值  </p>
 </blockquote>
@@ -86,7 +83,7 @@ public static void sayYourName(String name) {// 形式参数是name
 
 <p>只要是按值传递，不管传递的参数类型是值类型还是引用类型，都会在调用栈上面创建一个实参的副本，区别只是如果传递的参数类型是值类型，该副本就是实际参数的值的复制，而对于引用类型来说，引用类型的实例(即对象)是保存在堆中的，在栈上只有一个该实例的引用（一般情况下是该实例在堆中的内存地址），此时，实际参数的副本并不是该对象，而是引用的副本。</p>
 <p><strong>所以，综上所述，对于Java的函数调用方式最准确的描述是：参数藉由值传递方式，传递的值是个引用。（句中两个“值”不是一个意思，第一个值是evaluation result，第二个值是value content）</strong></p>
-<p>##举例<br>说到Java是值传递还是引用传递，一般都会举下面三个例子，我们来一一说明一下：<br>第一个例子，基本类型参数传值：  </p>
+<h2 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h2><p>说到Java是值传递还是引用传递，一般都会举下面三个例子，我们来一一说明一下：<br>第一个例子，基本类型参数传值：  </p>
 <pre><code>public class Example {
     public static void main(String[] args) {
         int i = 10;
@@ -160,13 +157,13 @@ public static void sayYourName(String name) {// 形式参数是name
 }  </code></pre><p>这个例子和上面第三个例子很相似，区别在于：<br>changValue方法中将一个新的原始对象的引用赋值给了形参e<br><strong>如果Java是按引用传递的话，e = new Example();就是修改了实参ex的引用，即就是改变了原始对象<br>如果Java是按值传递的话，实参ex不会有任何变化</strong>  </p>
 <p>结果：<strong>20</strong>  </p>
 <p>这个结果说明：<strong>changValue方法并没有修改到ex的引用，也就是说，e只是ex的副本，对e的引用进行的所有操作都不会影响到ex，所以我们<br>从上述代码运行的结果也可以证明Java中是只有值传递的</strong></p>
-<p>##参考<br><a href="http://www.hollischuang.com/archives/2275" target="_blank">为什么说Java中只有值传递</a><br><a href="http://menzhongxin.com/2017/02/07/%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92-%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E5%92%8C%E6%8C%89%E5%85%B1%E4%BA%AB%E4%BC%A0%E9%80%92/" target="_blank">按值传递、按引用传递、按共享传递</a><br><a href="https://www.zhihu.com/question/20628016/answer/28970414" target="_blank">为什么 Java 只有值传递，但 C# 既有值传递，又有引用传递，这种语言设计有哪些好处？</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.hollischuang.com/archives/2275" target="_blank">为什么说Java中只有值传递</a><br><a href="http://menzhongxin.com/2017/02/07/%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92-%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E5%92%8C%E6%8C%89%E5%85%B1%E4%BA%AB%E4%BC%A0%E9%80%92/" target="_blank">按值传递、按引用传递、按共享传递</a><br><a href="https://www.zhihu.com/question/20628016/answer/28970414" target="_blank">为什么 Java 只有值传递，但 C# 既有值传递，又有引用传递，这种语言设计有哪些好处？</a></p>
 ]]></content>
       
         
         <tags>
             
-            <tag> Java 求值策略 </tag>
+            <tag> Java，求值策略 </tag>
             
         </tags>
         
