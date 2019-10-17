@@ -212,14 +212,13 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             
             <p>记录：  </p>
-<p>##多任务操作系统的实现方式  </p>
-<blockquote>
+<h2 id="多任务操作系统的实现方式"><a href="#多任务操作系统的实现方式" class="headerlink" title="多任务操作系统的实现方式"></a>多任务操作系统的实现方式</h2><blockquote>
 <p>单核cpu  </p>
 <p>  操作系统让cpu轮流交替执行任务，因为cpu的执行效率远高于计算机内的其他组件，所以让人感觉有多个任务在同时进行，实际上确定的时间点上，cpu只执行某一个任务。    </p>
 <p>多核cpu  </p>
 <p> 多个核心的cpu可在真正意义上实现多任务执行。但由于任务数量会超过cpu的核心数，所以操作系统也会自动把很多任务轮流调度到每个核心上执行。 </p>
 </blockquote>
-<p>##进程和线程<br>进程：  </p>
+<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><p>进程：  </p>
 <blockquote>
 <p> 对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。  </p>
 </blockquote>
@@ -257,13 +256,11 @@
 <blockquote>
 <p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
 </blockquote>
-<p>###Java中的参数传值方式—-值传递  </p>
-<blockquote>
+<h3 id="Java中的参数传值方式—-值传递"><a href="#Java中的参数传值方式—-值传递" class="headerlink" title="Java中的参数传值方式—-值传递"></a>Java中的参数传值方式—-值传递</h3><blockquote>
 <p>Java中传递参数时：      </p>
 <p>基本类型：复制一份该参数的实际值，传递<br>引用类型：复制一份该引用类型的引用的值，传递</p>
 </blockquote>
-<p>###Java中的四种引用</p>
-<blockquote>
+<h3 id="Java中的四种引用"><a href="#Java中的四种引用" class="headerlink" title="Java中的四种引用"></a>Java中的四种引用</h3><blockquote>
 <p>强引用  </p>
 <p>指创建一个对象并把这个对象赋给一个引用变量比如 Object object = new Object();String a = “test”;<br>这样生成的对象一直到该方法执行结束之后才会回收，否则永远都不会回收  </p>
 </blockquote>
@@ -282,7 +279,7 @@ if(i > 0){
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-10-17T13:36:38.641Z" itemprop="dateUpdated">2019-10-17 21:36:38</time>
+    最后更新时间：<time datetime="2019-10-17T13:47:11.821Z" itemprop="dateUpdated">2019-10-17 21:47:11</time>
 </span><br>
 
 
@@ -363,9 +360,9 @@ if(i > 0){
 
   
     <div class="next">
-      <a href="/2019/07/15/Java中到底是值传递还是引用传递/" id="post-next" class="post-nav-link">
+      <a href="/2019/10/15/Linux常用命令/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Java中到底是值传递还是引用传递</h4>
+        <h4 class="title">Linux环境工作常用命令</h4>
       </a>
     </div>
   
@@ -373,6 +370,14 @@ if(i > 0){
 
 
     
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多任务操作系统的实现方式"><span class="post-toc-number">1.</span> <span class="post-toc-text">多任务操作系统的实现方式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#进程和线程"><span class="post-toc-number">2.</span> <span class="post-toc-text">进程和线程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Java中的参数传值方式—-值传递"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Java中的参数传值方式—-值传递</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Java中的四种引用"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Java中的四种引用</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
     
 </article>
 
