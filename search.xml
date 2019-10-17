@@ -3,6 +3,239 @@
   
     
     <entry>
+      <title><![CDATA[JS中this的指向]]></title>
+      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>JS中this的指向</p>
+</blockquote>
+<pre><code>1. 以函数形式调用时，this是window
+2. 以方法形式调用时，this是调用方法的对象
+3. 以构造函数形式调用时，this是新建的那个对象
+4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[String类的常用方法]]></title>
+      <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<p>###String类的常用方法  </p>
+<blockquote>
+<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
+</blockquote>
+<blockquote>
+<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
+</blockquote>
+<blockquote>
+<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
+</blockquote>
+<blockquote>
+<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
+</blockquote>
+<blockquote>
+<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
+</blockquote>
+<blockquote>
+<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
+</blockquote>
+<blockquote>
+<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
+</blockquote>
+<blockquote>
+<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
+</blockquote>
+<blockquote>
+<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
+</blockquote>
+<p>###字符串与基本类型的转换  </p>
+<pre>
+int n = Integer.parseInt("12");  
+float f = Float.parseFloat("12.34");  
+double d = Double.parseDouble("1.124");
+</pre>  
+
+<pre>
+String a = String.valueOf(12);
+String b = String.valueOf(13.14);
+</pre>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux环境工作常用命令]]></title>
+      <url>/2019/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<p>###Linux环境工作常用命令  </p>
+<code>  
+cd /  进入根目录  
+mkdir dirName  创建文件夹    
+touch fileName  创建一个空文件
+vi/vim fileName 编辑一个文件，如果文件不存在，则会新建该文件  
+mv fileName/dirName 剪切/修改 文件或者文件夹的名称  
+cp -r sourceDirPath targetDirPath  复制文件夹，会将子文件夹一并复制  
+tail -numf fileName  查看文件末尾num行，可以动态刷新文件，用于查看日志  
+&& 命令连接符 可以多条命令连接起来，从左到右执行
+ps -ef|grep processName  查看某个进程的状态
+kill -9 processId 根据进程ID杀进程  
+rm -rf fileName/dirName/dirPath 强制删除某个文件或者文件夹下所有内容，请慎用。如果不要强制，则去掉f  
+ssh userName@HostIP  ssh远程连接  
+ls -l | grep "^-" | wc -l 查看文件夹下文件个数（不包括子文件夹）  
+scp -r  local_file remote_username@remote_ip:remote_folder  从本地复制到远程（从远程复制到本地，只需要将两个参数的位置调换一下）  
+解压命令  
+tar -xvf file.tar //解压 tar包  
+tar -xzvf file.tar.gz //解压tar.gz  
+tar -xjvf file.tar.bz2   //解压 tar.bz2  
+tar -xZvf file.tar.Z   //解压tar.Z  
+unrar e file.rar //解压rar  
+unzip file.zip //解压zip
+</code>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<p>###Mybatis笔记  </p>
+<p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[String类的常用方法]]></title>
+      <url>/2019/10/15/%E9%9A%8F%E7%AC%94/</url>
+      <content type="html"><![CDATA[<p>记录：  </p>
+<p>##多任务操作系统的实现方式  </p>
+<blockquote>
+<p>单核cpu  </p>
+<p>  操作系统让cpu轮流交替执行任务，因为cpu的执行效率远高于计算机内的其他组件，所以让人感觉有多个任务在同时进行，实际上确定的时间点上，cpu只执行某一个任务。    </p>
+<p>多核cpu  </p>
+<p> 多个核心的cpu可在真正意义上实现多任务执行。但由于任务数量会超过cpu的核心数，所以操作系统也会自动把很多任务轮流调度到每个核心上执行。 </p>
+</blockquote>
+<p>##进程和线程<br>进程：  </p>
+<blockquote>
+<p> 对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。  </p>
+</blockquote>
+<p>线程：</p>
+<blockquote>
+<p>有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）</p>
+</blockquote>
+<p>小结</p>
+<blockquote>
+<p>线程是最小的执行单元，而进程由至少一个线程组成。如何调度进程和线程，完全由操作系统决定，程序自己不能决定什么时候执行，执行多长时间  </p>
+<p>进程和线程都是一个时间段的描述，是CPU工作时间段的描述<br>CPU+RAM+各种资源（比如显卡，光驱，键盘，GPS, 等等外设）构成我们的电脑，但是电脑的运行，实际就是CPU和相关寄存器以及RAM之间的事情。<br>一个最最基础的事实：CPU太快，太快，太快了，寄存器仅仅能够追的上他的脚步，RAM和别的挂在各总线上的设备完全是难以望其项背。那当多个任务要执行的时候怎么办呢？轮流着来?或者谁优先级高谁来？不管怎么样的策略，一句话就是在CPU看来就是轮流着来。</p>
+</blockquote>
+<blockquote>
+<p>一个必须知道的事实：执行一段程序代码，实现一个功能的过程介绍 ，当得到CPU的时候，相关的资源必须也已经就位，就是显卡啊，GPS啊什么的必须就位，然后CPU开始执行。这里除了CPU以外所有的就构成了这个程序的执行环境，也就是我们所定义的程序上下文。当这个程序执行完了，或者分配给他的CPU执行时间用完了，那它就要被切换出去，等待下一次CPU的临幸。在被切换出去的最后一步工作就是保存程序上下文，因为这个是下次他被CPU临幸的运行环境，必须保存。</p>
+</blockquote>
+<blockquote>
+<p>串联起来的事实：前面讲过在CPU看来所有的任务都是一个一个的轮流执行的，具体的轮流方法就是：先加载程序A的上下文，然后开始执行A，保存程序A的上下文，调入下一个要执行的程序B的程序上下文，然后开始执行B,保存程序B的上下文。。。。</p>
+</blockquote>
+<blockquote>
+<p>========= 重要的东西出现了========  </p>
+</blockquote>
+<p>进程和线程就是这样的背景出来的，两个名词不过是对应的CPU时间段的描述，名词就是这样的功能。<br>进程就是包换上下文切换的程序执行时间总和 = CPU加载上下文+CPU执行+CPU保存上下文<br>线程是什么呢？<br>进程的颗粒度太大，每次都要有上下的调入，保存，调出。如果我们把进程比喻为一个运行在电脑上的软件，那么一个软件的执行不可能是一条逻辑执行的，必定有多个分支和多个程序段，就好比要实现程序A，实际分成 a，b，c等多个块组合而成。那么这里具体的执行就可能变成：</p>
+<blockquote>
+<p>程序A得到CPU =》CPU加载上下文，开始执行程序A的a小段，然后执行A的b小段，然后再执行A的c小段，最后CPU保存A的上下文。</p>
+</blockquote>
+<blockquote>
+<p>这里a，b，c的执行是共享了A的上下文，CPU在执行的时候没有进行上下文切换的。这里的a，b，c就是线程，也就是说线程是共享了进程的上下文环境，的更为细小的CPU时间段。</p>
+</blockquote>
+<blockquote>
+<p>到此全文结束，再一个总结：</p>
+</blockquote>
+<blockquote>
+<p>进程和线程都是一个时间段的描述，是CPU工作时间段的描述，不过是颗粒大小不同。</p>
+</blockquote>
+<blockquote>
+<p>进程是资源分配的最小单位，线程是CPU调度的最小单位</p>
+</blockquote>
+<p>###Java中的参数传值方式—-值传递  </p>
+<blockquote>
+<p>Java中传递参数时：      </p>
+<p>基本类型：复制一份该参数的实际值，传递<br>引用类型：复制一份该引用类型的引用的值，传递</p>
+</blockquote>
+<p>###Java中的四种引用</p>
+<blockquote>
+<p>强引用  </p>
+<p>指创建一个对象并把这个对象赋给一个引用变量比如 Object object = new Object();String a = “test”;<br>这样生成的对象一直到该方法执行结束之后才会回收，否则永远都不会回收  </p>
+</blockquote>
+<blockquote>
+<p>软引用  </p>
+</blockquote>
+<pre name="code" class="java">
+if(i > 0){
+    System.out.println("it is a test for markdown");
+}
+</pre>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java中到底是值传递还是引用传递]]></title>
       <url>/2019/07/15/Java%E4%B8%AD%E5%88%B0%E5%BA%95%E6%98%AF%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</url>
       <content type="html"><![CDATA[<h2 id="Java中到底是值传递还是引用传递？"><a href="#Java中到底是值传递还是引用传递？" class="headerlink" title="Java中到底是值传递还是引用传递？"></a>Java中到底是值传递还是引用传递？</h2><p>我们先回顾一下基本概念</p>
@@ -163,7 +396,7 @@ public static void sayYourName(String name) {// 形式参数是name
         
         <tags>
             
-            <tag> Java，求值策略 </tag>
+            <tag> Java </tag>
             
         </tags>
         
