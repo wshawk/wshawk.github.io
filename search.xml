@@ -5,14 +5,9 @@
     <entry>
       <title><![CDATA[unix时间戳转时间]]></title>
       <url>/2019/11/05/unix%E6%97%B6%E9%97%B4%E6%88%B3%E8%BD%AC%E6%97%B6%E9%97%B4/</url>
-      <content type="html"><![CDATA[<code language="java">
-        String unixTimeStr=  "1572251400";
-        long s = Long.parseLong(unixTimeStr);
-        s *= 1000; // 乘以1000，变成毫秒
-        SimpleDateFormat t = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = t.format(new Date(s));
-        System.out.println(date); //2019-10-28 16:30:00
-</code>]]></content>
+      <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      String unixTimeStr=  <span class="string">"1572251400"</span>;</span><br><span class="line"><span class="keyword">long</span> s = Long.parseLong(unixTimeStr);</span><br><span class="line">s *= <span class="number">1000</span>; <span class="comment">// 乘以1000，变成毫秒</span></span><br><span class="line">SimpleDateFormat t = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">String date = t.format(<span class="keyword">new</span> Date(s));</span><br><span class="line">System.out.println(date); <span class="comment">//2019-10-28 16:30:00</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
       
         
         <tags>
@@ -140,6 +135,26 @@ String b = String.valueOf(13.14);
     </entry>
     
     <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux环境工作常用命令]]></title>
       <url>/2019/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<h3 id="Linux环境工作常用命令"><a href="#Linux环境工作常用命令" class="headerlink" title="Linux环境工作常用命令"></a>Linux环境工作常用命令</h3><code>  
@@ -170,26 +185,6 @@ unzip file.zip //解压zip
         <tags>
             
             <tag> Linux </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> Mybatis </tag>
             
         </tags>
         
