@@ -133,26 +133,6 @@ String b = String.valueOf(13.14);
     </entry>
     
     <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> Mybatis </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[Linux环境工作常用命令]]></title>
       <url>/2019/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<h3 id="Linux环境工作常用命令"><a href="#Linux环境工作常用命令" class="headerlink" title="Linux环境工作常用命令"></a>Linux环境工作常用命令</h3><code>  
@@ -183,6 +163,26 @@ unzip file.zip //解压zip
         <tags>
             
             <tag> Linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
             
         </tags>
         
