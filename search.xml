@@ -59,26 +59,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> Mybatis </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[String类的常用方法]]></title>
       <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
@@ -147,6 +127,26 @@ String b = String.valueOf(13.14);
         <tags>
             
             <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
             
         </tags>
         
