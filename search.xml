@@ -3,6 +3,18 @@
   
     
     <entry>
+      <title></title>
+      <url>/2020/04/04/Js%E5%AE%9E%E7%8E%B0%E5%9B%9E%E8%BD%A6%E7%99%BB%E5%BD%95/</url>
+      <content type="html"><![CDATA[<hr>
+<p>title:Vue项目中实现回车登录<br>date:2020-04-04 18:51:31</p>
+<h2 id="tags-JavaScript"><a href="#tags-JavaScript" class="headerlink" title="tags:JavaScript"></a>tags:JavaScript</h2><h3 id="Vue项目中实现回车登录"><a href="#Vue项目中实现回车登录" class="headerlink" title="Vue项目中实现回车登录"></a>Vue项目中实现回车登录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">	<span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="built_in">document</span>.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> keycode = <span class="built_in">document</span>.all ? event.keyCode : e.which;</span><br><span class="line">      <span class="keyword">if</span> (keycode == <span class="number">13</span>) &#123;<span class="comment">// 回车键对应值为13</span></span><br><span class="line">        that.login();<span class="comment">// 登录方法名</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[unix时间戳转时间]]></title>
       <url>/2019/11/05/unix%E6%97%B6%E9%97%B4%E6%88%B3%E8%BD%AC%E6%97%B6%E9%97%B4/</url>
       <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String unixTimeStr=  <span class="string">"1572251400"</span>;</span><br><span class="line"><span class="keyword">long</span> s = Long.parseLong(unixTimeStr);</span><br><span class="line">s *= <span class="number">1000</span>; <span class="comment">// 乘以1000，变成毫秒</span></span><br><span class="line">SimpleDateFormat t = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">String date = t.format(<span class="keyword">new</span> Date(s));</span><br><span class="line">System.out.println(date); <span class="comment">//2019-10-28 16:30:00</span></span><br></pre></td></tr></table></figure>]]></content>
@@ -38,9 +50,11 @@
     </entry>
     
     <entry>
-      <title><![CDATA[JS中this的指向]]></title>
-      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
-      <content type="html"><![CDATA[<blockquote>
+      <title></title>
+      <url>/2019/10/17/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
+      <content type="html"><![CDATA[<hr>
+<p>title:JS中this的指向<br>date:2019-10-15 19:51:31</p>
+<h2 id="tags-JavaScript"><a href="#tags-JavaScript" class="headerlink" title="tags:JavaScript"></a>tags:JavaScript</h2><blockquote>
 <p>JS中this的指向</p>
 </blockquote>
 <pre><code>1. 以函数形式调用时，this是window
@@ -49,12 +63,6 @@
 4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
 ]]></content>
       
-        
-        <tags>
-            
-            <tag> JavaScript </tag>
-            
-        </tags>
         
     </entry>
     
@@ -169,26 +177,6 @@ unzip file.zip //解压zip
     </entry>
     
     <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> Mybatis </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[进程和线程]]></title>
       <url>/2019/10/15/%E9%9A%8F%E7%AC%94/</url>
       <content type="html"><![CDATA[<p>记录：  </p>
@@ -258,6 +246,26 @@ if(i > 0){
         <tags>
             
             <tag> 随笔 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
             
         </tags>
         
