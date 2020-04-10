@@ -61,9 +61,9 @@
 <li><strong><code>Cglib</code>代理</strong></li>
 </ol>
 </blockquote>
-<pre><code>`Cglib`代理补充了`jdk`中只面向接口进行代理的不足，`Cglib`代理支持基于对象代理，不用关心该对象是否实现了某个接口。 `Cglib`是一个`java`字节码的生成工具，它动态生成一个被代理类的子类，子类重写被代理的类的所有不是`final`的方法。在子类中采用方法拦截的技术拦截所有父类方法的调用，顺势织入横切逻辑。 
-
-以上面的`StarServiceImpl`为被代理对象，举个例子：</code></pre><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*  自定义中间代理类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMethodInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"Before: "</span>  + method.getName());</span><br><span class="line">        Object object = methodProxy.invokeSuper(o, objects);</span><br><span class="line">        System.out.println(<span class="string">"After: "</span> + method.getName());</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​        Cglib代理补充了jdk中只面向接口进行代理的不足，Cglib代理支持基于对象代理，不用关心该对象是否实现了某个接口。 Cglib是一个java字节码的生成工具，它动态生成一个被代理类的子类，子类重写被代理的类的所有不是final的方法。在子类中采用方法拦截的技术拦截所有父类方法的调用，顺势织入横切逻辑。 </p>
+<p>以上面的<code>StarServiceImpl</code>为被代理对象，举个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*  自定义中间代理类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyMethodInterceptor</span> <span class="keyword">implements</span> <span class="title">MethodInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">intercept</span><span class="params">(Object o, Method method, Object[] objects, MethodProxy methodProxy)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		System.out.println(<span class="string">"Before: "</span>  + method.getName());</span><br><span class="line">        Object object = methodProxy.invokeSuper(o, objects);</span><br><span class="line">        System.out.println(<span class="string">"After: "</span> + method.getName());</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 测试如下</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Enhancer enhancer = <span class="keyword">new</span> Enhancer();</span><br><span class="line">        <span class="comment">//继承被代理类</span></span><br><span class="line">        enhancer.setSuperclass(Star.class);</span><br><span class="line">        <span class="comment">//设置回调</span></span><br><span class="line">        enhancer.setCallback(<span class="keyword">new</span> MyMethodInterceptor());</span><br><span class="line">        <span class="comment">//设置代理类对象</span></span><br><span class="line">        StarServiceImpl starService = (StarServiceImpl) enhancer.create();</span><br><span class="line">        <span class="comment">//在调用代理类中方法时会被我们实现的方法拦截器进行拦截</span></span><br><span class="line">        starService.sing();</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
@@ -329,115 +329,36 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
+      <title><![CDATA[Linux环境工作常用命令]]></title>
+      <url>/2019/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      <content type="html"><![CDATA[<h3 id="Linux环境工作常用命令"><a href="#Linux环境工作常用命令" class="headerlink" title="Linux环境工作常用命令"></a>Linux环境工作常用命令</h3><code>  
+cd /  进入根目录  
+mkdir dirName  创建文件夹    
+touch fileName  创建一个空文件
+vi/vim fileName 编辑一个文件，如果文件不存在，则会新建该文件  
+mv fileName/dirName 剪切/修改 文件或者文件夹的名称  
+cp -r sourceDirPath targetDirPath  复制文件夹，会将子文件夹一并复制  
+tail -numf fileName  查看文件末尾num行，可以动态刷新文件，用于查看日志  
+&& 命令连接符 可以多条命令连接起来，从左到右执行
+ps -ef|grep processName  查看某个进程的状态
+kill -9 processId 根据进程ID杀进程  
+rm -rf fileName/dirName/dirPath 强制删除某个文件或者文件夹下所有内容，请慎用。如果不要强制，则去掉f  
+ssh userName@HostIP  ssh远程连接  
+ls -l | grep "^-" | wc -l 查看文件夹下文件个数（不包括子文件夹）  
+scp -r  local_file remote_username@remote_ip:remote_folder  从本地复制到远程（从远程复制到本地，只需要将两个参数的位置调换一下）  
+解压命令  
+tar -xvf file.tar //解压 tar包  
+tar -xzvf file.tar.gz //解压tar.gz  
+tar -xjvf file.tar.bz2   //解压 tar.bz2  
+tar -xZvf file.tar.Z   //解压tar.Z  
+unrar e file.rar //解压rar  
+unzip file.zip //解压zip
+</code>]]></content>
       
         
         <tags>
             
-            <tag> Mybatis </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[String类的常用方法]]></title>
-      <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
-<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
-</blockquote>
-<blockquote>
-<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
-</blockquote>
-<blockquote>
-<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
-</blockquote>
-<blockquote>
-<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
-</blockquote>
-<blockquote>
-<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
-</blockquote>
-<blockquote>
-<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
-</blockquote>
-<blockquote>
-<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
-</blockquote>
-<blockquote>
-<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
-</blockquote>
-<blockquote>
-<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
-</blockquote>
-<blockquote>
-<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
-</blockquote>
-<blockquote>
-<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
-</blockquote>
-<blockquote>
-<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
-</blockquote>
-<blockquote>
-<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
-</blockquote>
-<blockquote>
-<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
-</blockquote>
-<h3 id="字符串与基本类型的转换"><a href="#字符串与基本类型的转换" class="headerlink" title="字符串与基本类型的转换"></a>字符串与基本类型的转换</h3><pre>
-int n = Integer.parseInt("12");  
-float f = Float.parseFloat("12.34");  
-double d = Double.parseDouble("1.124");
-</pre>  
-
-<pre>
-String a = String.valueOf(12);
-String b = String.valueOf(13.14);
-</pre>]]></content>
-      
-        
-        <tags>
-            
-            <tag> Java </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[JS中this的指向]]></title>
-      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>JS中this的指向</p>
-</blockquote>
-<pre><code>1. 以函数形式调用时，this是window
-2. 以方法形式调用时，this是调用方法的对象
-3. 以构造函数形式调用时，this是新建的那个对象
-4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> JavaScript </tag>
+            <tag> Linux </tag>
             
         </tags>
         
@@ -519,36 +440,115 @@ if(i > 0){
     </entry>
     
     <entry>
-      <title><![CDATA[Linux环境工作常用命令]]></title>
-      <url>/2019/10/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
-      <content type="html"><![CDATA[<h3 id="Linux环境工作常用命令"><a href="#Linux环境工作常用命令" class="headerlink" title="Linux环境工作常用命令"></a>Linux环境工作常用命令</h3><code>  
-cd /  进入根目录  
-mkdir dirName  创建文件夹    
-touch fileName  创建一个空文件
-vi/vim fileName 编辑一个文件，如果文件不存在，则会新建该文件  
-mv fileName/dirName 剪切/修改 文件或者文件夹的名称  
-cp -r sourceDirPath targetDirPath  复制文件夹，会将子文件夹一并复制  
-tail -numf fileName  查看文件末尾num行，可以动态刷新文件，用于查看日志  
-&& 命令连接符 可以多条命令连接起来，从左到右执行
-ps -ef|grep processName  查看某个进程的状态
-kill -9 processId 根据进程ID杀进程  
-rm -rf fileName/dirName/dirPath 强制删除某个文件或者文件夹下所有内容，请慎用。如果不要强制，则去掉f  
-ssh userName@HostIP  ssh远程连接  
-ls -l | grep "^-" | wc -l 查看文件夹下文件个数（不包括子文件夹）  
-scp -r  local_file remote_username@remote_ip:remote_folder  从本地复制到远程（从远程复制到本地，只需要将两个参数的位置调换一下）  
-解压命令  
-tar -xvf file.tar //解压 tar包  
-tar -xzvf file.tar.gz //解压tar.gz  
-tar -xjvf file.tar.bz2   //解压 tar.bz2  
-tar -xZvf file.tar.Z   //解压tar.Z  
-unrar e file.rar //解压rar  
-unzip file.zip //解压zip
-</code>]]></content>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
       
         
         <tags>
             
-            <tag> Linux </tag>
+            <tag> Mybatis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JS中this的指向]]></title>
+      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>JS中this的指向</p>
+</blockquote>
+<pre><code>1. 以函数形式调用时，this是window
+2. 以方法形式调用时，this是调用方法的对象
+3. 以构造函数形式调用时，this是新建的那个对象
+4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[String类的常用方法]]></title>
+      <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
+<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
+</blockquote>
+<blockquote>
+<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
+</blockquote>
+<blockquote>
+<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
+</blockquote>
+<blockquote>
+<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
+</blockquote>
+<blockquote>
+<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
+</blockquote>
+<blockquote>
+<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
+</blockquote>
+<blockquote>
+<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
+</blockquote>
+<blockquote>
+<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
+</blockquote>
+<blockquote>
+<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
+</blockquote>
+<h3 id="字符串与基本类型的转换"><a href="#字符串与基本类型的转换" class="headerlink" title="字符串与基本类型的转换"></a>字符串与基本类型的转换</h3><pre>
+int n = Integer.parseInt("12");  
+float f = Float.parseFloat("12.34");  
+double d = Double.parseDouble("1.124");
+</pre>  
+
+<pre>
+String a = String.valueOf(12);
+String b = String.valueOf(13.14);
+</pre>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Java </tag>
             
         </tags>
         
