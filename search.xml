@@ -3,12 +3,226 @@
   
     
     <entry>
+      <title><![CDATA[Java知识点总结]]></title>
+      <url>/2020/04/08/Java%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h2 id="Java知识点总结"><a href="#Java知识点总结" class="headerlink" title="Java知识点总结"></a>Java知识点总结</h2><h3 id="1-类的初始化顺序"><a href="#1-类的初始化顺序" class="headerlink" title="1.  类的初始化顺序"></a>1.  类的初始化顺序</h3><ol>
+<li>父类静态变量（静态代码块）</li>
+<li>子类静态变量（静态代码块）</li>
+<li>父类成员变量</li>
+<li>父类构造方法</li>
+<li>子类成员变量</li>
+<li>子类构造方法</li>
+</ol>
+<h3 id="2-final修饰符"><a href="#2-final修饰符" class="headerlink" title="2. final修饰符"></a>2. final修饰符</h3><ul>
+<li><p>修饰变量， 必须显示地赋初值，且赋初值后不能再赋值</p>
+<blockquote>
+<p>被final修饰的实例变量必须显示地赋初值，且只能以下三种方式：</p>
+<p>　　1.  定义时初始化</p>
+<p>　　2.  在非静态初始化块中为final实例变量指定初始值</p>
+<p>　　3.  在构造器中指定初始值</p>
+<p>final修饰的静态变量只能在两个地方进行初始化</p>
+<ol>
+<li>定义final类变量时指定初始值 </li>
+<li>在静态初始化块中为final类变量指定初始值 </li>
+</ol>
+</blockquote>
+</li>
+<li><p>修饰方法，该方法不能被重写</p>
+</li>
+<li><p>修饰类，该类不能被继承   </p>
+</li>
+</ul>
+<h3 id="3-static修饰符"><a href="#3-static修饰符" class="headerlink" title="3.  static修饰符"></a>3.  static修饰符</h3><ul>
+<li><p>修饰变量，被<code>static</code>修饰的变量实质上就是全局变量，<strong>所有的类实例（对象），共享该变量</strong>；且该变量可以以<code>类名.变量名</code>的方式进行访问</p>
+</li>
+<li><p>修饰方法，该方法被称为静态方法，可直接使用<code>类名.静态方法名</code>进行调用，不需要实例化对象。</p>
+<blockquote>
+<p>静态方法有以下特点：</p>
+<ul>
+<li>只能访问<code>static</code>变量</li>
+<li>只能调用其他<code>static</code>方法</li>
+<li>不能使用<code>this</code>或者<code>super</code>关键字，因为这两个关键字都是需要绑定对象</li>
+</ul>
+</blockquote>
+</li>
+<li><p><code>static</code>一般不能修饰类，只能修饰<strong>内部类</strong></p>
+</li>
+<li><p><code>import static com.*.ClassName.*</code>，静态导入所需要的静态变量，从<code>jdk5</code>开始。</p>
+</li>
+</ul>
+<h3 id="4-private修饰构造方法"><a href="#4-private修饰构造方法" class="headerlink" title="4. private修饰构造方法"></a>4. private修饰构造方法</h3><ul>
+<li><code>private</code>修饰的构造方法只能在本类里调用</li>
+</ul>
+<h3 id="5-重写和重载"><a href="#5-重写和重载" class="headerlink" title="5. 重写和重载"></a>5. 重写和重载</h3><ul>
+<li>重写（覆写）：方法名相同，接收参数相同，返回结果相同，处理逻辑不同，发生在子类和父类之间。</li>
+<li>重载（覆载）：方法名相同，接收参数不同，返回结果可以不同，发生在一个类中。</li>
+</ul>
+<h3 id="6-反射"><a href="#6-反射" class="headerlink" title="6. 反射"></a>6. 反射</h3><ul>
+<li><code>java</code>反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性和方法；对于任意一个对象，都能调用它的任意一个方法和属性；这种动态获取的信息以及动态调用对象的方法的功能称为<code>java</code>语言的反射机制。</li>
+</ul>
+<h3 id="7-反射的应用场景"><a href="#7-反射的应用场景" class="headerlink" title="7.  反射的应用场景"></a>7.  反射的应用场景</h3><p>​        平时的业务开发中，很少用到反射，但是*<em>反射是框架设计的灵魂 *</em>，很多框架都用到了反射。</p>
+<p>举例如下：</p>
+<ul>
+<li><p>我们在使用<code>JDBC</code>连接数据库时使用<code>Class.forName()</code>通过反射加载数据库的驱动程序； </p>
+</li>
+<li><p>动态代理；</p>
+</li>
+<li><p>Spring框架也用到很多反射机制，最经典的就是<code>xml</code>的配置模式；</p>
+<blockquote>
+<p>Spring 通过 <code>xml</code>配置模式装载 Bean 的过程：</p>
+<ul>
+<li>将程序内所有 <code>xml</code>或 <code>properties</code>配置文件加载入内存中;  </li>
+<li>Java类里面解析<code>xml</code>或<code>properties</code>里面的内容，得到对应实体类的字节码字符串以及相关的属性信息;  </li>
+<li>使用反射机制，根据这个字符串获得某个类的Class实例; </li>
+<li>动态配置实例的属性。 </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h3 id="8-short、int类型提升"><a href="#8-short、int类型提升" class="headerlink" title="8.short、int类型提升"></a>8.<code>short</code>、<code>int</code>类型提升</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">short</span> a = <span class="number">1</span>;</span><br><span class="line">a = a + <span class="number">1</span>; </span><br><span class="line"><span class="comment">/* 编译报错（原因：使用 + 运算符，会使得short类型自动提升为int类型，int类型的值范围大于short），所以可能</span></span><br><span class="line"><span class="comment"> * 会出现超出范围的报错，故编译不通过</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">a += <span class="number">1</span>; <span class="comment">//编译通过，java中对 += 做了特殊处理</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="9-String不变性"><a href="#9-String不变性" class="headerlink" title="9. String不变性"></a>9. <code>String</code>不变性</h3><ul>
+<li>String类是被final进行修饰的，不能被继承；</li>
+<li>使用<code>+</code>运算符连接两个字符串时，会创建一个新的字符串；<code>+</code>运算符底层采用了<code>StringBuilder</code>实例的<code>append()</code>方法实现；</li>
+<li><code>String s = new String(&quot;hello world&quot;);</code>可能创建两个对象，也可能创建一个对象。如果在静态区中有<code>&quot;hello world&quot;</code>字符串常量对象的话，则仅仅在堆中创建一个对象。如果在静态区中没有<code>&quot;hello world&quot;</code>对象，则在堆和静态区中都需要创建对象；</li>
+</ul>
+<h3 id="10-为什么重写equals-方法时，一定要重写hashCode-方法"><a href="#10-为什么重写equals-方法时，一定要重写hashCode-方法" class="headerlink" title="10.  为什么重写equals()方法时，一定要重写hashCode()方法"></a>10.  为什么重写<code>equals()</code>方法时，一定要重写<code>hashCode()</code>方法</h3><ul>
+<li><p>因为关于<code>hashCode()</code>方法，一致约定是 </p>
+<blockquote>
+<ol>
+<li><strong>如果两个对象通过<code>equals</code>调用后返回是<code>true</code>，那么这个两个对象的<code>hashCode</code>方法也必须返回同样的int型散列码;</strong></li>
+<li><strong>如果两个对象通过equals返回false，他们的hashCode返回的值<font color="red">允许相同</font></strong>。(然而，程序员必须意识到，<code>hashCode</code>返回独一无二的散列码，会让存储这个对象的<code>hashTables</code>更好地工作。)</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[equals()方法和hashCode()方法详解]]></title>
+      <url>/2020/04/07/equals()%E6%96%B9%E6%B3%95%E5%92%8ChashCode()%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<h2 id="equals-方法和hashCode-方法详解"><a href="#equals-方法和hashCode-方法详解" class="headerlink" title="equals()方法和hashCode()方法详解"></a><code>equals()</code>方法和<code>hashCode()</code>方法详解</h2><h3 id="1-Object类中equals-方法源代码如下所示："><a href="#1-Object类中equals-方法源代码如下所示：" class="headerlink" title="1. Object类中equals()方法源代码如下所示："></a>1. <code>Object</code>类中<code>equals()</code>方法源代码如下所示：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*	Object类中的equals()方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 由以上源代码知，<code>Object</code>类中的<code>equals()</code>方法是直接使用<code>==</code>运算符来判断两个对象相等的。</p>
+<ul>
+<li>引用类型变量使用<code>==</code>时，比较的是引用类型变量指向的对象的内存地址</li>
+<li>基本类型使用<code>==</code>时，比较值</li>
+</ul>
+</blockquote>
+<p><code>Objcect</code>类中的<code>hashCode</code>源代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * Returns a hash code value for the object. This method is</span></span><br><span class="line"><span class="comment">    * supported for the benefit of hash tables such as those provided by</span></span><br><span class="line"><span class="comment">    * &#123;<span class="doctag">@link</span> java.util.HashMap&#125;.</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;</span></span><br><span class="line"><span class="comment">    * The general contract of &#123;<span class="doctag">@code</span> hashCode&#125; is:</span></span><br><span class="line"><span class="comment">    * &lt;ul&gt;</span></span><br><span class="line"><span class="comment">    * &lt;li&gt;Whenever it is invoked on the same object more than once during</span></span><br><span class="line"><span class="comment">    *     an execution of a Java application, the &#123;<span class="doctag">@code</span> hashCode&#125; method</span></span><br><span class="line"><span class="comment">    *     must consistently return the same integer, provided no information</span></span><br><span class="line"><span class="comment">    *     used in &#123;<span class="doctag">@code</span> equals&#125; comparisons on the object is modified.</span></span><br><span class="line"><span class="comment">    *     This integer need not remain consistent from one execution of an</span></span><br><span class="line"><span class="comment">    *     application to another execution of the same application.</span></span><br><span class="line"><span class="comment">    * &lt;li&gt;If two objects are equal according to the &#123;<span class="doctag">@code</span> equals(Object)&#125;</span></span><br><span class="line"><span class="comment">    *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of</span></span><br><span class="line"><span class="comment">    *     the two objects must produce the same integer result.</span></span><br><span class="line"><span class="comment">    * &lt;li&gt;It is &lt;em&gt;not&lt;/em&gt; required that if two objects are unequal</span></span><br><span class="line"><span class="comment">    *     according to the &#123;<span class="doctag">@link</span> java.lang.Object#equals(java.lang.Object)&#125;</span></span><br><span class="line"><span class="comment">    *     method, then calling the &#123;<span class="doctag">@code</span> hashCode&#125; method on each of the</span></span><br><span class="line"><span class="comment">    *     two objects must produce distinct integer results.  However, the</span></span><br><span class="line"><span class="comment">    *     programmer should be aware that producing distinct integer results</span></span><br><span class="line"><span class="comment">    *     for unequal objects may improve the performance of hash tables.</span></span><br><span class="line"><span class="comment">    * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment">    * &lt;p&gt;</span></span><br><span class="line"><span class="comment">    * As much as is reasonably practical, the hashCode method defined by</span></span><br><span class="line"><span class="comment">    * class &#123;<span class="doctag">@code</span> Object&#125; does return distinct integers for distinct</span></span><br><span class="line"><span class="comment">    * objects. (This is typically implemented by converting the internal</span></span><br><span class="line"><span class="comment">    * address of the object into an integer, but this implementation</span></span><br><span class="line"><span class="comment">    * technique is not required by the</span></span><br><span class="line"><span class="comment">    * Java&amp;trade; programming language.)</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span>  a hash code value for this object.</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@see</span>     java.lang.Object#equals(java.lang.Object)</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@see</span>     java.lang.System#identityHashCode</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;<span class="comment">// java8中的hashCode方法，</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面的注释中有说明如下几点：</p>
+<ul>
+<li>对象的<code>hashCode</code>值通常是根据对象的内存地址计算得来</li>
+<li>两个对象<code>equals()</code>结果为<code>true</code>时，两个对象的<code>hashCode</code>值一定相等，不同对象的<code>hashCode</code>不等</li>
+<li><code>native</code>标识此方法不是<code>java</code>语言实现</li>
+</ul>
+</blockquote>
+<p><code>Object</code>类中的<code>toString()</code>方法源代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	<span class="comment">// 从这里就能看出打印对象时不重写toString()方法时，就会打印出对象的hashCode值</span></span><br><span class="line">        <span class="keyword">return</span> getClass().getName() + <span class="string">"@"</span> + Integer.toHexString(hashCode());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-String类中equals-方法和hashCode-方法"><a href="#2-String类中equals-方法和hashCode-方法" class="headerlink" title="2. String类中equals()方法和hashCode()方法"></a>2. <code>String</code>类中<code>equals()</code>方法和<code>hashCode()</code>方法</h3><blockquote>
+<p><code>String</code>类中部分源代码如下所示：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/** The value is used for character storage. */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">char</span> value[];</span><br><span class="line"><span class="comment">/** Cache the hash code for the string */</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> hash; <span class="comment">// Default to 0</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 无参构造方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.value = <span class="string">""</span>.value;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 有参构造方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">String</span><span class="params">(String original)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.value = original.value;</span><br><span class="line">      <span class="keyword">this</span>.hash = original.hash;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*String类重写的equals方法</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object anObject)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) &#123;<span class="comment">// 此处的this指向a.equals(b)的a对象，即谁调用指向谁</span></span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (anObject <span class="keyword">instanceof</span> String) &#123;</span><br><span class="line">          String anotherString = (String)anObject;</span><br><span class="line">          <span class="keyword">int</span> n = value.length;</span><br><span class="line">          <span class="keyword">if</span> (n == anotherString.value.length) &#123;</span><br><span class="line">              <span class="keyword">char</span> v1[] = value;</span><br><span class="line">              <span class="keyword">char</span> v2[] = anotherString.value;</span><br><span class="line">              <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">              <span class="keyword">while</span> (n-- != <span class="number">0</span>) &#123;</span><br><span class="line">                  <span class="keyword">if</span> (v1[i] != v2[i])</span><br><span class="line">                      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                  i++;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns a hash code for this string. The hash code for a</span></span><br><span class="line"><span class="comment">   * &#123;<span class="doctag">@code</span> String&#125; object is computed as</span></span><br><span class="line"><span class="comment">   * &lt;blockquote&gt;&lt;pre&gt;</span></span><br><span class="line"><span class="comment">   * s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</span></span><br><span class="line"><span class="comment">   * &lt;/pre&gt;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="comment">   * using &#123;<span class="doctag">@code</span> int&#125; arithmetic, where &#123;<span class="doctag">@code</span> s[i]&#125; is the</span></span><br><span class="line"><span class="comment">   * &lt;i&gt;i&lt;/i&gt;th character of the string, &#123;<span class="doctag">@code</span> n&#125; is the length of</span></span><br><span class="line"><span class="comment">   * the string, and &#123;<span class="doctag">@code</span> ^&#125; indicates exponentiation.</span></span><br><span class="line"><span class="comment">   * (The hash value of the empty string is zero.)</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span>  a hash code value for this object.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">int</span> h = hash;</span><br><span class="line">      <span class="keyword">if</span> (h == <span class="number">0</span> &amp;&amp; value.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">char</span> val[] = value;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; value.length; i++) &#123;</span><br><span class="line">              h = <span class="number">31</span> * h + val[i];</span><br><span class="line">          &#125;</span><br><span class="line">          hash = h;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> h;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>从上面的源码中，我们不难发现<code>String</code>类已经重写了<code>equals()</code>方法和<code>hashCode()</code>方法。</p>
+<p><code>String</code>类重写的<code>equals()</code>方法判断流程如下：</p>
+<blockquote>
+<ol>
+<li>使用<code>==</code>来判断两个对象的内存地址是否相同，相同返回<code>true；</code></li>
+<li>如果两个对象的内存地址不同，程序继续往下走，判断另一个对象是否是<code>String</code>类型的；</li>
+<li>如果比较对象不是<code>String</code>类型，直接返回<code>false</code>；</li>
+<li>如果是<code>String</code>类型的，进行类型强转；</li>
+<li>比较两个<code>String</code>的字符数组长度，如果长度不同，返回<code>false</code>；</li>
+<li>利用<code>while</code>循环来逐位比较字符是否相等，直到循环结束，所有字符都相等，则返回<code>true</code>，否则返回<code>false</code>;</li>
+</ol>
+</blockquote>
+<p>下面来看一下重写的<code>hashCode()</code>方法。</p>
+<blockquote>
+<ol>
+<li>首先<code>String</code>类中定义了一个<code>int</code>类型的变量<code>hash</code>用来缓存<code>String</code>对象的<code>hash</code>值；</li>
+<li>如果当前调用<code>hashCode()</code>方法的<code>String</code>对象在常量池没有找到，并且该对象的<code>length</code>长度大于<code>0</code>,则继续往下走，否则返回<code>0</code>;即<code>String</code>类默认<code>&quot;&quot;</code>字符串的<code>hashCode()</code>值为<code>0</code>;</li>
+<li>遍历字符数组，获取每一个字符的<code>ASCII</code>码表对应的值 和之前的<code>hash</code>值相加，这样就保证了相同的字符串的<code>hashCode()</code>返回值相同，计算公式在注释里已经写出来了：<strong><code>s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]</code></strong></li>
+<li>将计算出来的结果保存到<code>hash</code>变量中，并返回该值；</li>
+</ol>
+</blockquote>
+<p>这里为什么要乘以<code>31</code>呢？原因是为了<strong>性能</strong>，不仅仅指降低了计算速度，也降低了哈希冲突的概率。</p>
+<blockquote>
+<p> 哈希冲突：此处指不同的字符串生成了相同的<code>hashCode</code>值。</p>
+</blockquote>
+<p><code>31</code>是一个<strong>奇素数</strong>。如果乘数是偶数，并且乘法溢出的话，信息就会丢失，因为与2相乘等价于移位运算（低位补<code>0</code>）。使用素数的好处并不很明显，但是习惯上使用素数来计算散列结果。 <strong><code>31</code> 有个很好的性能，即用移位和减法来代替乘法</strong>，可以得到更好的性能： <code>31 * i == (i &lt;&lt; 5）- i</code>， 现代的 <code>VM</code>  可以自动完成这种优化。这个公式可以很简单的推导出来。 —- 《<code>Effective Java</code>》 </p>
+<blockquote>
+<p>素数：质数又称素数，指在一个大于1的自然数中，除了1和此整数自身外，没法被其他自然数整除的数。 </p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title></title>
       <url>/2020/04/04/Js%E5%AE%9E%E7%8E%B0%E5%9B%9E%E8%BD%A6%E7%99%BB%E5%BD%95/</url>
       <content type="html"><![CDATA[<hr>
 <p>title:Vue项目中实现回车登录<br>date:2020-04-04 18:51:31</p>
 <h2 id="tags-JavaScript"><a href="#tags-JavaScript" class="headerlink" title="tags:JavaScript"></a>tags:JavaScript</h2><h3 id="Vue项目中实现回车登录"><a href="#Vue项目中实现回车登录" class="headerlink" title="Vue项目中实现回车登录"></a>Vue项目中实现回车登录</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">	<span class="keyword">let</span> that = <span class="keyword">this</span>;</span><br><span class="line">    <span class="built_in">document</span>.onkeypress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> keycode = <span class="built_in">document</span>.all ? event.keyCode : e.which;</span><br><span class="line">      <span class="keyword">if</span> (keycode == <span class="number">13</span>) &#123;<span class="comment">// 回车键对应值为13</span></span><br><span class="line">        that.login();<span class="comment">// 登录方法名</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title></title>
+      <url>/2020/04/04/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
+      <content type="html"><![CDATA[<hr>
+<p>title:JS中this的指向<br>date:2019-10-15 19:51:31</p>
+<h2 id="tags-JavaScript"><a href="#tags-JavaScript" class="headerlink" title="tags:JavaScript"></a>tags:JavaScript</h2><blockquote>
+<p>JS中this的指向</p>
+</blockquote>
+<pre><code>1. 以函数形式调用时，this是window
+2. 以方法形式调用时，this是调用方法的对象
+3. 以构造函数形式调用时，this是新建的那个对象
+4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>/2020/04/04/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
       
         
@@ -44,97 +258,6 @@
         <tags>
             
             <tag> 踩坑 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title></title>
-      <url>/2019/10/17/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
-      <content type="html"><![CDATA[<hr>
-<p>title:JS中this的指向<br>date:2019-10-15 19:51:31</p>
-<h2 id="tags-JavaScript"><a href="#tags-JavaScript" class="headerlink" title="tags:JavaScript"></a>tags:JavaScript</h2><blockquote>
-<p>JS中this的指向</p>
-</blockquote>
-<pre><code>1. 以函数形式调用时，this是window
-2. 以方法形式调用时，this是调用方法的对象
-3. 以构造函数形式调用时，this是新建的那个对象
-4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[String类的常用方法]]></title>
-      <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
-      <content type="html"><![CDATA[<h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
-<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
-</blockquote>
-<blockquote>
-<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
-</blockquote>
-<blockquote>
-<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
-</blockquote>
-<blockquote>
-<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
-</blockquote>
-<blockquote>
-<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
-</blockquote>
-<blockquote>
-<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
-</blockquote>
-<blockquote>
-<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
-</blockquote>
-<blockquote>
-<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
-</blockquote>
-<blockquote>
-<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
-</blockquote>
-<blockquote>
-<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
-</blockquote>
-<blockquote>
-<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
-</blockquote>
-<blockquote>
-<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
-</blockquote>
-<blockquote>
-<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
-</blockquote>
-<blockquote>
-<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
-</blockquote>
-<blockquote>
-<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
-</blockquote>
-<h3 id="字符串与基本类型的转换"><a href="#字符串与基本类型的转换" class="headerlink" title="字符串与基本类型的转换"></a>字符串与基本类型的转换</h3><pre>
-int n = Integer.parseInt("12");  
-float f = Float.parseFloat("12.34");  
-double d = Double.parseDouble("1.124");
-</pre>  
-
-<pre>
-String a = String.valueOf(12);
-String b = String.valueOf(13.14);
-</pre>]]></content>
-      
-        
-        <tags>
-            
-            <tag> Java </tag>
             
         </tags>
         
@@ -272,6 +395,80 @@ if(i > 0){
     </entry>
     
     <entry>
+      <title><![CDATA[String类的常用方法]]></title>
+      <url>/2019/10/15/Java%E4%B8%ADString%E7%B1%BB%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/</url>
+      <content type="html"><![CDATA[<h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
+<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
+</blockquote>
+<blockquote>
+<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
+</blockquote>
+<blockquote>
+<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
+</blockquote>
+<blockquote>
+<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
+</blockquote>
+<blockquote>
+<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
+</blockquote>
+<blockquote>
+<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
+</blockquote>
+<blockquote>
+<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
+</blockquote>
+<blockquote>
+<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
+</blockquote>
+<blockquote>
+<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
+</blockquote>
+<h3 id="字符串与基本类型的转换"><a href="#字符串与基本类型的转换" class="headerlink" title="字符串与基本类型的转换"></a>字符串与基本类型的转换</h3><pre>
+int n = Integer.parseInt("12");  
+float f = Float.parseFloat("12.34");  
+double d = Double.parseDouble("1.124");
+</pre>  
+
+<pre>
+String a = String.valueOf(12);
+String b = String.valueOf(13.14);
+</pre>]]></content>
+      
+        
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Java中到底是值传递还是引用传递]]></title>
       <url>/2019/07/15/Java%E4%B8%AD%E5%88%B0%E5%BA%95%E6%98%AF%E5%80%BC%E4%BC%A0%E9%80%92%E8%BF%98%E6%98%AF%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</url>
       <content type="html"><![CDATA[<h2 id="Java中到底是值传递还是引用传递？"><a href="#Java中到底是值传递还是引用传递？" class="headerlink" title="Java中到底是值传递还是引用传递？"></a>Java中到底是值传递还是引用传递？</h2><p>我们先回顾一下基本概念</p>
@@ -397,27 +594,6 @@ if(i > 0){
             <tag> Java </tag>
             
         </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>/2019/07/15/hello-world/</url>
-      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      
         
     </entry>
     
