@@ -74,7 +74,7 @@
         
         <tags>
             
-            <tag> java 代理  动态代理 </tag>
+            <tag> java，代理，动态代理 </tag>
             
         </tags>
         
@@ -365,6 +365,47 @@ unzip file.zip //解压zip
     </entry>
     
     <entry>
+      <title><![CDATA[Mybatis笔记]]></title>
+      <url>/2019/10/15/Mybatis/</url>
+      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
+<blockquote>
+<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
+<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
+<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
+</blockquote>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Mybatis </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[JS中this的指向]]></title>
+      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>JS中this的指向</p>
+</blockquote>
+<pre><code>1. 以函数形式调用时，this是window
+2. 以方法形式调用时，this是调用方法的对象
+3. 以构造函数形式调用时，this是新建的那个对象
+4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[进程和线程]]></title>
       <url>/2019/10/15/%E9%9A%8F%E7%AC%94/</url>
       <content type="html"><![CDATA[<p>记录：  </p>
@@ -434,47 +475,6 @@ if(i > 0){
         <tags>
             
             <tag> 随笔 </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[Mybatis笔记]]></title>
-      <url>/2019/10/15/Mybatis/</url>
-      <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p>
-<blockquote>
-<p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p>
-<p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p>
-<p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p>
-</blockquote>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> Mybatis </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[JS中this的指向]]></title>
-      <url>/2019/10/15/JS%E4%B8%ADthis%E7%9A%84%E6%8C%87%E5%90%91/</url>
-      <content type="html"><![CDATA[<blockquote>
-<p>JS中this的指向</p>
-</blockquote>
-<pre><code>1. 以函数形式调用时，this是window
-2. 以方法形式调用时，this是调用方法的对象
-3. 以构造函数形式调用时，this是新建的那个对象
-4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
-]]></content>
-      
-        
-        <tags>
-            
-            <tag> JavaScript </tag>
             
         </tags>
         
