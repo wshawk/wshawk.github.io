@@ -1,5 +1,5 @@
 ---
-title: equals()方法和hashCode()方法详解 
+title: 为什么重写equals()方法时，要重写hashCode()方法 
 date: 2020-04-07 19:51:31
 tags: Java
 ---
