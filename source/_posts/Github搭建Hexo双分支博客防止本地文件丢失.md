@@ -1,3 +1,10 @@
+---
+title: Github搭建Hexo双分支博客防止本地文件丢失 
+date: 2022-10-18 00:30:31
+tags: hexo
+---
+
+
 > 转载于： [Github搭建Hexo双分支博客防止本地文件丢失](https://www.jianshu.com/p/7d8df0de1fc7)
 
 
