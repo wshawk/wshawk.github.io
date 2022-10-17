@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>String类的常用方法 | 暮夏的博客 | 记录学习的技能和遇到的问题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Java">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	true,
+            lv: JSON.parse('{"enable":false,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"wshawk","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">暮夏</h5>
+          <a href="mailto:1242293215@qq.com" title="1242293215@qq.com" class="mail">
+            
+              <span>1</span>
+            
+              <span>2</span>
+            
+              <span>4</span>
+            
+              <span>2</span>
+            
+              <span>2</span>
+            
+              <span>9</span>
+            
+              <span>3</span>
+            
+              <span>2</span>
+            
+              <span>1</span>
+            
+              <span>5</span>
+            
+              <span>@</span>
+            
+              <span>q</span>
+            
+              <span>q</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/wshawk" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-user"></i>
+                关于
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>String类的常用方法</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">String类的常用方法</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-10-15T11:51:31.000Z" itemprop="datePublished" class="page-time">
+  2019-10-15
+</time>
+
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Java中String类的常用方法"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">String类的常用方法</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-10-15 19:51:31" datetime="2019-10-15T11:51:31.000Z"  itemprop="datePublished">2019-10-15</time>
+
+            
+
+
+            
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h3 id="String类的常用方法"><a href="#String类的常用方法" class="headerlink" title="String类的常用方法"></a>String类的常用方法</h3><blockquote>
+<p><strong>split(“reg”)</strong><br>将字符串以reg为分隔符进行分割，返回一个String类型的数组    </p>
+</blockquote>
+<blockquote>
+<p><strong>replace(char oldChar, char newChar)</strong><br>替换字符串中的字符，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>replaceAll(String regex,String replacement)</strong><br>基于正则表达式的替换,比如，可以通过<code>replaceAll("\d", "*")</code>把一个字符串所有的数字字符都换成星号;如果参数不是基于正则表达式的，那么效果和replace()相同</p>
+</blockquote>
+<blockquote>
+<p><strong>replaceFirst(String regex,String replacement)</strong><br>基于正则表达式的替换,只替换第一次出现的</p>
+</blockquote>
+<blockquote>
+<p><strong>trim()</strong><br>去除字符串首尾的空格，返回一个新的String类型的变量  </p>
+</blockquote>
+<blockquote>
+<p><strong>equals()</strong><br>比较两个String类型变量的内容是否相同，区分大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>equalsIgnoreCase()</strong><br>和equals()方法的作用相同，只是忽略大小写  </p>
+</blockquote>
+<blockquote>
+<p><strong>substring(fromTndex,toIndex)</strong><br>字符串截取，包含包含起始位置，不包含结束位置<br>如果只有起始位置，没有结束位置，就返回从起始位置到字符串的末尾  </p>
+</blockquote>
+<blockquote>
+<p><strong>charAt(int index)</strong><br>返回字符串中指定位置的字符，Char类型   </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean statWith(String prefix)</strong><br>判断字符串是是否是以prefix为开始，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>boolean endWith(String suffix)</strong><br>判断字符串是是否是以suffix为结束，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>String toLowerCase()</strong><br>返回将当前字符串中所有字符转换成小写后的新串</p>
+</blockquote>
+<blockquote>
+<p><strong>String toUpperCase()</strong><br>返回将当前字符串中所有字符转换成大写后的新串  </p>
+</blockquote>
+<blockquote>
+<p><strong>contains(String str)</strong><br>判断参数s是否被包含在字符串中，是返回true，否返回false  </p>
+</blockquote>
+<blockquote>
+<p><strong>int indexOf(int ch/String str)</strong><br>用于查找当前字符串中字符或子串，返回字符或子串在当前字符串中从左边起首次出现的位置，若没有出现则返回-1</p>
+</blockquote>
+<blockquote>
+<p><strong>indexOf(int ch/String str, int fromIndex)</strong><br>从fromIndex位置向后查找  </p>
+</blockquote>
+<blockquote>
+<p><strong>lastIndexOf(int ch/String str)</strong><br>从字符串的末尾位置向前查找  </p>
+</blockquote>
+<h3 id="字符串与基本类型的转换"><a href="#字符串与基本类型的转换" class="headerlink" title="字符串与基本类型的转换"></a>字符串与基本类型的转换</h3><pre>
+int n = Integer.parseInt("12");  
+float f = Float.parseFloat("12.34");  
+double d = Double.parseDouble("1.124");
+</pre>  
+
+<pre>
+String a = String.valueOf(12);
+String b = String.valueOf(13.14);
+</pre>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-10-17T13:47:28.767Z" itemprop="dateUpdated">2019-10-17 21:47:28</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2019/10/15/Java中String类的常用方法/" target="_blank" rel="external">http://wshawk.github.io/2019/10/15/Java中String类的常用方法/</a>
+        
+    </div>
+    <footer>
+        <a href="http://wshawk.github.io">
+            <img src="/img/avatar.jpg" alt="暮夏">
+            暮夏
+        </a>
+    </footer>
+</blockquote>
+
+        
+            <div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+            
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2019/10/15/Java中String类的常用方法/&title=《String类的常用方法》 — 暮夏的博客&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2019/10/15/Java中String类的常用方法/&title=《String类的常用方法》 — 暮夏的博客&source=咬定青山不放松，立根原在破岩中。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2019/10/15/Linux常用命令/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Linux环境工作常用命令</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2019/10/15/Mybatis/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Mybatis笔记</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#String类的常用方法"><span class="post-toc-number">1.</span> <span class="post-toc-text">String类的常用方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#字符串与基本类型的转换"><span class="post-toc-number">2.</span> <span class="post-toc-text">字符串与基本类型的转换</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+    <div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        我们一起来让这个世界有趣一点
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/reward-wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/reward-wechat.jpg" data-alipay="/img/reward-alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+    
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                暮夏 &copy; 2017 - 2022
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2019/10/15/Java中String类的常用方法/&title=《String类的常用方法》 — 暮夏的博客&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2019/10/15/Java中String类的常用方法/&title=《String类的常用方法》 — 暮夏的博客&source=咬定青山不放松，立根原在破岩中。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvElEQVR42u3a0U7DMAwF0P3/TxeJJ6TR7tquN5BOntDo2pwgNeHaj0c8ju9x9snxYzxfc/358zXH5XhsDDw8PLzW1KuPPAMcwbh+erLEhSXAw8PDW+NVb5dvD9WNp/rcFxY8PDy8j/KS43JyaE7uX50PHh4e3t/nXZMm98njDzw8PLzP8pIwojfp6+8mocabshY8PDy8hSrS3/l5sb6Hh4eHN6iq94peyZE333gmAw8PD2+DNy8yVVsN8gi4WlQr/MeAh4eHN+b1DrK95qrChAZPfJFV4+Hh4Q14ySTyeCJvzJq0CBQO63h4eHhv4SVFqbwk1tsMqi0Ip1fi4eHhLfAmrQPNl3WwEL2Qt3kSx8PDw2vxqtOqTjQ/LvcWq3xwx8PDw7uJ19sYqpvKpJQ1OY7j4eHh3cWrTnpS+kqelc8hii3w8PDwFnhJKSsPI3qRRK9VqxBD4OHh4a3xenFqErPeW1prbgx4eHh4t/J6MWtCzbeZfHtIlgkPDw9vj3cMxl5Zq3pAf5G14OHh4S3w8onOo9Xk83wjiTYGPDw8vAXeXcHBJM7I71x4Ch4eHt4CrxcxVCtNvaNz9emFnjI8PDy8Ma9Xqq+Gs/kSRHlzvhB4eHh4C7xJBLARWOQbT7lpAA8PD+9WXi8UyAOLXmGsuhzRdoKHh4c34PWaA/LGqWrYMQmCf7kDHh4e3jKv90LvxQ0rjQLP38XDw8Nb4OWv9byUlTcZJOBqeQwPDw9vm3cUx6RMNS+hJfMp/x3w8PDwirxeSb46ieqWkwfK+VEeDw8P715evhnkv500b02O2nh4eHjv5E3iiWrYmjcEVMOI00gCDw8P70O8XvNTcv0cdrph4OHh4f0TXrW9ID9SV4tweHh4eHu8SWRQfQ/3Sly9hcDDw8Pb4PUKYHljVrXwP9+obmgdwMPDw/v9+i/aXkrfnpEArwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '死鬼去哪里了！';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!又好了!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+</body>
+</html>
