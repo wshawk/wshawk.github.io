@@ -1,6 +1,8 @@
 ---
 title: Mybatis笔记
 date: 2019-10-15 19:51:31
+categories:
+- 后端
 tags: Mybatis
 ---
 ### Mybatis笔记  

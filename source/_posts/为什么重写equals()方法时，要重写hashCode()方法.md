@@ -1,6 +1,9 @@
 ---
 title: 为什么重写equals()方法时，要重写hashCode()方法 
 date: 2020-04-07 20:51:31
+categories:
+- 后端
+- Java
 tags: Java
 ---
 

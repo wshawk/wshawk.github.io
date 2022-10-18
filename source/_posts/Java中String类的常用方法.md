@@ -1,6 +1,8 @@
 ---
 title: String类的常用方法
 date: 2019-10-15 19:51:31
+categories:
+- 后端
 tags: Java
 ---
 ### String类的常用方法  

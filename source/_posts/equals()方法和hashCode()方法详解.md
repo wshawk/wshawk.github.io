@@ -1,6 +1,8 @@
 ---
 title: equals()方法和hashCode()方法详解 
 date: 2020-04-07 19:51:31
+categories:
+- 后端
 tags: Java
 ---
 

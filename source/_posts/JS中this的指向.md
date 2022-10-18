@@ -1,6 +1,8 @@
 ---
 title: JS中this的指向
 date: 2019-10-15 19:51:31
+categories:
+- 前端
 tags: JavaScript
 ---
 > JS中this的指向

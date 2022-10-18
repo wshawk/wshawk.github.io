@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 暮夏的博客
+title: wshawk's blog
 #网站副标题
-subtitle: 记录学习的技能和遇到的问题
-description: 咬定青山不放松，立根原在破岩中。
+subtitle: 
+description: 
 keywords:
-author: 暮夏
+author: wshawk
 language: zh-Hans
 timezone: Asia/Shanghai
 
@@ -108,4 +108,4 @@ avatar: /img/avatar.jpg
 avatar_link: / #默认为主页
 #头像区域背景图
 brand: /
-email: 1242293215@qq.com
+email: ws_hawk@foxmail.com
