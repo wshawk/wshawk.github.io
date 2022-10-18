@@ -180,10 +180,20 @@
 
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> java 代理  动态代理 </tag>
+            <tag> Java </tag>
+            
+            <tag> 代理 </tag>
+            
+            <tag> 动态代理 </tag>
             
         </tags>
         
@@ -285,10 +295,16 @@
 </ul>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
-            <tag> java </tag>
+            <tag> Java </tag>
             
         </tags>
         
@@ -361,6 +377,14 @@
 </ul>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+            <category> Java </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -432,6 +456,12 @@
 </blockquote>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -469,10 +499,18 @@
 
 ]]></content>
       
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
         
         <tags>
             
             <tag> JavaScript </tag>
+            
+            <tag> Vue </tag>
             
         </tags>
         
@@ -490,8 +528,16 @@
 </blockquote>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
+            
+            <tag> Java </tag>
             
             <tag> 踩坑 </tag>
             
@@ -504,6 +550,12 @@
       <url>/2019/11/05/unix%E6%97%B6%E9%97%B4%E6%88%B3%E8%BD%AC%E6%97%B6%E9%97%B4/</url>
       <content type="html"><![CDATA[<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String unixTimeStr=  <span class="string">"1572251400"</span>;</span><br><span class="line"><span class="keyword">long</span> s = Long.parseLong(unixTimeStr);</span><br><span class="line">s *= <span class="number">1000</span>; <span class="comment">// 乘以1000，变成毫秒</span></span><br><span class="line">SimpleDateFormat t = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">String date = t.format(<span class="keyword">new</span> Date(s));</span><br><span class="line">System.out.println(date); <span class="comment">//2019-10-28 16:30:00</span></span><br></pre></td></tr></table></figure>]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -525,6 +577,12 @@
 4. 使用call()和apply()调用时，this是指定的那个对象</code></pre><p>在调用函数时，浏览器每次都会传递两个隐含的参数<br>    1. 函数的上下文对象this<br>    2. 封装实参的对象arguments<br>        – arguments是一个类数组对象(不是数组)，它可以用过索引来操作数据，也可以获取长度<br>        – 在调用函数时，我们所传递的实参都会保存在arguments中<br>        – 即使在函数中不定义形参，也可以通过arguments来进行操作，只是相对而言麻烦一些</p>
 ]]></content>
       
+        <categories>
+            
+            <category> 前端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -599,6 +657,12 @@ String a = String.valueOf(12);
 String b = String.valueOf(13.14);
 </pre>]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -635,6 +699,12 @@ unrar e file.rar //解压rar
 unzip file.zip //解压zip
 </code>]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -655,6 +725,12 @@ unzip file.zip //解压zip
 </blockquote>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
@@ -859,6 +935,12 @@ if(i > 0){
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.hollischuang.com/archives/2275" target="_blank">为什么说Java中只有值传递</a><br><a href="http://menzhongxin.com/2017/02/07/%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92-%E6%8C%89%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92%E5%92%8C%E6%8C%89%E5%85%B1%E4%BA%AB%E4%BC%A0%E9%80%92/" target="_blank">按值传递、按引用传递、按共享传递</a><br><a href="https://www.zhihu.com/question/20628016/answer/28970414" target="_blank">为什么 Java 只有值传递，但 C# 既有值传递，又有引用传递，这种语言设计有哪些好处？</a></p>
 ]]></content>
       
+        <categories>
+            
+            <category> 后端 </category>
+            
+        </categories>
+        
         
         <tags>
             
