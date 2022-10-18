@@ -5,7 +5,6 @@ categories:
 - hexo
 tags: 
 - hexo
-top: 1
 ---
 
 
@@ -37,7 +36,7 @@ top: 1
 
 6. 修改_config.yml中的deploy参数
 
-![img](https:////upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip|imageView2/2/w/374/format/webp)
+![img](https://upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip|imageView2/2/w/374/format/webp)
 
 7. 下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来
 

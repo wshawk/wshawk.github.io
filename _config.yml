@@ -81,7 +81,9 @@ theme: mellow
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:wshawk/wshawk.github.io.git
+  repository: 
+    github: git@github.com:wshawk/wshawk.github.io.git
+    coding: git@e.coding.net:wshawk/wshawk/wshawk.git
   branch: master
 less:
   compress: true #是否压缩
