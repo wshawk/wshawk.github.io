@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     
     
-    <title>Github搭建Hexo双分支博客防止本地文件丢失 | wshawk&#39;s blog</title>
+    <title>HashMap详解-源码分析 | wshawk&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="keywords" content="hexo">
+    <meta name="keywords" content="Java,JDK">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
     <link rel="stylesheet" href="/css/style.css?v=1.4.4">
@@ -145,7 +145,7 @@
           <i class="icon icon-lg icon-navicon"></i>
         </a>
         <div class="flex-col header-title ellipsis">
-            <span>Github搭建Hexo双分支博客防止本地文件丢失</span>
+            <span>HashMap详解-源码分析</span>
             
         </div>
         
@@ -158,15 +158,15 @@
 <header class="content-header post-header">
     <img src="/img/banner.jpg" class="header-bg">
     <div class="container fade-scale">
-        <h1 class="title">Github搭建Hexo双分支博客防止本地文件丢失</h1>
+        <h1 class="title">HashMap详解-源码分析</h1>
         <h5 class="subtitle">
             
-                <time datetime="2022-10-17T16:28:30.000Z" itemprop="datePublished" class="page-time">
-  2022-10-18
+                <time datetime="2020-05-26T12:51:31.000Z" itemprop="datePublished" class="page-time">
+  2020-05-26
 </time>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/hexo/">hexo</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/Java/">Java</a></li></ul></li></ul>
 
             
         </h5>
@@ -191,20 +191,20 @@
 
 
 <div class="container body-wrap">
-    <article id="post-Github搭建Hexo双分支博客防止本地文件丢失"
+    <article id="post-HashMap详解-源码分析"
   class="post-article article-type-post" itemprop="blogPost">
     <div class="post-card">
-        <h1 class="post-card-title">Github搭建Hexo双分支博客防止本地文件丢失</h1>
+        <h1 class="post-card-title">HashMap详解-源码分析</h1>
         <div class="post-meta">
-            <time class="post-time" title="2022-10-18 00:28:30" datetime="2022-10-17T16:28:30.000Z"  itemprop="datePublished">2022-10-18</time>
+            <time class="post-time" title="2020-05-26 20:51:31" datetime="2020-05-26T12:51:31.000Z"  itemprop="datePublished">2020-05-26</time>
 
             
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/hexo/">hexo</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/Java/">Java</a></li></ul></li></ul>
 
 
 
             
-	<span id="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" class="leancloud_visitors" data-flag-title="Github搭建Hexo双分支博客防止本地文件丢失" title="Github搭建Hexo双分支博客防止本地文件丢失">
+	<span id="/2020/05/26/HashMap详解-源码分析/" class="leancloud_visitors" data-flag-title="HashMap详解-源码分析" title="HashMap详解-源码分析">
 		
 			<i class="icon icon-eye"></i>
 		
@@ -219,95 +219,33 @@
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             
-            <blockquote>
-<p>转载于： <a href="https://www.jianshu.com/p/7d8df0de1fc7" target="_blank" rel="noopener">Github搭建Hexo双分支博客防止本地文件丢失</a></p>
-</blockquote>
-<h1 id="一、关于搭建流程"><a href="#一、关于搭建流程" class="headerlink" title="一、关于搭建流程"></a>一、关于搭建流程</h1><ol>
-<li><p>创建仓库，Godbn.github.io</p>
-</li>
-<li><p>创建两个分支:master和hexo</p>
-</li>
-<li><p>在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)</p>
-</li>
-<li><p>使用以下命令拷贝仓库到本地桌面</p>
-</li>
-</ol>
-<blockquote>
-<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Godbn/Godbn.github.io.git</p>
-</blockquote>
-<ol start="5">
-<li>终端进入Godbn.github.io目录，依次执行</li>
-</ol>
-<blockquote>
-<p>  npm install hexo</p>
-<p>  hexo init</p>
-<p>  npm install</p>
-<p>  npm install hexo-deployer-git (用于生成上传至github)</p>
-</blockquote>
-<ol start="6">
-<li>修改_config.yml中的deploy参数</li>
-</ol>
-<figure class="image-box">
-                <a rel=Github搭建Hexo双分支博客防止本地文件丢失 href="https://upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip|imageView2/2/w/374/format/webp" title="img" data-fancybox="images"><img src="https://upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip|imageView2/2/w/374/format/webp" alt="img" title class></a>
-                <p>img</p>
-            </figure>
+            <h1 id="HashMap详解-源码分析"><a href="#HashMap详解-源码分析" class="headerlink" title="HashMap详解-源码分析"></a>HashMap详解-源码分析</h1><h2 id="HashMap类声明"><a href="#HashMap类声明" class="headerlink" title="HashMap类声明"></a>HashMap类声明</h2><p>源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
 
-<ol start="7">
-<li>下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来</li>
-</ol>
-<blockquote>
-<p><a href="https://github.com/iJinxin/hexo-theme-sky" target="_blank" rel="noopener">https://github.com/iJinxin/hexo-theme-sky</a></p>
-</blockquote>
-<ol start="8">
-<li>依次执行以下三条命令提交网站相关的文件</li>
-</ol>
-<blockquote>
-<p>git add .</p>
-<p>git commit -m “…”</p>
-<p>git push origin hexo</p>
-</blockquote>
-<ol start="9">
-<li>执行hexo g -d 生成网站并部署到github上 (每次可以在前面输入 hexo clean 清理下)</li>
-</ol>
-<blockquote>
-<p>hexo clean</p>
-<p>hexo g -d</p>
-</blockquote>
-<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p><strong>分支hexo储存的是网站的原始文件</strong></p>
-<p><strong>分支master用来储存生成的静态网页</strong></p>
-<h1 id="二、日常改动"><a href="#二、日常改动" class="headerlink" title="二、日常改动"></a>二、日常改动</h1><h3 id="本地添加文章，样式等"><a href="#本地添加文章，样式等" class="headerlink" title="本地添加文章，样式等"></a>本地添加文章，样式等</h3><ol>
-<li>依次执行以下命令git到分支hexo上</li>
-</ol>
-<blockquote>
-<p>git add .</p>
-<p>git commit -m “…”</p>
-<p>git push origin hexo</p>
-</blockquote>
-<ol start="2">
-<li>再执行以下命令发布网站到分支master</li>
-</ol>
-<blockquote>
-<p>hexo g -d</p>
-</blockquote>
-<h1 id="三、其他电脑更新github博客"><a href="#三、其他电脑更新github博客" class="headerlink" title="三、其他电脑更新github博客"></a>三、其他电脑更新github博客</h1><ol>
-<li>使用命令将仓库拷贝到本地</li>
-</ol>
-<blockquote>
-<p>git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Godbn/Godbn.github.io.git</p>
-</blockquote>
-<ol start="2">
-<li>在Godbn.github.io文件夹中通过以下恢复原始文件</li>
-</ol>
-<blockquote>
-<p>npm install hexo</p>
-<p>npm install</p>
-<p>npm install hexo-deployer-git –save</p>
-</blockquote>
-<h1 id="四、结束"><a href="#四、结束" class="headerlink" title="四、结束"></a>四、结束</h1><p>以上是get到知乎上的回答搭建的</p>
-<p>传送门：</p>
-<blockquote>
-<p><a href="https://www.zhihu.com/question/21193762" target="_blank" rel="noopener">https://www.zhihu.com/question/21193762</a></p>
-</blockquote>
+<p>分析：</p>
+<ul>
+<li>继承了AbstractMap抽象类，而AbstractMap类已经实现了Map部分接口，可以直接使用</li>
+<li>实现了Map、Cloneable、Serializable接口，即实现Map接口中的相应方法，支持clone，支持序列化及反序列化</li>
+</ul>
+<h2 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h2><p>源码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">362498820763181265L</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">4</span>; <span class="comment">// aka 16</span></span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXIMUM_CAPACITY = <span class="number">1</span> &lt;&lt; <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="number">0.75f</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TREEIFY_THRESHOLD = <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> UNTREEIFY_THRESHOLD = <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_TREEIFY_CAPACITY = <span class="number">64</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">transient</span> Node&lt;K,V&gt;[] table;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">transient</span> Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">transient</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">transient</span> <span class="keyword">int</span> modCount;</span><br><span class="line"></span><br><span class="line"> 	<span class="keyword">int</span> threshold;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">final</span> <span class="keyword">float</span> loadFactor;</span><br></pre></td></tr></table></figure>
+
+<p>分析：</p>
+<ul>
+<li>serialVersionUID：序列化版本号</li>
+<li>DEFAULT_INITIAL_CAPACITY：默认初始化的数组容量</li>
+<li>MAXIMUM_CAPACITY：最大的容量，1&gt;&gt;30即为2的30次方</li>
+<li>DEFAULT_LOAD_FACTOR：默认的扩容因子</li>
+<li>TREEIFY_THRESHOLD：树化的阈值</li>
+<li>UNTREEIFY_THRESHOLD：退化为链表的阈值</li>
+<li>MIN_TREEIFY_CAPACITY： 树的最小容量</li>
+<li>table：用于保存键值对元素的数组</li>
+<li>entrySet：存放具体元素的集合</li>
+<li>size：实际存储元素的个数</li>
+<li>modCount：记录数组长度变化</li>
+<li>threshold：临界值 当实际大小(容量*扩容因子)超过临界值时，会进行扩容</li>
+<li>loadFactor：扩容因子</li>
+</ul>
 
         </div>
         
@@ -315,12 +253,12 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2022-10-18T14:45:54.349Z" itemprop="dateUpdated">2022-10-18 22:45:54</time>
+    Last updated: <time datetime="2022-10-19T14:27:46.510Z" itemprop="dateUpdated">2022-10-19 22:27:46</time>
 </span><br>
 
 
         
-        转载注明出处，原文地址：<a href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" target="_blank" rel="external">http://wshawk.github.io/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/</a>
+        转载注明出处，原文地址：<a href="/2020/05/26/HashMap详解-源码分析/" target="_blank" rel="external">http://wshawk.github.io/2020/05/26/HashMap详解-源码分析/</a>
         
     </div>
     <footer>
@@ -334,7 +272,7 @@
         
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
             <div class="page-share-wrap">
     
@@ -343,7 +281,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/&title=《Github搭建Hexo双分支博客防止本地文件丢失》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2020/05/26/HashMap详解-源码分析/&title=《HashMap详解-源码分析》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -355,7 +293,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/&title=《Github搭建Hexo双分支博客防止本地文件丢失》 — wshawk's blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2020/05/26/HashMap详解-源码分析/&title=《HashMap详解-源码分析》 — wshawk's blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -378,14 +316,21 @@
         
     </div>
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Github搭建Hexo双分支博客防止本地文件丢失</h4>
+      </a>
+    </div>
   
 
   
     <div class="next">
-      <a href="/2020/05/26/HashMap详解-源码分析/" id="post-next" class="post-nav-link">
+      <a href="/2020/04/08/Java中的代理/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">HashMap详解-源码分析</h4>
+        <h4 class="title">Java中的代理</h4>
       </a>
     </div>
   
@@ -397,7 +342,7 @@
         <aside class="post-widget">
             <nav class="post-toc-wrap" id="post-toc">
                 <strong>目录</strong>
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一、关于搭建流程"><span class="post-toc-number">1.</span> <span class="post-toc-text">一、关于搭建流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#提示"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">提示</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二、日常改动"><span class="post-toc-number">2.</span> <span class="post-toc-text">二、日常改动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地添加文章，样式等"><span class="post-toc-number">2.0.1.</span> <span class="post-toc-text">本地添加文章，样式等</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#三、其他电脑更新github博客"><span class="post-toc-number">3.</span> <span class="post-toc-text">三、其他电脑更新github博客</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#四、结束"><span class="post-toc-number">4.</span> <span class="post-toc-text">四、结束</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HashMap详解-源码分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">HashMap详解-源码分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HashMap类声明"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">HashMap类声明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#成员变量"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">成员变量</span></a></li></ol></li></ol>
             </nav>
             <div class="toc-bar"><div>
         </aside>
@@ -453,7 +398,7 @@
     <ul class="reset share-icons">
       
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/&title=《Github搭建Hexo双分支博客防止本地文件丢失》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2020/05/26/HashMap详解-源码分析/&title=《HashMap详解-源码分析》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -465,7 +410,7 @@
       </li>
       
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/&title=《Github搭建Hexo双分支博客防止本地文件丢失》 — wshawk's blog&source=" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2020/05/26/HashMap详解-源码分析/&title=《HashMap详解-源码分析》 — wshawk's blog&source=" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -477,7 +422,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMUlEQVR42u3awXLiQAwEUP7/p7NVeyWQbo2zZbTPJwqMmTc5KGrN4xFfX3+v59fP97y6s3396smvrsdvXNjY2Ngfwk4e9/718w8ny8p/MVl5bsHGxsbeyk6K1nteW5zyRb9fbV4CsbGxsbHz8vO+jOXUvARiY2NjY58UsDy3SUrXLBHCxsbGxp4VkrZtaL+VwH49S8PGxsa+Pftk0Hu31/9ovo2NjY19G/ZXec3Kz0mU37Y6kQIbGxt7ETtZ3Ps4Pg+J2oBptjXF0R9sbGzsdey8dM0Gru0W5MHQMEjCxsbGXsFuB7ftxrUFJm9d2o3GxsbG3s1OykO+ZUkMNCs/7Wa93BpsbGzspezZ4k7GsVdtUx17YWNjYy9iJ7F7/k9/PpTN2546IZv9FjY2NvaHs8/HsfmiZyPbdoQctU/Y2NjYK9jtI2ZNy7UtTXuUJwqVsLGxsVewZ8UpD3Rmh3La4fF7dvFQbGxs7I9i59FM3mxcVahmvxINerGxsbHXsfPjMnkYdHLoZ5aQRevExsbGXsQ+mXtedXTmqnuG42FsbGzsD2e3heG8Vch5bZxUbBA2Njb2IvZsWNsWnpPNncVe0ROwsbGxV7DbOOba4W7+5Pz+6B1sbGzsRew86G/Hse3I4aS8JWBsbGzsrezZSDXfpnyUmzcb58eMsLGxsXezW2TbDJwf8bngu9jY2Njr2I/gyktRPh6ejYrbYcY3n2JjY2MvYudBfzseOD/W025i+z42Njb2Jvb50HQ2AGgblfz+6FNsbGzsFezkn/48yj+J7GcHd9qm6NF+GRsbG/v27NnBlxkvKTMzzOyPgY2Njb2DnR/QaTclH8e2x3EuKJnY2NjY69gncX/bSAzHsQf4b97BxsbGXsdu46Q2ipoNYvPyma/zkS8aGxsb+0PYbQ4zi+NzWLK5eVx1WfyEjY2NfXv2rPy0kX3e9uQHMfM25odBLzY2NvYK9nlsdFVxakn5kODleSVsbGzs/4bd/tisHJ43RdjY2NjYbTDUDmVnMVDL+2ETsbGxsdexj4rB8T3tOKFuPNopNzY2NvZHsdtB76wVmZ2WyYfHv3JwBxsbG/vu7D+92yY59tJ7CwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aSW7DMAwF0Nz/0u6miwJtlE9KLmDpaRXY8fC8IDjo9YrX9WP9PDI++/v4uzuPjyxbGBgYj2VcwzX+z5iaPGXMTt4NAwPjHMY4FCZBMEEm7OS5GBgYGOPbjR+Tp4Mznw8DAwOjd7txoZtjMDAwMGaK2Pl+VwK4vRbHwMB4ICPvuv//71vmGxgYGI9iXMVVvSofCfTe5/taDAyMrRmrmv7JP/P0rvo+GBgYpzF6ZeS4HM3P9sYMGBgYezOqo8RkI1fePusljn/cBwMDY2tG3qbvpXoJb1n6iIGBsTWjml/lwTQPmvOfAAMDY2/G2hK0WpRWA31Ui2NgYBzDWPv4JDT3CmAMDIy9GXmZmke5vFWXjy0/vBsGBsbWjJn2fRWWN/h6CSsGBsaujFWF6EwJOn5W9GkwMDAOYLyCNZMgNjdPVPeMYGBgbMqYuqCYROakvIQuxG8MDIwtGDm1GhZ7hXF1EwYGBsbejPs2VSSfI6dGSSEGBsYBjF6DbLzyoNzbtIGBgXEOI2/xLwuRE+28D402DAyMTRkzr9IbMCTDy1vmsRgYGI9iXMWVN87WppvN3BYDA2MLRm8k0NsSkfNmNmdgYGDsyphvliUpYzX4lscPGBgYBzBmCs4qspo4Js/CwMDAyIeOyfHe9q8Pd8PAwMBo/a6G0fxzvC1iMTAwtmbkw4BkSJCcXVXoYmBgnMColo7NbVutlDEJuxgYGFszvgBoefoITiGnvAAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
