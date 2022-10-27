@@ -83,7 +83,6 @@ deploy:
   type: git
   repository: 
     github: git@github.com:wshawk/wshawk.github.io.git
-    coding: git@e.coding.net:wshawk/wshawk/wshawk.git
   branch: master
 less:
   compress: true #是否压缩
