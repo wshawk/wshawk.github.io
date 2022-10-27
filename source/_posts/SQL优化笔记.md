@@ -1,5 +1,5 @@
 ---
-title: MySQL锁
+title: SQL优化笔记（MySQL）
 date: 2022-10-25 23:30:31
 categories:
 - 数据库
