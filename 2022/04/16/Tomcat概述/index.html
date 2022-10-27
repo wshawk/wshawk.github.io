@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>Tomcat概述 | wshawk&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="Tomcat">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wshawk</h5>
+          <a href="mailto:ws_hawk@foxmail.com" title="ws_hawk@foxmail.com" class="mail">
+            
+              <span>w</span>
+            
+              <span>s</span>
+            
+              <span>_</span>
+            
+              <span>h</span>
+            
+              <span>a</span>
+            
+              <span>w</span>
+            
+              <span>k</span>
+            
+              <span>@</span>
+            
+              <span>f</span>
+            
+              <span>o</span>
+            
+              <span>x</span>
+            
+              <span>m</span>
+            
+              <span>a</span>
+            
+              <span>i</span>
+            
+              <span>l</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/wshawk" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>Tomcat概述</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">Tomcat概述</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2022-04-16T15:30:31.000Z" itemprop="datePublished" class="page-time">
+  2022-04-16
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-Tomcat概述"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">Tomcat概述</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2022-04-16 23:30:31" datetime="2022-04-16T15:30:31.000Z"  itemprop="datePublished">2022-04-16</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+
+
+
+            
+	<span id="/2022/04/16/Tomcat概述/" class="leancloud_visitors" data-flag-title="Tomcat概述" title="Tomcat概述">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="Tomcat概述"><a href="#Tomcat概述" class="headerlink" title="Tomcat概述"></a>Tomcat概述</h1><h2 id="1-Tomcat-核心组件"><a href="#1-Tomcat-核心组件" class="headerlink" title="1. Tomcat 核心组件"></a>1. Tomcat 核心组件</h2><figure class="image-box">
+                <a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416104036286.png" title="image-20220416104036286" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416104036286.png" alt="image-20220416104036286" title class></a>
+                <p>image-20220416104036286</p>
+            </figure>
+
+<blockquote>
+<p>Connector(连接器): 由 端口号 + 协议 组成。</p>
+</blockquote>
+<h2 id="2-核心组件协作过程"><a href="#2-核心组件协作过程" class="headerlink" title="2. 核心组件协作过程"></a>2. 核心组件协作过程</h2><figure class="image-box">
+                <a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416104036286.png" title="image-20220416104220796" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416104036286.png" alt="image-20220416104220796" title class></a>
+                <p>image-20220416104220796</p>
+            </figure>
+
+
+
+<blockquote>
+<p>要点：</p>
+<ol>
+<li>连接器可以有多个，不同的连接器可以对应同一个站点</li>
+<li>同一个连接器下，可以有多个站点</li>
+</ol>
+<p>即，连接器和站点之间的关系是多对多的。</p>
+<p>站点和应用上下文之间是一对多的关系，即一个站点对应该站点下多个应用上下文。站点和资源同样是一对多的关系</p>
+</blockquote>
+<h2 id="3-源码剖析"><a href="#3-源码剖析" class="headerlink" title="3. 源码剖析"></a>3. 源码剖析</h2><h3 id="3-1-server-xml"><a href="#3-1-server-xml" class="headerlink" title="3.1 server.xml"></a>3.1 server.xml</h3><figure class="image-box">
+                <a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416111749492.png" title="image-20220416111749492" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416111749492.png" alt="image-20220416111749492" title class></a>
+                <p>image-20220416111749492</p>
+            </figure>
+
+
+<blockquote>
+<p>Connector(连接器)：</p>
+<ul>
+<li>port：端口</li>
+<li>protocol：协议</li>
+</ul>
+<p>Host(站点)：</p>
+<ul>
+<li>name: 域名</li>
+<li>appBase：站点对应资源的路径，可配置全路径或者相对路径，相对路径是相对于tomcat的根路径。</li>
+<li>unpackWARs：是否自动将WAR文件解压</li>
+<li>autoDeploy：是否自动部署</li>
+</ul>
+</blockquote>
+<p><a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416130805986.png" title="image-20220416130805986" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416130805986.png" alt="image-20220416130805986"></a></p>
+<blockquote>
+<p>Context(应用上下文): 在Host对应的appBase目录下的文件夹是隐式的Context， 通过Context标签可以显示的设置Host下的Context</p>
+</blockquote>
+<h3 id="3-2-请求流程分析"><a href="#3-2-请求流程分析" class="headerlink" title="3.2 请求流程分析"></a>3.2 请求流程分析</h3><figure class="image-box">
+                <a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416131334951.png" title="image-20220416131334951" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416131334951.png" alt="image-20220416131334951" title class></a>
+                <p>image-20220416131334951</p>
+            </figure>
+
+<blockquote>
+<p>Engine、Host、Context 每一层都有自己的一个pipline结构，里面包含多个Valve</p>
+</blockquote>
+<p><a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416131729641.png" title="image-20220416131729641" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416131729641.png" alt="image-20220416131729641"></a></p>
+<p><a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416134256318.png" title="image-20220416134256318" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416134256318.png" alt="image-20220416134256318"></a></p>
+<blockquote>
+<p>Tomcat 请求处理源码入口为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; org.apache.catalina.connector.CoyoteAdapter#service() 方法</span><br><span class="line">&gt; </span><br><span class="line">&gt;   <span class="keyword">if</span> (postParseSuccess) &#123;</span><br><span class="line">&gt;                 <span class="comment">//check valves if we support async</span></span><br><span class="line">&gt;                 request.setAsyncSupported(</span><br><span class="line">&gt;                         connector.getService().getContainer().getPipeline().isAsyncSupported());</span><br><span class="line">&gt;                 <span class="comment">// Calling the container 根据connector 获取到对应的Service、Container，</span></span><br><span class="line">&gt;       		   <span class="comment">// 然后获取到pipline中的第一个Engine，执行invoke方法，默认会有一个标准的StandardEngine</span></span><br><span class="line">&gt;                 connector.getService().getContainer().getPipeline().getFirst().invoke(</span><br><span class="line">&gt;                         request, response);</span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>StandardEngineValve</strong>如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StandardEngineValve</span> <span class="keyword">extends</span> <span class="title">ValveBase</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">StandardEngineValve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(<span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">invoke</span><span class="params">(Request request, Response response)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// 根据请求获取对应的host站点</span></span><br><span class="line">        Host host = request.getHost();</span><br><span class="line">        <span class="keyword">if</span> (host == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!response.isError()) &#123;</span><br><span class="line">                response.sendError(<span class="number">404</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// 判断是否支持异步</span></span><br><span class="line">            <span class="keyword">if</span> (request.isAsyncSupported()) &#123;</span><br><span class="line">                request.setAsyncSupported(host.getPipeline().isAsyncSupported());</span><br><span class="line">            &#125;</span><br><span class="line">		  <span class="comment">// 获取到 host 的 pipline 中的第一个 Valve 执行invoke方法，最后会到StandardHostValve</span></span><br><span class="line">            host.getPipeline().getFirst().invoke(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>StandaHostValve</strong>中的invoke方法如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">invoke</span><span class="params">(Request request, Response response)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line"><span class="comment">// 获取host下的context</span></span><br><span class="line">      Context context = request.getContext();</span><br><span class="line">      <span class="keyword">if</span> (context == <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (!response.isError()) &#123;</span><br><span class="line">              response.sendError(<span class="number">404</span>);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="comment">//....省略一些代码</span></span><br><span class="line">                      <span class="keyword">if</span> (!response.isErrorReportRequired()) &#123;</span><br><span class="line">                          <span class="comment">// context 下的pipline，最后进入StandardContextValve</span></span><br><span class="line">                          context.getPipeline().getFirst().invoke(request, response);</span><br><span class="line">                      &#125;</span><br><span class="line">  <span class="comment">//....省略一些代码        </span></span><br><span class="line">                  &#125; </span><br><span class="line">  <span class="comment">//....省略一些代码              </span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>StandardContextValve</strong>的invoke方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">invoke</span><span class="params">(Request request, Response response)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">     MessageBytes requestPathMB = request.getRequestPathMB();</span><br><span class="line">     <span class="keyword">if</span> (!requestPathMB.startsWithIgnoreCase(<span class="string">"/META-INF/"</span>, <span class="number">0</span>) &amp;&amp; !requestPathMB.equalsIgnoreCase(<span class="string">"/META-INF"</span>) &amp;&amp; !requestPathMB.startsWithIgnoreCase(<span class="string">"/WEB-INF/"</span>, <span class="number">0</span>) &amp;&amp; !requestPathMB.equalsIgnoreCase(<span class="string">"/WEB-INF"</span>)) &#123;</span><br><span class="line">         Wrapper wrapper = request.getWrapper();</span><br><span class="line">         <span class="keyword">if</span> (wrapper != <span class="keyword">null</span> &amp;&amp; !wrapper.isUnavailable()) &#123;</span><br><span class="line">             <span class="keyword">try</span> &#123;</span><br><span class="line">                 response.sendAcknowledgement(ContinueResponseTiming.IMMEDIATELY);</span><br><span class="line">             &#125; <span class="keyword">catch</span> (IOException var6) &#123;</span><br><span class="line">                 <span class="keyword">this</span>.container.getLogger().error(sm.getString(<span class="string">"standardContextValve.acknowledgeException"</span>), var6);</span><br><span class="line">                 request.setAttribute(<span class="string">"javax.servlet.error.exception"</span>, var6);</span><br><span class="line">                 response.sendError(<span class="number">500</span>);</span><br><span class="line">                 <span class="keyword">return</span>;</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">             <span class="keyword">if</span> (request.isAsyncSupported()) &#123;</span><br><span class="line">                 request.setAsyncSupported(wrapper.getPipeline().isAsyncSupported());</span><br><span class="line">             &#125;</span><br><span class="line"><span class="comment">// 继续获取pipline中的valve执行，最后进入 StandardWrapperValve</span></span><br><span class="line">             wrapper.getPipeline().getFirst().invoke(request, response);</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             response.sendError(<span class="number">404</span>);</span><br><span class="line">         &#125;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         response.sendError(<span class="number">404</span>);</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>StandardWrapperValve</strong> 中invoke方法会在经过FilterChain最后进入Serlvet。</p>
+<blockquote>
+<p>总结：</p>
+<p>总的请求处理流程是这样的：</p>
+<p>Connector –&gt; Service –&gt; Engine  –&gt; Host –&gt; Context –&gt; Wrapper(资源)</p>
+<p>从Engine开始到Wrapper中的每一层，都有一个pipline的对象，且都有标准实现，即形成了一个多pipline的结构。</p>
+<p>每一个pipline中可以存在多个Valve，默认最后一个是StandardValve，我们添加的Valve都在标准Valve的前面。</p>
+<p>执行到Engine时，会获取Engine中的pipline，然后开始依次执行pipline中xxxValve的invoke方法，直到执行到标准Valve，然后再进入下一层的pipline。</p>
+</blockquote>
+<h2 id="4-线程池配置理论"><a href="#4-线程池配置理论" class="headerlink" title="4. 线程池配置理论"></a>4. 线程池配置理论</h2><p>常用的配置主要有：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  tomcat:</span></span><br><span class="line"><span class="attr">    max-threads:</span> <span class="number">5</span> <span class="comment"># 最大线程数</span></span><br><span class="line"><span class="attr">    min-spare-threads:</span> <span class="number">2</span> <span class="comment"># 最小线程数，初始化的线程数量</span></span><br><span class="line"><span class="attr">    max-connections:</span> <span class="number">10</span> <span class="comment"># 最大连接数</span></span><br><span class="line"><span class="attr">    accept-count:</span> <span class="number">5</span> <span class="comment"># 等待队列</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>tomcat线程配置说明：</p>
+<p>tomcat启动时会初始化配置指定的最小线程数量的业务线程</p>
+<p>当业务线程满了，仍有请求来的话，会创建新的线程来处理请求，直到达到配置的最大线程数</p>
+<p>当达到最大线程数，仍有请求进入时，会放到tomcat线程池中的 任务队列 中，此队列能够存储的请求数量为Integer.MAX_VALUE</p>
+<p>当队列里存储的请求数 + 最大线程数 达到了配置中的 最大连接数 时，请求会进入accept-count配置的等待队列中</p>
+<p>此时内核可以建立TCP连接，但不会在JVM中建立新的连接，当请求数量达到了 等待队列 的上限后，内核也会直接拒绝连接。</p>
+<p>综上，tomcat最大连接数是由maxConnection + acceptCount 来决定的。</p>
+<p>maxConnection决定能在JVM中建立的最大连接数量。</p>
+<p>acceptCount决定在操作系统中能建立的连接数量。</p>
+</blockquote>
+<p>Tomcat建立连接入口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">org.apache.tomcat.util.net.Acceptor#run()</span><br><span class="line"></span><br><span class="line">   <span class="comment">// ---省略一些代码----</span></span><br><span class="line">  <span class="comment">// 此处是检查连接的数量是否达到了最大连接数</span></span><br><span class="line">  <span class="keyword">this</span>.endpoint.countUpOrAwaitConnection();</span><br><span class="line">  <span class="comment">// ---省略一些代码----</span></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">           socket = <span class="keyword">this</span>.endpoint.serverSocketAccept();</span><br><span class="line">      &#125;</span><br><span class="line">  <span class="comment">// ---省略一些代码----</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>org.apache.tomcat.util.net.NioEndpoint#initServerSocket()</strong>方法</p>
+<figure class="image-box">
+                <a rel=Tomcat概述 href="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416144101469.png" title="image-20220416144101469" data-fancybox="images"><img src="https://hawk-note-doc.oss-cn-shenzhen.aliyuncs.com/Java/tomcat/image/image-20220416144101469.png" alt="image-20220416144101469" title class></a>
+                <p>image-20220416144101469</p>
+            </figure>
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2022-10-27T15:44:12.488Z" itemprop="dateUpdated">2022-10-27 23:44:12</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2022/04/16/Tomcat概述/" target="_blank" rel="external">http://wshawk.github.io/2022/04/16/Tomcat概述/</a>
+        
+    </div>
+    <footer>
+        <a href="http://wshawk.github.io">
+            <img src="/img/avatar.jpg" alt="wshawk">
+            wshawk
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/04/16/Tomcat概述/&title=《Tomcat概述》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/04/16/Tomcat概述/&title=《Tomcat概述》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Github搭建Hexo双分支博客防止本地文件丢失</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2021/12/22/高并发名词/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">高并发名词</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Tomcat概述"><span class="post-toc-number">1.</span> <span class="post-toc-text">Tomcat概述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-Tomcat-核心组件"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. Tomcat 核心组件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-核心组件协作过程"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 核心组件协作过程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-源码剖析"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3. 源码剖析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-1-server-xml"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">3.1 server.xml</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-请求流程分析"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">3.2 请求流程分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-线程池配置理论"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4. 线程池配置理论</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                wshawk &copy; 2017 - 2022
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/04/16/Tomcat概述/&title=《Tomcat概述》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/04/16/Tomcat概述/&title=《Tomcat概述》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3ay26DQAwF0Pz/T1Op2xZ6bSeVMGdWUQRkDgvHj3m94nV8r7Pvf66zu/JrXp9YGBgYt2Ucl+vsmuQ515vr/e7pHjAwMB7AuA6ySaCs/nDympK9YWBgYFTD5Rk7f00YGBgY72LkaV+vDsXAwMDoFZNVRq+h9vFaHAMD44aM6mDgPz9/cL6BgYFxE8ZRXPN08PppvYWBgbGbMW91XX+eJJfVF4GBgbGVkbTyq8cvqpjeeOCX/w0MDIyljHLzfZAaVpPO8gE1DAyMpYz54yYjz6TRH+0BAwNjNSNJAefBt9qAm4w/MTAw9jGq5eK7Bgnz8H2aGmJgYKxm9EYC+aZ7B9GiQI+BgfFgRp605WG3MFm9DM2FgIuBgbGUMTk1mtyVl9BRQomBgbGa0UvyqgOAyXgyGVpgYGA8jdE8QhoH2WqyWD4zgoGBsY6RF67NRlhrnFkujDEwMFYz8gIyHxhUE8reYYtChouBgbGIUd1EdXO9QjcZSGBgYOxmzAeNvQFkXrhGrUAMDIwHM/KyszoqyENzBMPAwFjNyHtW+U9ORpuvdy0MDIxFjKO4qqGznOT12n8YGBirGdWYVm3r95K85mAAAwNjNSN/dHWE0Cti80CPgYHxNEY1yOabS4J1/g9wej0GBgZGHIgnxW3ethsFXAwMjEcy8nvz8F0eXWBgYDyAMSliJ+C8wffHgAEDA2M1o/rQXqNtfghjBMDAwLgr4wt7iMxSuKT/8wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.4"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '死鬼去哪里了！';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!又好了!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+</body>
+</html>

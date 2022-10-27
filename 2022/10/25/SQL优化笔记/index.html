@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>MySQL锁 | wshawk&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="MySQL">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wshawk</h5>
+          <a href="mailto:ws_hawk@foxmail.com" title="ws_hawk@foxmail.com" class="mail">
+            
+              <span>w</span>
+            
+              <span>s</span>
+            
+              <span>_</span>
+            
+              <span>h</span>
+            
+              <span>a</span>
+            
+              <span>w</span>
+            
+              <span>k</span>
+            
+              <span>@</span>
+            
+              <span>f</span>
+            
+              <span>o</span>
+            
+              <span>x</span>
+            
+              <span>m</span>
+            
+              <span>a</span>
+            
+              <span>i</span>
+            
+              <span>l</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/wshawk" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>MySQL锁</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">MySQL锁</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2022-10-25T15:30:31.000Z" itemprop="datePublished" class="page-time">
+  2022-10-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-SQL优化笔记"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">MySQL锁</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2022-10-25 23:30:31" datetime="2022-10-25T15:30:31.000Z"  itemprop="datePublished">2022-10-25</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a></li></ul>
+
+
+
+            
+	<span id="/2022/10/25/SQL优化笔记/" class="leancloud_visitors" data-flag-title="MySQL锁" title="MySQL锁">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="SQL优化笔记（MySQL）"><a href="#SQL优化笔记（MySQL）" class="headerlink" title="SQL优化笔记（MySQL）"></a>SQL优化笔记（MySQL）</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
+<li><strong>减少IO次数</strong></li>
+<li><strong>降低CPU的计算</strong></li>
+</ol>
+<h2 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h2><ol>
+<li><strong>尽量少 join</strong></li>
+</ol>
+<p>　　MySQL 的优势在于简单，但这在某些方面其实也是其劣势。MySQL  优化器效率高，但是由于其统计信息的量有限，优化器工作过程出现偏差的可能性也就更多。对于复杂的多表 Join，一方面由于其优化器受限，再者在  Join 这方面所下的功夫还不够，所以性能表现离 Oracle  等关系型数据库前辈还是有一定距离。但如果是简单的单表查询，这一差距就会极小甚至在有些场景下要优于这些数据库前辈。</p>
+<ol start="2">
+<li><strong>尽量少排序</strong></li>
+</ol>
+<p>　　排序操作会消耗较多的 CPU 资源，所以减少排序可以在缓存命中率高等 IO 能力足够的场景下会较大影响 SQL 的响应时间。</p>
+<p>　　对于MySQL来说，减少排序有多种办法，比如：</p>
+<p>　　上面误区中提到的通过利用索引来排序的方式进行优化</p>
+<p>　　减少参与排序的记录条数</p>
+<p>　　非必要不对数据进行排序</p>
+<p>　　…</p>
+<ol start="3">
+<li><strong>尽量避免 select *</strong></li>
+</ol>
+<p>　　很多人看到这一点后觉得比较难理解，上面不是在误区中刚刚说 select 子句中字段的多少并不会影响到读取的数据吗?</p>
+<p>　　是的，大多数时候并不会影响到 IO 量，但是当我们还存在 order by 操作的时候，select 子句中的字段多少会在很大程度上影响到我们的排序效率，这一点可以通过我之前一篇介绍 MySQL ORDER BY 的实现分析的文章中有较为详细的介绍。</p>
+<p>　　此外，上面误区中不是也说了，只是大多数时候是不会影响到 IO 量，当我们的查询结果仅仅只需要在索引中就能找到的时候，还是会极大减少 IO 量的。</p>
+<ol start="4">
+<li><strong>尽量用 join 代替子查询</strong></li>
+</ol>
+<p>　　虽然 Join 性能并不佳，但是和 MySQL 的子查询比起来还是有非常大的性能优势。MySQL  的子查询执行计划一直存在较大的问题，虽然这个问题已经存在多年，但是到目前已经发布的所有稳定版本中都普遍存在，一直没有太大改善。虽然官方也在很早就承认这一问题，并且承诺尽快解决，但是至少到目前为止我们还没有看到哪一个版本较好的解决了这一问题。</p>
+<ol start="5">
+<li><strong>尽量少 or</strong></li>
+</ol>
+<p>　　当 where 子句中存在多个条件以“或”并存的时候，MySQL 的优化器并没有很好的解决其执行计划优化问题，再加上 MySQL  特有的 SQL 与 Storage 分层架构方式，造成了其性能比较低下，很多时候使用 union all  或者是union(必要的时候)的方式来代替“or”会得到更好的效果。</p>
+<ol start="6">
+<li><strong>尽量用 union all 代替 union</strong></li>
+</ol>
+<p>　　union 和 union all  的差异主要是前者需要将两个(或者多个)结果集合并后再进行唯一性过滤操作，这就会涉及到排序，增加大量的 CPU  运算，加大资源消耗及延迟。所以当我们可以确认不可能出现重复结果集或者不在乎重复结果集的时候，尽量使用 union all 而不是 union。</p>
+<ol start="7">
+<li><strong>尽量早过滤</strong></li>
+</ol>
+<p>　　这一优化策略其实最常见于索引的优化设计中(将过滤性更好的字段放得更靠前)。</p>
+<p>　　在 SQL 编写中同样可以使用这一原则来优化一些 Join 的  SQL。比如我们在多个表进行分页数据查询的时候，我们最好是能够在一个表上先过滤好数据分好页，然后再用分好页的结果集与另外的表  Join，这样可以尽可能多的减少不必要的 IO 操作，大大节省 IO 操作所消耗的时间。</p>
+<ol start="8">
+<li><strong>避免类型转换</strong></li>
+</ol>
+<p>　　这里所说的“类型转换”是指 where 子句中出现 column 字段的类型和传入的参数类型不一致的时候发生的类型转换：</p>
+<p>　　人为在column_name 上通过转换函数进行转换</p>
+<p>　　直接导致 MySQL(实际上其他数据库也会有同样的问题)无法使用索引，如果非要转换，应该在传入的参数上进行转换</p>
+<p>　　由数据库自己进行转换</p>
+<p>　　如果我们传入的数据类型和字段类型不一致，同时我们又没有做任何类型转换处理，MySQL 可能会自己对我们的数据进行类型转换操作，也可能不进行处理而交由存储引擎去处理，这样一来，就会出现索引无法使用的情况而造成执行计划问题。</p>
+<ol start="9">
+<li><strong>优先优化高并发的 SQL，而不是执行频率低某些“大”SQL</strong></li>
+</ol>
+<p>　　对于破坏性来说，高并发的 SQL 总是会比低频率的来得大，因为高并发的 SQL  一旦出现问题，甚至不会给我们任何喘息的机会就会将系统压跨。而对于一些虽然需要消耗大量 IO 而且响应很慢的  SQL，由于频率低，即使遇到，最多就是让整个系统响应慢一点，但至少可能撑一会儿，让我们有缓冲的机会。</p>
+<ol start="10">
+<li><strong>从全局出发优化，而不是片面调整</strong></li>
+</ol>
+<p>　　SQL 优化不能是单独针对某一个进行，而应充分考虑系统中所有的 SQL，尤其是在通过调整索引优化 SQL 的执行计划的时候，千万不能顾此失彼，因小失大。</p>
+<ol start="11">
+<li><strong>尽可能对每一条运行在数据库中的SQL进行 explain</strong></li>
+</ol>
+<p>　　优化 SQL，需要做到心中有数，知道 SQL 的执行计划才能判断是否有优化余地，才能判断是否存在执行计划问题。在对数据库中运行的  SQL 进行了一段时间的优化之后，很明显的问题 SQL 可能已经很少了，大多都需要去发掘，这时候就需要进行大量的 explain  操作收集执行计划，并判断是否需要进行优化。</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2022-10-27T15:35:54.139Z" itemprop="dateUpdated">2022-10-27 23:35:54</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2022/10/25/SQL优化笔记/" target="_blank" rel="external">http://wshawk.github.io/2022/10/25/SQL优化笔记/</a>
+        
+    </div>
+    <footer>
+        <a href="http://wshawk.github.io">
+            <img src="/img/avatar.jpg" alt="wshawk">
+            wshawk
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/10/25/SQL优化笔记/&title=《MySQL锁》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/10/25/SQL优化笔记/&title=《MySQL锁》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2022/10/27/MySQL锁/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">MySQL锁</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2022/10/23/MySQL事务/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MySQL事务</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#SQL优化笔记（MySQL）"><span class="post-toc-number">1.</span> <span class="post-toc-text">SQL优化笔记（MySQL）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目标"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">目标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本原则"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">基本原则</span></a></li></ol></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                wshawk &copy; 2017 - 2022
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2022/10/25/SQL优化笔记/&title=《MySQL锁》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2022/10/25/SQL优化笔记/&title=《MySQL锁》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aS27DMAwFwNz/0um2QGv1kXQKWBqvivjH8YIVRb5e8fH+dvz8JTm7fvL6l9sODAyMxzLey2Md1tU1V2H1nr+ODQMD4xzGOhX2ws2vT57zx70YGBgYcRJMkmNyFgMDA2Oe+NbLxGoZXH0mBgbGmYykiL2r4Fxvw328FsfAwHggI991//+/P9LfwMDAeBRjUohWw5qn18uoMDAwtmbkCW6+lZYXq9V4MDAw9mbMG43zs9VNvVeeszEwMLZg5KTeJleySddrEkTDYRgYGJsyeuVrPkjRay3kb8fAwNiPMXnE/Prqey8/AQYGxtaM6nBYHla1KC3/f0hWoxgYGBsxeptfk7SbhJhc+csCEQMDY1NGb8FX3aTLF3z5MAcGBsY5jPxlkybBJOhC+YqBgbEdIx/zygHzlF0uZTEwMI5hVBuQvQVcdYwsejIGBsbWjN7wxKTBmXyy6lIVAwNjb0a13q2+shp6NaFjYGCcwJgv76qLv2rxvP4QGBgY5zB6G16fS7XNsTMMDIwDGHkovaGuKrvQGMDAwDiGUb25vGUf3DUa18DAwNiU8S4e1XTc20QbLQoxMDC2Y4zydHH5mASXJ+VRnxYDA+OBjMkmVy/JTloCGBgYJzN6ZWo19Ly1kKR+DAwMjMn4RQLIrykPhGFgYBzP6HUS56MbNydcDAyMBzKSBd98OCxZ6uUfAgMD4xxGL41Omot3lbUYGBgHML4Al3KJh8SjI+wAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.4"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '死鬼去哪里了！';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!又好了!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+</body>
+</html>

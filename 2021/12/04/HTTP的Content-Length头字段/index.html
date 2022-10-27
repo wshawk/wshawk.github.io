@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    
+    <title>HTTP的Content-Length头字段 | wshawk&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="HTTP">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
+    
+    <script type="text/javascript">
+        // Data Center
+        var DC = {
+            reward:	false,
+            lv: JSON.parse('{"enable":true,"app_id":null,"app_key":null,"icon":true}'),
+            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
+            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
+            d: JSON.parse('{"app_id":null}')
+        };
+    </script>
+    <script type="text/javascript">
+        window.lazyScripts=[];
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="">
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      
+      <img src="/img/brand.jpg" class="brand-bg">
+      
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">wshawk</h5>
+          <a href="mailto:ws_hawk@foxmail.com" title="ws_hawk@foxmail.com" class="mail">
+            
+              <span>w</span>
+            
+              <span>s</span>
+            
+              <span>_</span>
+            
+              <span>h</span>
+            
+              <span>a</span>
+            
+              <span>w</span>
+            
+              <span>k</span>
+            
+              <span>@</span>
+            
+              <span>f</span>
+            
+              <span>o</span>
+            
+              <span>x</span>
+            
+              <span>m</span>
+            
+              <span>a</span>
+            
+              <span>i</span>
+            
+              <span>l</span>
+            
+              <span>.</span>
+            
+              <span>c</span>
+            
+              <span>o</span>
+            
+              <span>m</span>
+            
+          </a>
+        </hgroup>
+        
+        <ul class="menu-link">
+          
+              <li>
+                <a href="https://github.com/wshawk" target="_blank">
+                  <i class="icon icon-lg icon-github"></i>
+                </a>
+              </li>
+            
+        </ul>
+        
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                首页
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row clearfix">
+        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <span>HTTP的Content-Length头字段</span>
+            
+        </div>
+        
+        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
+            <i class="icon icon-lg icon-search"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+    <img src="/img/banner.jpg" class="header-bg">
+    <div class="container fade-scale">
+        <h1 class="title">HTTP的Content-Length头字段</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2021-12-04T15:30:31.000Z" itemprop="datePublished" class="page-time">
+  2021-12-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
+
+            
+        </h5>
+        
+    </div>
+    
+
+</header>
+
+<div id="site_search">
+    <div class="search-title clearfix">
+        <span class="pull-left">
+          <i class="icon icon-lg icon-search"></i>
+        </span>
+        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
+        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
+          <i class="icon icon-lg icon-close"></i>
+        </a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+
+<div class="container body-wrap">
+    <article id="post-HTTP的Content-Length头字段"
+  class="post-article article-type-post" itemprop="blogPost">
+    <div class="post-card">
+        <h1 class="post-card-title">HTTP的Content-Length头字段</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2021-12-04 23:30:31" datetime="2021-12-04T15:30:31.000Z"  itemprop="datePublished">2021-12-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
+
+
+
+            
+	<span id="/2021/12/04/HTTP的Content-Length头字段/" class="leancloud_visitors" data-flag-title="HTTP的Content-Length头字段" title="HTTP的Content-Length头字段">
+		
+			<i class="icon icon-eye"></i>
+		
+		<span class="leancloud-visitors-count"></span>
+	</span>
+ 
+
+            
+
+
+            
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+            <h1 id="HTTP的Content-Length头字段"><a href="#HTTP的Content-Length头字段" class="headerlink" title="HTTP的Content-Length头字段"></a>HTTP的Content-Length头字段</h1><p><strong><em>Content-Length</em></strong>用于<strong>描述HTTP消息实体的传输长度</strong>（<em>the transfer-length of the message-body</em>）。</p>
+<p>在<code>HTTP</code>协议中，消息实体长度和消息实体的传输长度是有区别的。</p>
+<blockquote>
+<p>消息实体长度：消息实体本身的长度。</p>
+<p>消息实体的传输长度：消息实体在传输时的长度。</p>
+</blockquote>
+<p>比如说gzip压缩下，消息实体长度就是压缩前的长度，消息实体的传输长度是gzip压缩后的长度。</p>
+<p>在具体的HTTP交互中，客户端是如何获取消息长度的呢，主要基于以下几个规则：<br>响应为<code>1xx</code>，<code>204</code>，<code>304</code>或者head请求，则直接忽视掉消息实体内容。</p>
+<p>如果有<strong><em>Transfer-Encoding</em></strong>，则优先采用<strong><em>Transfer-Encoding</em></strong>里面的方法来找到对应的长度。比如说<strong><em>Chunked</em></strong>模式。</p>
+<p>如果<strong><em>head</em></strong>中有<strong><em>Content-Length</em></strong>，那么这个<strong><em>Content-Length</em></strong>既表示实体长度，又表示传输长度。</p>
+<p>如果实体长度和传输长度不相等（比如说设置了<strong><em>Transfer-Encoding</em></strong>），那么则不能设置<strong><em>Content-Length</em></strong>。如果设置了<strong><em>Transfer-Encoding</em></strong>，那么<strong><em>Content-Length</em></strong>将被忽视。</p>
+<p><strong>有chunk就不能有content-length</strong> 。</p>
+<p>其实后面几条几乎可以忽视，简单总结后如下：<br>1、<strong><em>Content-Length</em></strong>如果存在并且有效的话，则必须和<strong>消息内容的传输长度</strong>完全一致。（经过测试，如果过短则会截断，过长则会导致超时。）<br>2、如果存在<strong><em>Transfer-Encoding</em></strong>（重点是<strong><em>chunked</em></strong>），则在<strong><em>header</em></strong>中不能有<strong><em>Content-Length</em></strong>，有也会被忽视。<br>3、如果采用短连接，则直接可以通过服务器关闭连接来确定消息的传输长度。（这个很容易懂）</p>
+<p>结合<code>HTTP</code>协议其他的特点，比如说HTTP1.1之前的不支持keep alive。那么可以得出以下结论：<br>1、在<code>HTTP1.0</code>及之前版本中，<strong><em>Content-Length</em></strong>字段可有可无。<br>2、在<code>HTTP1.1</code>及之后版本。如果是<strong><em>keep alive</em></strong>，则<strong><em>Content-Length</em></strong>和<strong><em>chunk</em></strong>必然是二选一。若是非<strong><em>keep alive</em></strong>，则和<code>HTTP1.0</code>一样。<strong><em>Content-Length</em></strong>可有可无。</p>
+
+        </div>
+        
+<blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2022-10-27T15:39:54.425Z" itemprop="dateUpdated">2022-10-27 23:39:54</time>
+</span><br>
+
+
+        
+        转载注明出处，原文地址：<a href="/2021/12/04/HTTP的Content-Length头字段/" target="_blank" rel="external">http://wshawk.github.io/2021/12/04/HTTP的Content-Length头字段/</a>
+        
+    </div>
+    <footer>
+        <a href="http://wshawk.github.io">
+            <img src="/img/avatar.jpg" alt="wshawk">
+            wshawk
+        </a>
+    </footer>
+</blockquote>
+
+        
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+            <div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2021/12/04/HTTP的Content-Length头字段/&title=《HTTP的Content-Length头字段》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2021/12/04/HTTP的Content-Length头字段/&title=《HTTP的Content-Length头字段》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+        </div>
+        
+            
+
+
+        
+    </div>
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="prev">
+      <a href="/2021/12/22/高并发名词/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">高并发名词</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="next">
+      <a href="/2021/12/04/接口幂等性/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">接口幂等性</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+    
+    
+        <aside class="post-widget">
+            <nav class="post-toc-wrap" id="post-toc">
+                <strong>目录</strong>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#HTTP的Content-Length头字段"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTTP的Content-Length头字段</span></a></li></ol>
+            </nav>
+            <div class="toc-bar"><div>
+        </aside>
+    
+</article>
+
+
+</div>
+
+    </main>
+    <footer class="footer ">
+    
+    <div class="bottom">
+        <p>
+            <span>
+                wshawk &copy; 2017 - 2022
+            </span>
+        		
+           	
+            
+            
+            <span>
+	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
+            </span>
+            
+            
+            
+
+            
+                
+<span class="site-uv" title="总访客量">
+    <i class="icon icon-user"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
+</span>
+
+
+<span class="site-pv" title="总访问量">
+    <i class="icon icon-eye"></i>
+    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
+</span>
+
+            
+        </p>
+    </div>
+</footer>
+
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/2021/12/04/HTTP的Content-Length头字段/&title=《HTTP的Content-Length头字段》 — wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/2021/12/04/HTTP的Content-Length头字段/&title=《HTTP的Content-Length头字段》 — wshawk's blog&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrElEQVR42u3awU4rMRAEwPz/TwfpnZ4EhO4ZG3KoPSEi1i5Hsk3PPB7x8/z3JL9//vckb/jubz+/J3nD8MHDw8MbTT15dYJpp/j6b9tRvlgCPDw8vGu815t+O8V2K3+9EPkhgYeHh/duvOEAi6t2e73Gw8PDe2dee0WehRd4eHh478zbhAjJVj4bK7lkH8ta8PDw8GJeWwB7h58v1vfw8PDwFlX12babHxhJDLGZLR4eHt4NXl6835epcsysTSHKWvDw8PDWvNlL88m1+FnL1+PsmuHh4eGt/3/PF+LsNXp2lY++Tzw8PLzLvHwrb0l5kWyz5+Ph4eHd4+1bB3LM7OBZtQ7g4eHhHeXlxaRkyNli5SFyG6bg4eHhneW1jQL7a3QbecxCZzw8PLx7vDZI3Vx82yatfIbFe/Dw8PAO8TYNBG3mMWspaC/iX5x+eHh4eEd5s209DyY2Ye5+RDw8PLwbvFkYkQ/cNg3sy2x4eHh493jJWdGC22t3Hgq3rQl4eHh4N3jtRGfBRHt4zBqzfpg5Hh4e3lHevq2qjVOTwth+QfHw8PDu8drCfF7EKgaOR0yu+Hh4eHj3eHnQ0GLa0trmIIkCCDw8PLyjvFm1KG+oOlUSy78APDw8vN/k5WFufni0we6xowUPDw/vAi8JBfJooI0wNm1bm+MNDw8Pb8ObbdanYtz8AJgV5PDw8PBu8Pal+nwrb4+T/GBoDxI8PDy8De9ZPrOVOxXO1kuDh4eHd4E323bz1qg2/G0ZeQSMh4eHd5aXF6tmg+XvyS/6RfCBh4eHd423L9VvSlanwogfWq/w8PDw/oi3aa7KP309q+JTPDw8vD/lbdoCfqdta3Uw4OHh4ZW8NoxIIon8/e3WX0TDeHh4eBd4s5amdortFp8fJysYHh4eXsf7ALegkpcbXXw5AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+    
+    <!-- main-js -->
+<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
+<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
+
+<!-- third-party -->
+
+
+
+
+
+
+<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
+<script type="text/javascript">
+	var search_path = "search.xml";
+	if (search_path.length === 0) {
+		search_path = "search.xml";
+	}
+	var path = "/" + search_path;
+	searchFunc(path, "local-search-input", "local-search-result");
+</script>
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+
+
+
+<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.4"></script>
+
+
+
+    <!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+            processEscapes: true,
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+    <script>
+    (function() {
+        var OriginTitile = document.title, titleTime;
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                document.title = '死鬼去哪里了！';
+                clearTimeout(titleTime);
+            } else {
+                document.title = '(つェ⊂)咦!又好了!';
+                titleTime = setTimeout(function() {
+                    document.title = OriginTitile;
+                },2000);
+            }
+        });
+    })();
+</script>
+
+
+
+
+
+    
+</body>
+</html>
