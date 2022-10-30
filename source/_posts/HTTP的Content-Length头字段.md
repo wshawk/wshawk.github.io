@@ -1,10 +1,11 @@
 ---
 title: HTTP的Content-Length头字段
-date: 2021-12-04 23:30:31
 categories:
-- 网络
-tags: 
-- HTTP
+  - 网络
+tags:
+  - HTTP
+abbrlink: 3857b8c0
+date: 2021-12-04 23:30:31
 ---
 
 

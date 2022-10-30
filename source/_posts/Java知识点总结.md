@@ -1,9 +1,10 @@
 ---
 title: Java知识点总结
-date: 2020-04-08 15:20:34
 categories:
-- 后端
+  - 后端
 tags: Java
+abbrlink: d842f132
+date: 2020-04-08 15:20:34
 ---
 
 ##  Java知识点总结

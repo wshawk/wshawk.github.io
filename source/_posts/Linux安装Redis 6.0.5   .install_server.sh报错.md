@@ -1,11 +1,12 @@
 ---
 title: Linux安装Redis 6.0.5 ./install_server.sh报错
-date: 2021-05-10 23:30:31
 categories:
-- Linux
-tags: 
-- Redis
-- Linux
+  - Linux
+tags:
+  - Redis
+  - Linux
+abbrlink: d30a1526
+date: 2021-05-10 23:30:31
 ---
 
 

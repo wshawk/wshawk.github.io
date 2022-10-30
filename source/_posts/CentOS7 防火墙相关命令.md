@@ -1,9 +1,10 @@
 ---
 title: CentOS7 防火墙相关命令
-date: 2020-10-02 23:30:31
 categories:
-- Linux
+  - Linux
 tags: Linux
+abbrlink: 372de7b5
+date: 2020-10-02 23:30:31
 ---
 
 

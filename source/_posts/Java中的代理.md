@@ -1,12 +1,13 @@
 ---
 title: Java中的代理
-date: 2020-04-08 19:20:33
 categories:
-- 后端
-tags: 
-- Java
-- 代理 
-- 动态代理
+  - 后端
+tags:
+  - Java
+  - 代理
+  - 动态代理
+abbrlink: e63723a
+date: 2020-04-08 19:20:33
 ---
 
 ###  Java中的代理

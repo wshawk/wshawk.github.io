@@ -1,9 +1,10 @@
 ---
-title: equals()方法和hashCode()方法详解 
-date: 2020-04-07 19:51:31
+title: equals()方法和hashCode()方法详解
 categories:
-- 后端
+  - 后端
 tags: Java
+abbrlink: e8d9b9d3
+date: 2020-04-07 19:51:31
 ---
 
 ## `equals()`方法和`hashCode()`方法详解

@@ -1,9 +1,10 @@
 ---
 title: Mybatis笔记
-date: 2019-10-15 19:51:31
 categories:
-- 后端
+  - 后端
 tags: Mybatis
+abbrlink: 156023d7
+date: 2019-10-15 19:51:31
 ---
 ### Mybatis笔记  
 

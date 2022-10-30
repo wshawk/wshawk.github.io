@@ -1,10 +1,11 @@
 ---
-title: 为什么重写equals()方法时，要重写hashCode()方法 
-date: 2020-04-07 20:51:31
+title: 为什么重写equals()方法时，要重写hashCode()方法
 categories:
-- 后端
-- Java
+  - 后端
+  - Java
 tags: Java
+abbrlink: 300023f4
+date: 2020-04-07 20:51:31
 ---
 
 ## 为什么重写equals()方法时，要重写hashCode()方法

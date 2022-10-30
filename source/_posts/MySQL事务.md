@@ -1,9 +1,10 @@
 ---
 title: MySQL事务
-date: 2022-10-23 23:30:31
 categories:
-- 数据库
+  - 数据库
 tags: MySQL
+abbrlink: f91535f
+date: 2022-10-23 23:30:31
 ---
 
 

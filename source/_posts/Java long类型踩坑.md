@@ -1,11 +1,12 @@
 ---
-title: The literal 10000000000 of type int is out of range 
+title: The literal 10000000000 of type int is out of range
 categories:
-- 后端
+  - 后端
+tags:
+  - 踩坑
+  - Java
+abbrlink: b2df998f
 date: 2019-11-05 19:51:31
-tags: 
-- 踩坑
-- Java
 ---
 
 ![image][error]  

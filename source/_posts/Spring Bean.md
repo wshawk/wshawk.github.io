@@ -1,10 +1,11 @@
 ---
 title: Spring Bean
-date: 2020-09-05 23:30:31
 categories:
-- 后端
+  - 后端
 tags:
-- Spring
+  - Spring
+abbrlink: cb377708
+date: 2020-09-05 23:30:31
 ---
 
 

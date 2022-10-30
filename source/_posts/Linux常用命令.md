@@ -1,9 +1,10 @@
 ---
 title: Linux环境工作常用命令
-date: 2019-10-15 19:51:31
 categories:
-- 后端
+  - 后端
 tags: Linux
+abbrlink: 5b3efa13
+date: 2019-10-15 19:51:31
 ---
 ### Linux环境工作常用命令  
 

@@ -1,10 +1,11 @@
 ---
-title: Github搭建Hexo双分支博客防止本地文件丢失 
+title: Github搭建Hexo双分支博客防止本地文件丢失
+categories:
+  - hexo
+tags:
+  - hexo
+abbrlink: 6c408847
 date: 2022-10-18 00:28:30
-categories: 
-- hexo
-tags: 
-- hexo
 ---
 
 

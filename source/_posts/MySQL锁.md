@@ -1,9 +1,10 @@
 ---
 title: MySQL锁
-date: 2022-10-27 23:30:31
 categories:
-- 数据库
+  - 数据库
 tags: MySQL
+abbrlink: d940f18d
+date: 2022-10-27 23:30:31
 ---
 
 
