@@ -1,484 +1,283 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    
-    
-    <title>wshawk&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="keywords" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
-    
-    <script type="text/javascript">
-        // Data Center
-        var DC = {
-            reward:	false,
-            lv: JSON.parse('{"enable":true,"app_id":null,"app_key":null,"icon":true}'),
-            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
-            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
-            d: JSON.parse('{"app_id":null}')
-        };
-    </script>
-    <script type="text/javascript">
-        window.lazyScripts=[];
-    </script>
-    
-</head>
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="wshawk&#39;s blog">
+<meta property="og:url" content="http://wshawk.github.io/index.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/avatar.jpg">
+<meta property="article:author" content="wshawk">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'wshawk\'s blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-10-30 22:41:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<body>
-    <div id="loading" class="active"></div>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-    <aside id="menu" class="">
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap">
-      
-      <img src="/img/brand.jpg" class="brand-bg">
-      
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">wshawk</h5>
-          <a href="mailto:ws_hawk@foxmail.com" title="ws_hawk@foxmail.com" class="mail">
-            
-              <span>w</span>
-            
-              <span>s</span>
-            
-              <span>_</span>
-            
-              <span>h</span>
-            
-              <span>a</span>
-            
-              <span>w</span>
-            
-              <span>k</span>
-            
-              <span>@</span>
-            
-              <span>f</span>
-            
-              <span>o</span>
-            
-              <span>x</span>
-            
-              <span>m</span>
-            
-              <span>a</span>
-            
-              <span>i</span>
-            
-              <span>l</span>
-            
-              <span>.</span>
-            
-              <span>c</span>
-            
-              <span>o</span>
-            
-              <span>m</span>
-            
-          </a>
-        </hgroup>
-        
-        <ul class="menu-link">
-          
-              <li>
-                <a href="https://github.com/wshawk" target="_blank">
-                  <i class="icon icon-lg icon-github"></i>
-                </a>
-              </li>
-            
-        </ul>
-        
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class=" active">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                首页
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-    <main id="main">
-        
-    <header class="top-header" id="header">
-    <div class="flex-row clearfix">
-        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">
-            <span>wshawk&#39;s blog</span>
-            
-        </div>
-        
-        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
-            <i class="icon icon-lg icon-search"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header index-header">
-    <img src="/img/banner.jpg" class="header-bg">
-    <div class="container fade-scale">
-        <h1 class="title">wshawk&#39;s blog</h1>
-        <h5 class="subtitle">
-            
-                
-            
-        </h5>
-        
-    </div>
-    
-
-</header>
-
-<div id="site_search">
-    <div class="search-title clearfix">
-        <span class="pull-left">
-          <i class="icon icon-lg icon-search"></i>
-        </span>
-        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
-        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
-          <i class="icon icon-lg icon-close"></i>
-        </a>
-    </div>
-    <div id="local-search-result"></div>
-</div>
-
-    <div class="container body-wrap">
-        <ul class="post-list">
-        
-            <li class="post-list-item fade">
-                <article id="post-SQL优化笔记"
-  class="article-card article-type-post" itemprop="blogPost">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2022/10/25/SQL优化笔记/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/10.jpg" alt="图片路径不正确">
-    
-
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2022/10/25/SQL优化笔记/">SQL优化笔记（MySQL）</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2022-10-25 23:30:31" datetime="2022-10-25T15:30:31.000Z"  itemprop="datePublished">2022-10-25</time>
-
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a></li></ul>
-
-
-
-        
-	<span id="/2022/10/25/SQL优化笔记/" class="leancloud_visitors" data-flag-title="SQL优化笔记（MySQL）" title="SQL优化笔记（MySQL）">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        SQL优化笔记（MySQL）目标
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wshawk's blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">MySQL锁[TOC]
+
+按照锁思想分类乐观锁
+需要应用程序实现，MySQL自身并未实现。
+
+悲观锁按照锁类型分类读锁（共享锁、S锁）
+
+加了读锁的事务，允许该事务进行读，不允许其他事务进行修改
+同一行数据，可以被多个事务获得读锁
+其他事务不能再获取写锁，只能等获得读锁的所有事务释放后，才能加写锁
+
+
+写锁（排他锁、X锁）
+
+一个事务获取了写锁，那么该事务可以进行数据的查看及修改
+在该事务提交（释放锁）之前，不允许其他事务对该数据进行读操作或者写操作，会被阻塞住
+即添加了写锁之后，只允许拥有该锁的事务进行读、写
+
+
+意向锁
+
+意向锁的主要用途是显示某人正在锁定一行，或者将要锁定表中的一行
+想获取读锁或者写锁，必须先获取意向锁
+申请意向锁的动作是数据库自动完成的
+
+
+意向共享锁（IS Lock）意向排他锁（IX Lock）按照锁级别分类全局锁（数据库级别）
+FTWRL主要包括3个步骤：
+
+上全局读锁(lock_global_read_lock)
+清理表缓存(close_cached_tables)
+上全局COMMIT锁(make_global_read_lock_block_commit ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">SQL优化笔记（MySQL）目标
 减少IO次数
 降低CPU的计算
 
 基本原则
 尽量少 join
 
-　　MySQL 的优势在于简单，但这在某些方面其实也是其劣势。MySQL  优化器效率高，但是由于其统计信息的量有限，优化器工作过程出现偏差的可能性也就更多。对于复杂的多表 Join，一方面由于其优化器受限，再者在  Join 这方面所下的功夫还不够，所以性能表现离 Oracle  等关系型数据...
-    
-    <a href="/2022/10/25/SQL优化笔记/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
+　　MySQL 的优势在于简单，但这在某些方面其实也是其劣势。MySQL  优化器效率高，但是由于其统计信息的量有限，优化器工作过程出现偏差的可能性也就更多。对于复杂的多表 Join，一方面由于其优化器受限，再者在  Join 这方面所下的功夫还不够，所以性能表现离 Oracle  等关系型数据库前辈还是有一定距离。但如果是简单的单表查询，这一差距就会极小甚至在有些场景下要优于这些数据库前辈。
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+尽量少排序
 
-</div>
+　　排序操作会消耗较多的 CPU 资源，所以减少排序可以在缓存命中率高等 IO 能力足够的场景下会较大影响 SQL 的响应时间。
+　　对于MySQL来说，减少排序有多种办法，比如：
+　　上面误区中提到的通过利用索引来排序的方式进行优化
+　　减少参与排序的记录条数
+　　非必要不对数据进行排序
+　　…
 
+**尽量避免 select ***
 
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Tomcat概述"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2022/04/16/Tomcat概述/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/9.jpg" alt="图片路径不正确">
-    
+　　很多人看到这一点后觉得比较难理解，上面不是在误区中刚刚说 select 子句中字段的多少并不会影响到读取的数据吗?
+　　是的，大多数时候并不会影 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/f91535f.html" title="MySQL事务">MySQL事务</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-23T15:30:31.000Z" title="发表于 2022-10-23 23:30:31">2022-10-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">MySQL事务事务的概念事务就是一个不可分割的操作单元，其中的多个操作被认为是一个整体，要么全部执行成功，要么执行失败。
+事务的特性通常来说，我们一般认为事务具有四个特性。
 
+隔离性：不同的事务之间，是互相隔离的，不会互相影响。
+持久性：一旦事务执行完成，那么对事务中影响到的数据的变化，是永久的，一般是指持久化到磁盘上或者日志文件中。
+原子性：一个事务中的多个操作，被认为是一个整体，不可再分割，只要其中一个操作执行失败，就认为整个事务执行失败了。
+一致性：事务执行完成后，对于数据的变化，要求要一致，举例来说，转帐，A向B转账，B向C转账，在两个操作结束之后，数据结果要求一致。
 
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2022/04/16/Tomcat概述/">Tomcat概述</a>
-    </h3>
-  
+事务隔离级别事务隔离级别是一个标准，在不同的事务隔离级别下，对于事务特性的保证是有差异的，随之也会产生一些问题。
+读未提交不同的事务之间，会读到其他事务未提交的数据。保证了持久性、原子性，但是没有保证隔离性及一致性，会出现以下问题：
 
+脏读
+幻读
+不可重复读
 
+读已提交不同事务之间，只会读取到其他事务提交的数据，解决了脏读的问题，但依然存在
 
-</div>
+幻读
+不可重复读
 
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2022-04-16 23:30:31" datetime="2022-04-16T15:30:31.000Z"  itemprop="datePublished">2022-04-16</time>
+可重复读（MySQL默认的隔离级别）解决了不可重 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo/">hexo</a></span></div><div class="content">
+转载于： Github搭建Hexo双分支博客防止本地文件丢失
 
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+一、关于搭建流程
+创建仓库，Godbn.github.io
+
+创建两个分支:master和hexo
+
+在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)
+
+使用以下命令拷贝仓库到本地桌面
 
 
 
-        
-	<span id="/2022/04/16/Tomcat概述/" class="leancloud_visitors" data-flag-title="Tomcat概述" title="Tomcat概述">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
+git clone &#x67;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#x63;&#111;&#109;:Godbn/Godbn.github.io.git
 
 
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Tomcat概述1. Tomcat 核心组件
-                
-                image-20220416104036286
-            
+终端进入Godbn.github.io目录，依次执行
 
+
+  npm install hexo
+  hexo init
+  npm install
+  npm install hexo-deployer-git (用于生成上传至github)
+
+
+修改_config.yml中的deploy参数
+
+
+
+下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来
+
+
+https://github.com/ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Tomcat概述1. Tomcat 核心组件
 
 Connector(连接器): 由 端口号 + 协议 组成。
 
 2. 核心组件协作过程
-                
-                image-20220416104220796
- ...
-    
-    <a href="/2022/04/16/Tomcat概述/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tomcat/">Tomcat</a></li></ul>
+要点：
 
-</div>
+连接器可以有多个，不同的连接器可以对应同一个站点
+同一个连接器下，可以有多个站点
 
+即，连接器和站点之间的关系是多对多的。
+站点和应用上下文之间是一对多的关系，即一个站点对应该站点下多个应用上下文。站点和资源同样是一对多的关系
 
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Spring Bean"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/09/05/Spring Bean/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/8.jpg" alt="图片路径不正确">
-    
+3. 源码剖析3.1 server.xml
 
+Connector(连接器)：
 
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/09/05/Spring Bean/">Spring Bean</a>
-    </h3>
-  
+port：端口
+protocol：协议
+
+Host(站点)：
+
+name: 域名
+appBase：站点对应资源的路径，可配置全路径或者相对路径，相对路径是相对于tomcat的根路径。
+unpackWARs：是否自动将WAR文件解压
+autoDeploy：是否自动部署
 
 
 
-</div>
 
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-09-05 23:30:31" datetime="2020-09-05T15:30:31.000Z"  itemprop="datePublished">2020-09-05</time>
+Context(应用上下文): 在Host对应的appBase目录下的文件夹是隐式的Context， 通过Context标签可以显示的设置Host下的Context
 
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+3.2 请求流程分析
 
-
-
-        
-	<span id="/2020/09/05/Spring Bean/" class="leancloud_visitors" data-flag-title="Spring Bean" title="Spring Bean">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Spring Bean在Spring中，bean 是一个被实例化，组装，并通过 Spring IoC 容器所管理的对象。（也就是由spring来进行管理的资源对象）
-1. 如何将bean放入spring容器中既然要让spring来管理这些资源类，那么就需要将资源放入到容器中，这样spring容器才能将资源提供给有需要的类进行使用，那么如何将bean对象放入到spring容器中呢？
-有以下三种...
-    
-    <a href="/2020/09/05/Spring Bean/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-高并发名词"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2021/12/22/高并发名词/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/7.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2021/12/22/高并发名词/">高并发名词</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2021-12-22 23:30:31" datetime="2021-12-22T15:30:31.000Z"  itemprop="datePublished">2021-12-22</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2021/12/22/高并发名词/" class="leancloud_visitors" data-flag-title="高并发名词" title="高并发名词">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        高并发名词1. PV（Page View）
+Engine、Host、Context 每一层都有自己的一个pipline ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b39fa119.html" title="高并发名词">高并发名词</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-22T15:30:31.000Z" title="发表于 2021-12-22 23:30:31">2021-12-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">高并发名词1. PV（Page View）
 页面浏览量统计，用户每刷新一次页面，PV值加一。
 
 2. UV（User View）
@@ -487,308 +286,50 @@ Connector(连接器): 由 端口号 + 协议 组成。
 3. RT（Response Time）
 响应时间。前端页面发出请求开始到接收到后台响应之间的时间。
 一般来说，
-1ms~100ms之间的响应，人们基本感觉不到这个请求的耗...
-    
-    <a href="/2021/12/22/高并发名词/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
+1ms~100ms之间的响应，人们基本感觉不到这个请求的耗时；
+1s左右的响应时间，人们明显能感觉的到系统反应慢，但勉强能接受；
+大于3s的响应时间，人们已经无法接受了，基本都会认为系统有问题；
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后端/">后端</a></li></ul>
+4. 并发用户数
+并发用户数是指系统可以同时承载的正常使用系统功能的用户的数量。
 
-</div>
+5. TPS（Transactions Per Second）
+系统每秒处理交易数。
+比如下单事务，中间可能调用多个接口，但是属于下单这个流程，完成一整个下单流程，TPS记为 1。 
 
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-接口幂等性"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2021/12/04/接口幂等性/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/6.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2021/12/04/接口幂等性/">接口幂等性</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2021-12-04 23:30:31" datetime="2021-12-04T15:30:31.000Z"  itemprop="datePublished">2021-12-04</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2021/12/04/接口幂等性/" class="leancloud_visitors" data-flag-title="接口幂等性" title="接口幂等性">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        接口幂等性1. 概念接口幂等性
-
-一次和多次请求某一个资源，对资源本身所产生的的影响均与一次执行的影响相同。
-幂等性是系统服务对外的一种承诺，承诺只要调用接口成功了，多次调用对系统的影响是一致的。
-
-2. 幂等性与重复提交比较幂等性 更多使用的情况是第一次请求知道结果，但是由于网络抖动或连接超时等情况未进行正常返回，在这种情况下系统自动再次发起请求，其目的是确认第一次是否请求完成。
-重复提交...
-    
-    <a href="/2021/12/04/接口幂等性/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后端/">后端</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-HTTP的Content-Length头字段"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2021/12/04/HTTP的Content-Length头字段/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/5.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2021/12/04/HTTP的Content-Length头字段/">HTTP的Content-Length头字段</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2021-12-04 23:30:31" datetime="2021-12-04T15:30:31.000Z"  itemprop="datePublished">2021-12-04</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/网络/">网络</a></li></ul>
-
-
-
-        
-	<span id="/2021/12/04/HTTP的Content-Length头字段/" class="leancloud_visitors" data-flag-title="HTTP的Content-Length头字段" title="HTTP的Content-Length头字段">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        HTTP的Content-Length头字段Content-Length用于描述HTTP消息实体的传输长度（the transfer-length of the message-body）。
+6.  QPS（Query Per Second）
+系统每秒处理查询次数，单位是次/秒。 对于互联网业务中，如果某些业务有且仅有一个请求连接，那么TPS=QPS=HPS，一般情况下用TPS来衡量整 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/3857b8c0.html" title="HTTP的Content-Length头字段">HTTP的Content-Length头字段</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><div class="content">HTTP的Content-Length头字段Content-Length用于描述HTTP消息实体的传输长度（the transfer-length of the message-body）。
 在HTTP协议中，消息实体长度和消息实体的传输长度是有区别的。
 
 消息实体长度：消息实体本身的长度。
 消息实体的传输长度：消息实体在传输时的长度。
 
-比如说gzip压缩下，消息实体长度就是压缩前的长度，...
-    
-    <a href="/2021/12/04/HTTP的Content-Length头字段/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
+比如说gzip压缩下，消息实体长度就是压缩前的长度，消息实体的传输长度是gzip压缩后的长度。
+在具体的HTTP交互中，客户端是如何获取消息长度的呢，主要基于以下几个规则：响应为1xx，204，304或者head请求，则直接忽视掉消息实体内容。
+如果有Transfer-Encoding，则优先采用Transfer-Encoding里面的方法来找到对应的长度。比如说Chunked模式。
+如果head中有Content-Length，那么这个Content-Length既表示实体长度，又表示传输长度。
+如果实体长度和传输长度不相等（比如说设置了Transfer-Encoding），那么则不能设置Content-Length。如果设置了Transfer-E ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/a26b78e0.html" title="接口幂等性">接口幂等性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">接口幂等性1. 概念接口幂等性
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+一次和多次请求某一个资源，对资源本身所产生的的影响均与一次执行的影响相同。
+幂等性是系统服务对外的一种承诺，承诺只要调用接口成功了，多次调用对系统的影响是一致的。
 
-</div>
+2. 幂等性与重复提交比较幂等性 更多使用的情况是第一次请求知道结果，但是由于网络抖动或连接超时等情况未进行正常返回，在这种情况下系统自动再次发起请求，其目的是确认第一次是否请求完成。
+重复提交 更多使用的情况是第一次请求成功或请求结果暂未返回的情况下，人为的进行多次操作。
+实际上二者表现的情况是一样的，都会多次的调用一个接口，并且传参相同。
+3. SQL语句的幂等性3.1 SELECT1SELECT * FROM `table_name` WHERE id = 1024;
 
+select语句具有天然的幂等性，因为select语句只是进行查询，并不会修改数据。
+3.2 UPDATE1UPDATE table_name SET column_xx = &#x27;xxx&#x27; WHERE id = 1024;
 
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Linux安装Redis 6.0.5   .install_server.sh报错"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2021/05/10/Linux安装Redis 6.0.5   .install_server.sh报错/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/4.jpg" alt="图片路径不正确">
-    
+像上面这个update语句，执行多次和执行一次是一样的效果，这样的是幂等的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/d30a1526.html" title="Linux安装Redis 6.0.5 ./install_server.sh报错">Linux安装Redis 6.0.5 ./install_server.sh报错</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-05-10T15:30:31.000Z" title="发表于 2021-05-10 23:30:31">2021-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">Linux安装Redis 6.0.5   ./install_server.sh报错linux 安装Redis6.0.5时进行到./install_server.sh时报错，
+12This systems seems to use systemd.Please take a look at the provided example service unit files in this directory, and adapt and install them. Sorry!
 
 
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2021/05/10/Linux安装Redis 6.0.5   .install_server.sh报错/">Linux安装Redis 6.0.5 ./install_server.sh报错</a>
-    </h3>
-  
+解决方案：
+1vi ./install_server.sh
 
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2021-05-10 23:30:31" datetime="2021-05-10T15:30:31.000Z"  itemprop="datePublished">2021-05-10</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
-
-
-
-        
-	<span id="/2021/05/10/Linux安装Redis 6.0.5   .install_server.sh报错/" class="leancloud_visitors" data-flag-title="Linux安装Redis 6.0.5 ./install_server.sh报错" title="Linux安装Redis 6.0.5 ./install_server.sh报错">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Linux安装Redis 6.0.5   ./install_server.sh报错linux 安装Redis6.0.5时进行到./install_server.sh时报错，
-12This systems seems to use systemd.Please take a look at the provided example service unit files in this dir...
-    
-    <a href="/2021/05/10/Linux安装Redis 6.0.5   .install_server.sh报错/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-CentOS7 防火墙相关命令"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/10/02/CentOS7 防火墙相关命令/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/3.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/10/02/CentOS7 防火墙相关命令/">CentOS7 防火墙相关命令</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-10-02 23:30:31" datetime="2020-10-02T15:30:31.000Z"  itemprop="datePublished">2020-10-02</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
-
-
-
-        
-	<span id="/2020/10/02/CentOS7 防火墙相关命令/" class="leancloud_visitors" data-flag-title="CentOS7 防火墙相关命令" title="CentOS7 防火墙相关命令">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        CentOS7 防火墙相关命令
+注释下面的代码即可
+12345678#bail if this system is managed by systemd#_pid_1_exe=&quot;$(readlink -f /proc/1/exe)&quot;#if [ &quot;$&#123;_pid_1_exe##*/&#125;&quot; = systemd ]#then#       echo &quot;This systems seems to use systemd.&q ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/372de7b5.html" title="CentOS7 防火墙相关命令">CentOS7 防火墙相关命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-10-02T15:30:31.000Z" title="发表于 2020-10-02 23:30:31">2020-10-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Linux/">Linux</a></span></div><div class="content">CentOS7 防火墙相关命令
 查看防火墙状态
 
 1firewall-cmd --state
@@ -806,362 +347,33 @@ Connector(连接器): 由 端口号 + 协议 组成。
 
 禁止firewall 开机启动
 
-1systemctl disable firewalld.servic...
-    
-    <a href="/2020/10/02/CentOS7 防火墙相关命令/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-
-</div>
+1systemctl disable firewalld.service
 
 
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-MySQL事务"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2022/10/23/MySQL事务/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/2.jpg" alt="图片路径不正确">
-    
+设置开机启动防火墙
+
+1systemctl enable firewalld.service
 
 
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2022/10/23/MySQL事务/">MySQL事务</a>
-    </h3>
-  
+重启防火墙
+
+1firewall-cmd --reload
 
 
+对外开放端口
 
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2022-10-23 23:30:31" datetime="2022-10-23T15:30:31.000Z"  itemprop="datePublished">2022-10-23</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a></li></ul>
+12345#说明:#–zone 作用域#–add-port=80/tcp 添加端口，格式为：端口/通讯协议#–permanent 永久生效，没有此参数重启后失效firewall-cmd --zone=public --add-port=端口号/tcp --permanent
 
 
+关闭对外端口
 
-        
-	<span id="/2022/10/23/MySQL事务/" class="leancloud_visitors" data-flag-title="MySQL事务" title="MySQL事务">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        MySQL事务事务的概念事务就是一个不可分割的操作单元，其中的多个操作被认为是一个整体，要么全部执行成功，要么执行失败。
-事务的特性通常来说，我们一般认为事务具有四个特性。
-
-隔离性：不同的事务之间，是互相隔离的，不会互相影响。
-持久性：一旦事务执行完成，那么对事务中影响到的数据的变化，是永久的，一般是指持久化到磁盘上或者日志文件中。
-原子性：一个事务中的多个操作，被认为是一个整体，不可再分...
-    
-    <a href="/2022/10/23/MySQL事务/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-MySQL锁"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2022/10/27/MySQL锁/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/1.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2022/10/27/MySQL锁/">MySQL锁</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2022-10-27 23:30:31" datetime="2022-10-27T15:30:31.000Z"  itemprop="datePublished">2022-10-27</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a></li></ul>
-
-
-
-        
-	<span id="/2022/10/27/MySQL锁/" class="leancloud_visitors" data-flag-title="MySQL锁" title="MySQL锁">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        MySQL锁[TOC]
-
-按照锁思想分类乐观锁
-需要应用程序实现，MySQL自身并未实现。
-
-悲观锁按照锁类型分类读锁（共享锁、S锁）
-
-加了读锁的事务，允许该事务进行读，不允许其他事务进行修改
-同一行数据，可以被多个事务获得读锁
-其他事务不能再获取写锁，只能等获得读锁的所有事务释放后，才能加写锁
-
-
-写锁（排他锁、X锁）
-
-一个事务获取了写锁，那么该事务可以进行数据的查看及修改
-在该事务提...
-    
-    <a href="/2022/10/27/MySQL锁/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-        </ul>
-        
-<nav id="page-nav">
-    <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
-    </div>
-</nav>
-
-    </div>
-
-    </main>
-    <footer class="footer ">
-    
-    <div class="bottom">
-        <p>
-            <span>
-                wshawk &copy; 2017 - 2022
-            </span>
-        		
-           	
+1firewall-cmd --zone=public --remove-port=端口号/tcp --permanent
+ ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/d940f18d.html" title="MySQL锁"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL锁"/></a><div class="content"><a class="title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a><time datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL优化笔记（MySQL）"/></a><div class="content"><a class="title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a><time datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/f91535f.html" title="MySQL事务"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL事务"/></a><div class="content"><a class="title" href="/post/f91535f.html" title="MySQL事务">MySQL事务</a><time datetime="2022-10-23T15:30:31.000Z" title="发表于 2022-10-23 23:30:31">2022-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Github搭建Hexo双分支博客防止本地文件丢失"/></a><div class="content"><a class="title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a><time datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b5f2cfa4.html" title="Tomcat概述"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat概述"/></a><div class="content"><a class="title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a><time datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
             
-            
-            <span>
-	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
-            </span>
-            
-            
-            
-
-            
-                
-<span class="site-uv" title="总访客量">
-    <i class="icon icon-user"></i>
-    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
-</span>
-
-
-<span class="site-pv" title="总访问量">
-    <i class="icon icon-eye"></i>
-    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
-</span>
-
-            
-        </p>
-    </div>
-</footer>
-
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/&title=wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/&title=wshawk's blog&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABVUlEQVR42u3auw6FIBCEYd//pTnNKUwMOrOLhcxPZYjCZ8Ftl+OQyziVa82s/lxzvFFgwdqINW6LwqrVzPqCBSuZNRuh7jvXN912YMGCpTc3Hdjt34MFC5bSnELUv4UFC5a7adYPt8pyvmwvDwvWFiw9qtN/fiW+BQvWx1nDLPoxtdb+vwVYsMJY+gB2F3J3GYYFC5aytVW6rCVmHhZ1WLDiWe6UUQv+PvQFC1YMS0lM6pOFEt4tXjiABSuGdT+M+2mYxTMWLFjbsfSLO7WUpx38hQUrmOUOZmXiKE4TsGBFsvTpwA0k6VcQYMGC5T63olYKDhasGFbxKoCwRXZTnrBgJbNq9+I66Ra7Y1iwYlhugqRziDWSoLBgRbLcpMvaGci4GwgLFqzOgO9kX2HBgmWGfWvRrAVLNSxYW7D0xEkHZ2y4YcEKY+kfu0fZFyNbsGDtw/oB75EXDiQ4PVcAAAAASUVORK5CYII=" alt="微信分享二维码">
-</div>
-
-
-    
-    <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
-<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-
-<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-
-<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
-
-<!-- third-party -->
-
-
-
-
-
-
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
-<script type="text/javascript">
-	var search_path = "search.xml";
-	if (search_path.length === 0) {
-		search_path = "search.xml";
-	}
-	var path = "/" + search_path;
-	searchFunc(path, "local-search-input", "local-search-result");
-</script>
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-    
-    
-
-
-
-<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.4"></script>
-
-
-
-    <!-- mathjax config similar to math.stackexchange -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-            processEscapes: true,
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
-
-
-    <script>
-    (function() {
-        var OriginTitile = document.title, titleTime;
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                document.title = '死鬼去哪里了！';
-                clearTimeout(titleTime);
-            } else {
-                document.title = '(つェ⊂)咦!又好了!';
-                titleTime = setTimeout(function() {
-                    document.title = OriginTitile;
-                },2000);
-            }
-        });
-    })();
-</script>
-
-
-
-
-
-    
-</body>
-</html>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">15</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/JavaScript/" style="font-size: 1.23em; color: #999ea6">JavaScript</a> <a href="/tags/Linux/" style="font-size: 1.37em; color: #99a4b2">Linux</a> <a href="/tags/MySQL/" style="font-size: 1.37em; color: #99a4b2">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 1.1em; color: #999">Mybatis</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.23em; color: #999ea6">后端</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">6</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-10-30T14:41:47.926Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

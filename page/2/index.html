@@ -1,640 +1,161 @@
-<!DOCTYPE html>
-<html>
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="utf-8">
-    
-    
-    <title>wshawk&#39;s blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="keywords" content>
-    <link rel="shortcut icon" href="/img/favicon.ico">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="/css/style.css?v=1.4.4">
-    
-    <script type="text/javascript">
-        // Data Center
-        var DC = {
-            reward:	false,
-            lv: JSON.parse('{"enable":true,"app_id":null,"app_key":null,"icon":true}'),
-            v: JSON.parse('{"enable":false,"appid":null,"appkey":null,"notify":true,"verify":true,"placeholder":"give me some sugers plz...","avatar":"wavatar"}'),
-            g: JSON.parse('{"enable":false,"lazy":true,"owner":"codefine","repo":"gitment","oauth":{"client_id":null,"client_secret":null},"perPage":10}'),
-            d: JSON.parse('{"app_id":null}')
-        };
-    </script>
-    <script type="text/javascript">
-        window.lazyScripts=[];
-    </script>
-    
-</head>
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="wshawk&#39;s blog">
+<meta property="og:url" content="http://wshawk.github.io/page/2/index.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/avatar.jpg">
+<meta property="article:author" content="wshawk">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/page/2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'wshawk\'s blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-10-30 22:41:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<body>
-    <div id="loading" class="active"></div>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
 
-    <aside id="menu" class="">
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap">
-      
-      <img src="/img/brand.jpg" class="brand-bg">
-      
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
-        </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">wshawk</h5>
-          <a href="mailto:ws_hawk@foxmail.com" title="ws_hawk@foxmail.com" class="mail">
-            
-              <span>w</span>
-            
-              <span>s</span>
-            
-              <span>_</span>
-            
-              <span>h</span>
-            
-              <span>a</span>
-            
-              <span>w</span>
-            
-              <span>k</span>
-            
-              <span>@</span>
-            
-              <span>f</span>
-            
-              <span>o</span>
-            
-              <span>x</span>
-            
-              <span>m</span>
-            
-              <span>a</span>
-            
-              <span>i</span>
-            
-              <span>l</span>
-            
-              <span>.</span>
-            
-              <span>c</span>
-            
-              <span>o</span>
-            
-              <span>m</span>
-            
-          </a>
-        </hgroup>
-        
-        <ul class="menu-link">
-          
-              <li>
-                <a href="https://github.com/wshawk" target="_blank">
-                  <i class="icon icon-lg icon-github"></i>
-                </a>
-              </li>
-            
-        </ul>
-        
-      </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                首页
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                分类
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                标签
-              </a>
-            </li>
-        
-            <li class="">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                归档
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
 
-    <main id="main">
-        
-    <header class="top-header" id="header">
-    <div class="flex-row clearfix">
-        <a href="javascript:;" class="header-icon pull-left waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">
-            <span>wshawk&#39;s blog</span>
-            
-        </div>
-        
-        <a href="javascript:;" id="site_search_btn" class="header-icon pull-right waves-effect waves-circle waves-light">
-            <i class="icon icon-lg icon-search"></i>
-        </a>
-        
-    </div>
-</header>
-<header class="content-header index-header">
-    <img src="/img/banner.jpg" class="header-bg">
-    <div class="container fade-scale">
-        <h1 class="title">wshawk&#39;s blog</h1>
-        <h5 class="subtitle">
-            
-                
-            
-        </h5>
-        
-    </div>
-    
-
-</header>
-
-<div id="site_search">
-    <div class="search-title clearfix">
-        <span class="pull-left">
-          <i class="icon icon-lg icon-search"></i>
-        </span>
-        <input type="text" id="local-search-input" name="q" results="0" placeholder="search my blog..." class="form-control pull-left"/>
-        <a href="javascript:;" class="close pull-right waves-effect waves-circle waves-light">
-          <i class="icon icon-lg icon-close"></i>
-        </a>
-    </div>
-    <div id="local-search-result"></div>
-</div>
-
-    <div class="container body-wrap">
-        <ul class="post-list">
-        
-            <li class="post-list-item fade">
-                <article id="post-HashMap详解-源码分析"
-  class="article-card article-type-post" itemprop="blogPost">
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
   
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/05/26/HashMap详解-源码分析/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/10.jpg" alt="图片路径不正确">
-    
-
-
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
   
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/05/26/HashMap详解-源码分析/">HashMap详解-源码分析</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
     
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-05-26 20:51:31" datetime="2020-05-26T12:51:31.000Z"  itemprop="datePublished">2020-05-26</time>
-
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/Java/">Java</a></li></ul></li></ul>
-
-
-
-        
-	<span id="/2020/05/26/HashMap详解-源码分析/" class="leancloud_visitors" data-flag-title="HashMap详解-源码分析" title="HashMap详解-源码分析">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        HashMap详解-源码分析HashMap类声明源码如下：
-12public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements Map&lt;K,V&gt;, Cloneable, Serializable
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wshawk's blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/cb377708.html" title="Spring Bean">Spring Bean</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-05T15:30:31.000Z" title="发表于 2020-09-05 23:30:31">2020-09-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Spring Bean在Spring中，bean 是一个被实例化，组装，并通过 Spring IoC 容器所管理的对象。（**也就是由spring来进行管理的资源对象**）
+1. 如何将bean放入spring容器中既然要让spring来管理这些资源类，那么就需要将资源放入到容器中，这样spring容器才能将资源提供给有需要的类进行使用，那么如何将bean对象放入到spring容器中呢？
+有以下三种方法：
+
+Java config配置
+
+使用Java config的方式进行配置时，不需要创建额外的xml文件，需要创建一个java的config类。
+123456789101112131415package byJavaConfig;import org.springframework.context.annotation.Bean;import org.springframework.context.annotation.ComponentScan;import org.springframework.context.annotation.Configuration;@Configura ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/9ca5d950.html" title="HashMap详解-源码分析">HashMap详解-源码分析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-26T12:51:31.000Z" title="发表于 2020-05-26 20:51:31">2020-05-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/Java/">Java</a></span></div><div class="content">HashMap详解-源码分析HashMap类声明源码如下：
+12public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements Map&lt;K,V&gt;, Cloneable, Serializable 
 
 分析：
 
-继承了AbstractMap抽象类，而AbstractMap类已经实现了Map部分接...
-    
-    <a href="/2020/05/26/HashMap详解-源码分析/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
+继承了AbstractMap抽象类，而AbstractMap类已经实现了Map部分接口，可以直接使用
+实现了Map、Cloneable、Serializable接口，即实现Map接口中的相应方法，支持clone，支持序列化及反序列化
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JDK/">JDK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+成员变量源码如下：
+123456789101112131415161718192021222324252627   private static final long serialVersionUID = 362498820763181265L;   static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16   static final int MAXIMUM_CAPAC ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/e63723a.html" title="Java中的代理">Java中的代理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-08T11:20:33.000Z" title="发表于 2020-04-08 19:20:33">2020-04-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Java中的代理   代理模式（Proxy）是通过代理对象访问目标对象，这样可以在目标对象基础上增强额外的功能，如添加权限，访问控制和审计等功能。 
 
-</div>
 
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-为什么重写equals()方法时，要重写hashCode()方法"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/04/07/为什么重写equals()方法时，要重写hashCode()方法/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/9.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/04/07/为什么重写equals()方法时，要重写hashCode()方法/">为什么重写equals()方法时，要重写hashCode()方法</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-04-07 20:51:31" datetime="2020-04-07T12:51:31.000Z"  itemprop="datePublished">2020-04-07</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/Java/">Java</a></li></ul></li></ul>
-
-
-
-        
-	<span id="/2020/04/07/为什么重写equals()方法时，要重写hashCode()方法/" class="leancloud_visitors" data-flag-title="为什么重写equals()方法时，要重写hashCode()方法" title="为什么重写equals()方法时，要重写hashCode()方法">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        为什么重写equals()方法时，要重写hashCode()方法1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
-
-
- 由以上源代码知，Object类中的equa...
-    
-    <a href="/2020/04/07/为什么重写equals()方法时，要重写hashCode()方法/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Github搭建Hexo双分支博客防止本地文件丢失"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/8.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/">Github搭建Hexo双分支博客防止本地文件丢失</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2022-10-18 00:28:30" datetime="2022-10-17T16:28:30.000Z"  itemprop="datePublished">2022-10-18</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/hexo/">hexo</a></li></ul>
-
-
-
-        
-	<span id="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" class="leancloud_visitors" data-flag-title="Github搭建Hexo双分支博客防止本地文件丢失" title="Github搭建Hexo双分支博客防止本地文件丢失">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        
-转载于： Github搭建Hexo双分支博客防止本地文件丢失
-
-一、关于搭建流程
-创建仓库，Godbn.github.io
-
-创建两个分支:master和hexo
-
-在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)
-
-使用以下命令拷贝仓库到本地桌面
-
-
-
-git clone git@github.com:Godbn/Go...
-    
-    <a href="/2022/10/18/Github搭建Hexo双分支博客防止本地文件丢失/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-equals()方法和hashCode()方法详解"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/04/07/equals()方法和hashCode()方法详解/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/7.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/04/07/equals()方法和hashCode()方法详解/">equals()方法和hashCode()方法详解</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-04-07 19:51:31" datetime="2020-04-07T11:51:31.000Z"  itemprop="datePublished">2020-04-07</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2020/04/07/equals()方法和hashCode()方法详解/" class="leancloud_visitors" data-flag-title="equals()方法和hashCode()方法详解" title="equals()方法和hashCode()方法详解">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        equals()方法和hashCode()方法详解1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
-
-
- 由以上源代码知，Object类中的equals()方法是...
-    
-    <a href="/2020/04/07/equals()方法和hashCode()方法详解/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Java中String类的常用方法"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2019/10/15/Java中String类的常用方法/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/6.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2019/10/15/Java中String类的常用方法/">String类的常用方法</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2019-10-15 19:51:31" datetime="2019-10-15T11:51:31.000Z"  itemprop="datePublished">2019-10-15</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2019/10/15/Java中String类的常用方法/" class="leancloud_visitors" data-flag-title="String类的常用方法" title="String类的常用方法">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        String类的常用方法
-split(“reg”)将字符串以reg为分隔符进行分割，返回一个String类型的数组    
-
-
-replace(char oldChar, char newChar)替换字符串中的字符，返回一个新的String类型的变量  
-
-
-replaceAll(String regex,String replacement)基于正则表达式的替换,比如，可以通过repla...
-    
-    <a href="/2019/10/15/Java中String类的常用方法/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Java中的代理"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/04/08/Java中的代理/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/5.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/04/08/Java中的代理/">Java中的代理</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-04-08 19:20:33" datetime="2020-04-08T11:20:33.000Z"  itemprop="datePublished">2020-04-08</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2020/04/08/Java中的代理/" class="leancloud_visitors" data-flag-title="Java中的代理" title="Java中的代理">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Java中的代理代理模式（Proxy）是通过代理对象访问目标对象，这样可以在目标对象基础上增强额外的功能，如添加权限，访问控制和审计等功能。 
 增加额外功能，进行增强
 引入第三方代理类，进行解耦
 
@@ -644,153 +165,11 @@ replaceAll(String regex,String replacement)基于正则表达式的替换,比如
 
 
 请参考下面的代码：
-1234567/***声明一个明星接口，明星只需要关注自己的唱、跳*/public interface StarService &#123;    void ...
-    
-    <a href="/2020/04/08/Java中的代理/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/代理/">代理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态代理/">动态代理</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Java中到底是值传递还是引用传递"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2019/07/15/Java中到底是值传递还是引用传递/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/4.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2019/07/15/Java中到底是值传递还是引用传递/">Java中到底是值传递还是引用传递</a>
-    </h3>
-  
+1234567/***声明一个明星接口，明星只需要关注自己的唱、跳*/public interface StarService &#123;    void sing();    void jump();&#125;
 
 
 
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2019-07-15 19:51:31" datetime="2019-07-15T11:51:31.000Z"  itemprop="datePublished">2019-07-15</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2019/07/15/Java中到底是值传递还是引用传递/" class="leancloud_visitors" data-flag-title="Java中到底是值传递还是引用传递" title="Java中到底是值传递还是引用传递">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Java中到底是值传递还是引用传递？我们先回顾一下基本概念
-实参和形参参数在编程语言中是执行程序需要的数据，这个数据一般保存在变量中。在Java中定义一个方法时，可以定义一些参数，举个例子：    
-12345678910public class Example &#123;public static void main(String[] args) &#123;	String myName...
-    
-    <a href="/2019/07/15/Java中到底是值传递还是引用传递/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Java知识点总结"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2020/04/08/Java知识点总结/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/3.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2020/04/08/Java知识点总结/">Java知识点总结</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2020-04-08 15:20:34" datetime="2020-04-08T07:20:34.000Z"  itemprop="datePublished">2020-04-08</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2020/04/08/Java知识点总结/" class="leancloud_visitors" data-flag-title="Java知识点总结" title="Java知识点总结">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        Java知识点总结1.  类的初始化顺序
+123456789101112/***明星接口的具体实现类*/public class StarServiceImpl implements StarService&#123;    public void sing() &#123;        System.out.println(&quot; sing a song &quot;);    &#125;    public void jump() &#123;        System.out.println(&quot; just dance &quot;);   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/d842f132.html" title="Java知识点总结">Java知识点总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-08T07:20:34.000Z" title="发表于 2020-04-08 15:20:34">2020-04-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Java知识点总结1.  类的初始化顺序
 父类静态变量（静态代码块）
 子类静态变量（静态代码块）
 父类成员变量
@@ -804,349 +183,76 @@ replaceAll(String regex,String replacement)基于正则表达式的替换,比如
 被final修饰的实例变量必须显示地赋初值，且只能以下三种方式：
 　　1.  定义时初始化
 　　2.  在非静态初始化块中为final实例变量指定初始值
-　　3...
-    
-    <a href="/2020/04/08/Java知识点总结/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
+　　3.  在构造器中指定初始值
+final修饰的静态变量只能在两个地方进行初始化
 
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-Java long类型踩坑"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2019/11/05/Java long类型踩坑/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/2.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2019/11/05/Java long类型踩坑/">The literal 10000000000 of type int is out of range</a>
-    </h3>
-  
+定义final类变量时指定初始值 
+在静态初始化块中为final类变量指定初始值 
 
 
 
-</div>
+修饰方法，该方法不能被重写
 
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2019-11-05 19:51:31" datetime="2019-11-05T11:51:31.000Z"  itemprop="datePublished">2019-11-05</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
+修饰类，该类不能被继承   
 
 
+3.  static修饰符
+修饰变量，被static修饰的变量实质上就是全局变量，所有的类实例（对象），共享该变量；且该变量可以以类名.变量名的方式进行访问
 
-        
-	<span id="/2019/11/05/Java long类型踩坑/" class="leancloud_visitors" data-flag-title="The literal 10000000000 of type int is out of range" title="The literal 10000000000 of type int is out of range">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
+修饰方法，该方法被称为静态方法，可直接使用类名.静态方法名进行调用，不需要实例化对象。
 
-        
+静态方法有以下特点：
+
+只能访问static变量
+只能调用其他static方法
+不能使用this或者super关键字，因为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/300023f4.html" title="为什么重写equals()方法时，要重写hashCode()方法">为什么重写equals()方法时，要重写hashCode()方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-07T12:51:31.000Z" title="发表于 2020-04-07 20:51:31">2020-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/Java/">Java</a></span></div><div class="content">为什么重写equals()方法时，要重写hashCode()方法1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
 
 
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        出现上述报错的主要原因是：  
+ 由以上源代码知，Object类中的equals()方法是直接使用==运算符来判断两个对象相等的。
+
+引用类型变量使用==时，比较的是引用类型变量指向的对象的内存地址
+基本类型使用==时，比较值
+
+
+Objcect类中的hashCode源代码如下：
+123456789101112131415161718192021222324252627282930313233343536/**    * Returns a hash code value for the object. This method is    * supported for the benefit of hash tables such as those provided by ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/e8d9b9d3.html" title="equals()方法和hashCode()方法详解">equals()方法和hashCode()方法详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-07T11:51:31.000Z" title="发表于 2020-04-07 19:51:31">2020-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">equals()方法和hashCode()方法详解1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
+
+
+ 由以上源代码知，Object类中的equals()方法是直接使用==运算符来判断两个对象相等的。
+
+引用类型变量使用==时，比较的是引用类型变量指向的对象的内存地址
+基本类型使用==时，比较值
+
+
+Objcect类中的hashCode源代码如下：
+123456789101112131415161718192021222324252627282930313233343536/**    * Returns a hash code value for the object. This method is    * supported for the benefit of hash tables such as those provided by    * & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/4a17b156.html" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-04T11:57:18.558Z" title="发表于 2020-04-04 19:57:18">2020-04-04</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
+
+More info: Writing
+Run server1$ hexo server
+
+More info: Server
+Generate static files1$ hexo generate
+
+More info: Generating
+Deploy to remote sites1$ hexo deploy
+
+More info: Deployment
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/8184ba83.html" title="Vue项目中实现回车登录">Vue项目中实现回车登录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-04T10:51:31.000Z" title="发表于 2020-04-04 18:51:31">2020-04-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></span></div><div class="content">Vue项目中实现回车登录12345678910created()&#123;	let that = this;    document.onkeypress = function(e) &#123;      var keycode = document.all ? event.keyCode : e.which;      if (keycode == 13) &#123;// 回车键对应值为13        that.login();// 登录方法名        return false;      &#125;    &#125;;   &#125;
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b2df998f.html" title="The literal 10000000000 of type int is out of range">The literal 10000000000 of type int is out of range</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-05T11:51:31.000Z" title="发表于 2019-11-05 19:51:31">2019-11-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">出现上述报错的主要原因是：  
 
 Java中默认整数为int类型，虽然图片中的数字未超过long类型的最大值，但由于默认整数为int类型，该数超过了int类型的最大值，所以报错；  
 
 解决方法如下：
 在声明时，在数字的后面添加l或者L即可，建议添加L，更容易区别
 
-
-    
-    <a href="/2019/11/05/Java long类型踩坑/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/踩坑/">踩坑</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-            <li class="post-list-item fade">
-                <article id="post-unix时间戳转时间"
-  class="article-card article-type-post" itemprop="blogPost">
-  
-        
-<div class="item-thumb">
-    <a class="thumb-link" href="/2019/11/05/unix时间戳转时间/"></a>
-    <div class="thumb-hover">
-        <span class="icon icon-eye"></span>
-    </div>
-    <img src="/img/thumb/1.jpg" alt="图片路径不正确">
-    
-
-
-  
-    <h3 class="post-title ab-title" itemprop="name">
-      <a class="post-title-link" href="/2019/11/05/unix时间戳转时间/">unix时间戳转时间</a>
-    </h3>
-  
-
-
-
-</div>
-
-        
-    
-    
-    
-    <div class="post-meta">
-        <time class="post-time" title="2019-11-05 19:51:31" datetime="2019-11-05T11:51:31.000Z"  itemprop="datePublished">2019-11-05</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/后端/">后端</a></li></ul>
-
-
-
-        
-	<span id="/2019/11/05/unix时间戳转时间/" class="leancloud_visitors" data-flag-title="unix时间戳转时间" title="unix时间戳转时间">
-		
-			<i class="icon icon-eye"></i>
-		
-		<span class="leancloud-visitors-count"></span>
-	</span>
- 
-
-        
-
-
-        
-        
-    </div>
-    
-    <div class="post-content" id="post-content" itemprop="postContent">
-    
-    
-        123456String unixTimeStr=  "1572251400";long s = Long.parseLong(unixTimeStr);s *= 1000; // 乘以1000，变成毫秒SimpleDateFormat t = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");String date = t.format(new Dat...
-    
-    <a href="/2019/11/05/unix时间戳转时间/" class="post-more waves-effect waves-button">
-        more
-    </a>
-    </div>
-</article>
-
-<div class="post-footer">
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/时间戳/">时间戳</a></li></ul>
-
-</div>
-
-
-            </li>
-        
-        </ul>
-        
-<nav id="page-nav">
-    <div class="inner">
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
-    </div>
-</nav>
-
-    </div>
-
-    </main>
-    <footer class="footer ">
-    
-    <div class="bottom">
-        <p>
-            <span>
-                wshawk &copy; 2017 - 2022
-            </span>
-        		
-           	
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/3b7df5c1.html" title="unix时间戳转时间">unix时间戳转时间</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-11-05T11:51:31.000Z" title="发表于 2019-11-05 19:51:31">2019-11-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">123456String unixTimeStr=  &quot;1572251400&quot;;long s = Long.parseLong(unixTimeStr);s *= 1000; // 乘以1000，变成毫秒SimpleDateFormat t = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);String date = t.format(new Date(s));System.out.println(date); //2019-10-28 16:30:00</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/d940f18d.html" title="MySQL锁"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL锁"/></a><div class="content"><a class="title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a><time datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL优化笔记（MySQL）"/></a><div class="content"><a class="title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a><time datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/f91535f.html" title="MySQL事务"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL事务"/></a><div class="content"><a class="title" href="/post/f91535f.html" title="MySQL事务">MySQL事务</a><time datetime="2022-10-23T15:30:31.000Z" title="发表于 2022-10-23 23:30:31">2022-10-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Github搭建Hexo双分支博客防止本地文件丢失"/></a><div class="content"><a class="title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a><time datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b5f2cfa4.html" title="Tomcat概述"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Tomcat概述"/></a><div class="content"><a class="title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a><time datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
             
-            
-            <span>
-	            Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/codefine/hexo-theme-mellow" target="_blank">mellow</a>
-            </span>
-            
-            
-            
-
-            
-                
-<span class="site-uv" title="总访客量">
-    <i class="icon icon-user"></i>
-    <i class="busuanzi-value" id="busuanzi_value_site_uv"></i>
-</span>
-
-
-<span class="site-pv" title="总访问量">
-    <i class="icon icon-eye"></i>
-    <i class="busuanzi-value" id="busuanzi_value_site_pv"></i>
-</span>
-
-            
-        </p>
-    </div>
-</footer>
-
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://wshawk.github.io/page/2/&title=wshawk's blog&pic=http://wshawk.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://wshawk.github.io/page/2/&title=wshawk's blog&source=" data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB0klEQVR42u3aQYrDMAwF0N7/0h2Y1UBJ+iXZJgzPq0Jb52VjJH2/XvF6/66/nz/X1b/u//vasXBxccfc9+26f8zVbz6/vfp9bsDFxT3PTQ6v5DBKXux+/y82XFzch3GTx6/aDRcX939zq6USLi7uc7hJ85OUMsnjk+ZqQa+Gi4s74PYGpms/b5/v4uLiLkolqkfbJGiJnouLi3uE2xuGVtuVpKwpjEtwcXE3c6thyX1R0muc8oYKFxf3JHfSkFTHIvlLXh5kuLi4B7nV4UWvyentedmr4eLibuBWm5D8laqhSDP5wcXF3cxNoJM2JimDomAVFxf3CHceuO6IW5bRcXFxW9z8glQ+VK22VctCVlxc3DG3F6lWU9yklUp2xsXFPcmtXpOqjjOqzc+otsLFxR1zq9FpLxytBrH5mBUXF3cHt9e6VCcuk+LmsvnBxcXdxk22rjYwyeN7Y1lcXNwz3Hdx5S3KZORauLKJi4u7gTsPVpNYpXq1q3fw4eLiruX2Dp386OlNa75UYbi4uEe4aw+vaklUuLaFi4v7SG6vTZpEsLi4uE/m5iVLtZTJR7G4uLgnub14tRepJqVPdAkDFxd3G3ftwDQ5pBbfI8PFxV3J/QHBPGLpbWViaAAAAABJRU5ErkJggg==" alt="微信分享二维码">
-</div>
-
-
-    
-    <!-- main-js -->
-<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
-<script type="text/javascript" src="/js/plugins/fastclick.js?v=1.4.4"></script>
-<script type="text/javascript" src="/js/plugins/ios-orientationchange-fix.js?v=1.4.4"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
-
-<script type="text/javascript" src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-
-<script type="text/javascript" src="/js/method.js?v=1.4.4"></script>
-<script type="text/javascript" src="/js/blog.js?v=1.4.4"></script>
-
-<!-- third-party -->
-
-
-
-
-
-
-<script type="text/javascript" src="/js/plugins/local_search.js?v=1.4.4"></script>
-<script type="text/javascript">
-	var search_path = "search.xml";
-	if (search_path.length === 0) {
-		search_path = "search.xml";
-	}
-	var path = "/" + search_path;
-	searchFunc(path, "local-search-input", "local-search-result");
-</script>
-
-
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-    
-    
-
-
-
-<script type="text/javascript" src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-<script type="text/javascript" src="/js/plugins/leancloud_visitors.js?v=1.4.4"></script>
-
-
-
-    <!-- mathjax config similar to math.stackexchange -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-            processEscapes: true,
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
-
-
-    <script>
-    (function() {
-        var OriginTitile = document.title, titleTime;
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                document.title = '死鬼去哪里了！';
-                clearTimeout(titleTime);
-            } else {
-                document.title = '(つェ⊂)咦!又好了!';
-                titleTime = setTimeout(function() {
-                    document.title = OriginTitile;
-                },2000);
-            }
-        });
-    })();
-</script>
-
-
-
-
-
-    
-</body>
-</html>
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">15</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/JavaScript/" style="font-size: 1.23em; color: #999ea6">JavaScript</a> <a href="/tags/Linux/" style="font-size: 1.37em; color: #99a4b2">Linux</a> <a href="/tags/MySQL/" style="font-size: 1.37em; color: #99a4b2">MySQL</a> <a href="/tags/Mybatis/" style="font-size: 1.1em; color: #999">Mybatis</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.23em; color: #999ea6">后端</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/04/"><span class="card-archive-list-date">四月 2020</span><span class="card-archive-list-count">6</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">26</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-10-30T14:41:47.926Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
