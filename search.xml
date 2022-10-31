@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MySQL基础架构</title>
+      <link href="/post/b3cb123.html"/>
+      <url>/post/b3cb123.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="MySQL基础架构"><a href="#MySQL基础架构" class="headerlink" title="MySQL基础架构"></a>MySQL基础架构</h1><blockquote><p><code>MySQL</code>大致可以分为客户端层、<code>Server</code>层和存储引擎两层。</p><p><code>Server </code>层包括连接器、查询缓存、分析器、优化器、执行器等，涵盖 <code>MySQL</code> 的大多数核心服务功能，以及所有的内置函数（如日期、时间、数学和加密函数等），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。</p><p>存储引擎层负责数据的存储和提取。其架构模式是<strong>插件式</strong>的，支持 <code>InnoDB</code>、<code>MyISAM</code>、<code>Memory</code> 等多个存储引擎。现在最常用的存储引擎是<code>InnoDB</code>，它从 <code>MySQL 5.5.5</code> 版本开始成为了默认存储引擎。</p><p><strong>不同的存储引擎，是共用同一个<code>Server</code>层的。</strong></p></blockquote><p>组件关系图如下：</p><p><img src="https://cdn.nlark.com/yuque/0/2021/png/1057015/1633496173460-f793c5c4-67f9-421a-8dff-575831e6226b.png"></p><h2 id="客户端层"><a href="#客户端层" class="headerlink" title="客户端层"></a>客户端层</h2><blockquote><p>用户访问<code>MySQL</code>的接口。在客户端，用户可以输入<code>SQL</code>语句，通过<code>SQL</code>语句，实现对数据库的访问、操作和控制。</p></blockquote><h2 id="MySQL-Server-层"><a href="#MySQL-Server-层" class="headerlink" title="MySQL Server 层"></a>MySQL Server 层</h2><h3 id="连接器"><a href="#连接器" class="headerlink" title="连接器"></a>连接器</h3><blockquote><p>连接器负责跟客户端建立连接、获取权限、维持和管理连接。</p></blockquote><p>注意点：</p><blockquote><ol><li>连接器在用户登录时读取用户权限<strong>并用于后续判断，</strong>所以管理员修改密码对已登录用户无效（除非该用户重新登录）</li><li>客户端如果太长时间没动静，连接器就会自动将它断开。这个时间是由参数 <code>wait_timeout</code> 控制的，默认值是 8 小时</li></ol></blockquote><h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><blockquote><p>把查询到的结果缓存并返回（<code>KV</code>结构，<code>Key</code>：<code>select</code>语句的<code>hash</code>值，<code>Value</code>：查询结果）。</p><p>但<code>MySQL</code>缓存机制有个弊端，只要有对一个表的更新，这个表上所有的查询缓存都会被清空。如此一来，对于更新频繁的表来说，缓存命中率会非常低！<code>MySQL 8.0 </code>版本直接将查询缓存的整块功能移除了。</p></blockquote><h3 id="分析器"><a href="#分析器" class="headerlink" title="分析器"></a>分析器</h3><blockquote><p>对一条<code>SQL</code>进行词法分析、语法分析。也就是准确识别<code>select</code>/<code>update</code>/<code>insert</code>/<code>delete</code>、表名、字段名以及各种条件，并对<code>SQL</code>的语法进行校验。</p></blockquote><h3 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h3><blockquote><p>优化器会对执行的<code>SQL</code>进行优化，主要有：</p><ol><li><p>表里面有多个索引的时候，决定使用哪个索引</p></li><li><p>在一个语句有多表关联（<code>join</code>）的时候，决定各个表的连接顺序</p></li></ol></blockquote><h3 id="执行器"><a href="#执行器" class="headerlink" title="执行器"></a>执行器</h3><blockquote><p>执行器负责调用存储引擎，返回结果，主要有以下几个步骤</p><ol><li>权限校验（连接器阶段已经读取权限，这里只要校验当前用户是否拥有操作这张表的权限）</li><li>选择引擎</li><li>调用引擎提供的接口</li></ol></blockquote><h2 id="存储引擎层"><a href="#存储引擎层" class="headerlink" title="存储引擎层"></a>存储引擎层</h2><blockquote><p>存储引擎层负责数据的存储和提取。其架构模式是<strong>插件式</strong>的，支持 <code>InnoDB</code>、<code>MyISAM</code>、<code>Memory</code> 等多个存储引擎。现在最常用的存储引擎是<code>InnoDB</code>，它从 <code>MySQL 5.5.5</code> 版本开始成为了默认存储引擎。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MySQL锁</title>
       <link href="/post/d940f18d.html"/>
       <url>/post/d940f18d.html</url>
@@ -58,7 +83,7 @@
       <link href="/post/f91535f.html"/>
       <url>/post/f91535f.html</url>
       
-        <content type="html"><![CDATA[<h1 id="MySQL事务"><a href="#MySQL事务" class="headerlink" title="MySQL事务"></a>MySQL事务</h1><h2 id="事务的概念"><a href="#事务的概念" class="headerlink" title="事务的概念"></a>事务的概念</h2><p>事务就是一个不可分割的操作单元，其中的多个操作被认为是一个整体，要么全部执行成功，要么执行失败。</p><h2 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h2><p>通常来说，我们一般认为事务具有四个特性。</p><ul><li>隔离性：不同的事务之间，是互相隔离的，不会互相影响。</li><li>持久性：一旦事务执行完成，那么对事务中影响到的数据的变化，是永久的，一般是指持久化到磁盘上或者日志文件中。</li><li>原子性：一个事务中的多个操作，被认为是一个整体，不可再分割，只要其中一个操作执行失败，就认为整个事务执行失败了。</li><li>一致性：事务执行完成后，对于数据的变化，要求要一致，举例来说，转帐，A向B转账，B向C转账，在两个操作结束之后，数据结果要求一致。</li></ul><h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><p>事务隔离级别是一个标准，在不同的事务隔离级别下，对于事务特性的保证是有差异的，随之也会产生一些问题。</p><h3 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h3><p>不同的事务之间，会读到其他事务未提交的数据。保证了持久性、原子性，但是没有保证隔离性及一致性，会出现以下问题：</p><ul><li>脏读</li><li>幻读</li><li>不可重复读</li></ul><h3 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h3><p>不同事务之间，只会读取到其他事务提交的数据，解决了脏读的问题，但依然存在</p><ul><li>幻读</li><li>不可重复读</li></ul><h3 id="可重复读（MySQL默认的隔离级别）"><a href="#可重复读（MySQL默认的隔离级别）" class="headerlink" title="可重复读（MySQL默认的隔离级别）"></a>可重复读（MySQL默认的隔离级别）</h3><p>解决了不可重复读的问题，保证了同一事务中多次读取的数据是一样的。会存在</p><ul><li>幻读</li></ul><h3 id="串行化"><a href="#串行化" class="headerlink" title="串行化"></a>串行化</h3><p>不同的事务之间，不再具备并发能力，只能一个个排着队执行，解决了上述的问题，但性能极差。</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="MySQL事务-InnoDB"><a href="#MySQL事务-InnoDB" class="headerlink" title="MySQL事务(InnoDB)"></a>MySQL事务(InnoDB)</h1><h2 id="事务的概念"><a href="#事务的概念" class="headerlink" title="事务的概念"></a>事务的概念</h2><p>事务就是一个不可分割的操作单元，其中的多个操作被认为是一个整体，要么全部执行成功，要么执行失败。</p><h2 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h2><p>通常来说，我们一般认为事务具有四个特性。</p><h3 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h3><blockquote><p>不同的事务之间，是互相隔离的，不会互相影响。</p><p>通过锁和<code>MVCC</code>来实现。</p></blockquote><h3 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h3><blockquote><p>一旦事务执行完成，那么对事务中影响到的数据的变化，是永久的，一般是指持久化到磁盘上或者日志文件中。</p><p>通过<code>redo log</code>来实现</p></blockquote><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><blockquote><p>一个事务中的多个操作，被认为是一个整体，不可再分割，只要其中一个操作执行失败，就认为整个事务执行失败了。</p><p>基于<code>undo log</code>。</p></blockquote><h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><blockquote><p>事务执行完成后，对于数据的变化，要求要一致。举例来说，转帐，A向B转账，B向C转账，在两个操作结束之后，数据结果要求一致。</p><p>通过回滚，以及恢复，和在并发环境下的隔离做到一致性，也就是基于上述的 <code>redo log</code>、<code>undo log</code>、<code>MVCC</code>等一起实现。</p></blockquote><h2 id="并发事务可能产生的问题"><a href="#并发事务可能产生的问题" class="headerlink" title="并发事务可能产生的问题"></a>并发事务可能产生的问题</h2><h3 id="数据丢失"><a href="#数据丢失" class="headerlink" title="数据丢失"></a>数据丢失</h3><blockquote><p>多个事务选择同一行数据进行更新，最后一个提交的事务所做的修改覆盖了前面其他事务提交的更新。</p></blockquote><h3 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h3><blockquote><p>事务A可以读到事务B未<code>commit</code>的数据</p></blockquote><h3 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h3><blockquote><p>同一事务的其他实例在该实例处理其间可能会有新的<code>commit</code>，同一<code>select</code>可能返回不同结果, 查询结果的值有变化</p></blockquote><h3 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h3><blockquote><p>用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影” 行， 查询结果行数变化。</p></blockquote><h2 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h2><p>事务隔离级别是一个标准，在不同的事务隔离级别下，对于事务特性的保证是有差异的，随之也会产生一些问题。</p><h3 id="读未提交"><a href="#读未提交" class="headerlink" title="读未提交"></a>读未提交</h3><p>不同的事务之间，会读到其他事务未提交的数据。保证了<strong>持久性</strong>、<strong>原子性</strong>，但是<strong>没有保证隔离性及一致性</strong>，会出现以下问题：</p><ul><li>脏读</li><li>幻读</li><li>不可重复读</li></ul><h3 id="读已提交"><a href="#读已提交" class="headerlink" title="读已提交"></a>读已提交</h3><p>不同事务之间，只会读取到其他事务提交的数据，解决了脏读的问题，但依然存在</p><ul><li>幻读</li><li>不可重复读</li></ul><h3 id="可重复读（MySQL默认的隔离级别）"><a href="#可重复读（MySQL默认的隔离级别）" class="headerlink" title="可重复读（MySQL默认的隔离级别）"></a>可重复读（MySQL默认的隔离级别）</h3><p>解决了不可重复读的问题，保证了同一事务中多次读取的数据是一样的。会存在</p><ul><li>幻读</li></ul><h3 id="串行化"><a href="#串行化" class="headerlink" title="串行化"></a>串行化</h3><p>不同的事务之间，不再具备并发能力，只能一个个排着队执行，解决了上述的问题，但性能极差。</p>]]></content>
       
       
       <categories>
@@ -83,7 +108,7 @@
       <link href="/post/6c408847.html"/>
       <url>/post/6c408847.html</url>
       
-        <content type="html"><![CDATA[<blockquote><p>转载于： <a href="https://www.jianshu.com/p/7d8df0de1fc7">Github搭建Hexo双分支博客防止本地文件丢失</a></p></blockquote><h1 id="一、关于搭建流程"><a href="#一、关于搭建流程" class="headerlink" title="一、关于搭建流程"></a>一、关于搭建流程</h1><ol><li><p>创建仓库，Godbn.github.io</p></li><li><p>创建两个分支:master和hexo</p></li><li><p>在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)</p></li><li><p>使用以下命令拷贝仓库到本地桌面</p></li></ol><blockquote><p>git clone <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#103;&#x69;&#116;&#x68;&#117;&#x62;&#46;&#x63;&#x6f;&#x6d;</a>:Godbn/Godbn.github.io.git</p></blockquote><ol start="5"><li>终端进入Godbn.github.io目录，依次执行</li></ol><blockquote><p>  npm install hexo</p><p>  hexo init</p><p>  npm install</p><p>  npm install hexo-deployer-git (用于生成上传至github)</p></blockquote><ol start="6"><li>修改_config.yml中的deploy参数</li></ol><p><img src="https://upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/374/format/webp" alt="img"></p><ol start="7"><li>下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来</li></ol><blockquote><p><a href="https://github.com/iJinxin/hexo-theme-sky">https://github.com/iJinxin/hexo-theme-sky</a></p></blockquote><ol start="8"><li>依次执行以下三条命令提交网站相关的文件</li></ol><blockquote><p>git add .</p><p>git commit -m “…”</p><p>git push origin hexo</p></blockquote><ol start="9"><li>执行hexo g -d 生成网站并部署到github上 (每次可以在前面输入 hexo clean 清理下)</li></ol><blockquote><p>hexo clean</p><p>hexo g -d</p></blockquote><h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p><strong>分支hexo储存的是网站的原始文件</strong></p><p><strong>分支master用来储存生成的静态网页</strong></p><h1 id="二、日常改动"><a href="#二、日常改动" class="headerlink" title="二、日常改动"></a>二、日常改动</h1><h3 id="本地添加文章，样式等"><a href="#本地添加文章，样式等" class="headerlink" title="本地添加文章，样式等"></a>本地添加文章，样式等</h3><ol><li>依次执行以下命令git到分支hexo上</li></ol><blockquote><p>git add .</p><p>git commit -m “…”</p><p>git push origin hexo</p></blockquote><ol start="2"><li>再执行以下命令发布网站到分支master</li></ol><blockquote><p>hexo g -d</p></blockquote><h1 id="三、其他电脑更新github博客"><a href="#三、其他电脑更新github博客" class="headerlink" title="三、其他电脑更新github博客"></a>三、其他电脑更新github博客</h1><ol><li>使用命令将仓库拷贝到本地</li></ol><blockquote><p>git clone <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:Godbn/Godbn.github.io.git</p></blockquote><ol start="2"><li>在Godbn.github.io文件夹中通过以下恢复原始文件</li></ol><blockquote><p>npm install hexo</p><p>npm install</p><p>npm install hexo-deployer-git –save</p></blockquote><h1 id="四、结束"><a href="#四、结束" class="headerlink" title="四、结束"></a>四、结束</h1><p>以上是get到知乎上的回答搭建的</p><p>传送门：</p><blockquote><p><a href="https://www.zhihu.com/question/21193762">https://www.zhihu.com/question/21193762</a></p></blockquote>]]></content>
+        <content type="html"><![CDATA[<blockquote><p>转载于： <a href="https://www.jianshu.com/p/7d8df0de1fc7">Github搭建Hexo双分支博客防止本地文件丢失</a></p></blockquote><h1 id="一、关于搭建流程"><a href="#一、关于搭建流程" class="headerlink" title="一、关于搭建流程"></a>一、关于搭建流程</h1><ol><li><p>创建仓库，Godbn.github.io</p></li><li><p>创建两个分支:master和hexo</p></li><li><p>在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)</p></li><li><p>使用以下命令拷贝仓库到本地桌面</p></li></ol><blockquote><p>git clone <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:Godbn/Godbn.github.io.git</p></blockquote><ol start="5"><li>终端进入Godbn.github.io目录，依次执行</li></ol><blockquote><p>  npm install hexo</p><p>  hexo init</p><p>  npm install</p><p>  npm install hexo-deployer-git (用于生成上传至github)</p></blockquote><ol start="6"><li>修改_config.yml中的deploy参数</li></ol><p><img src="https://upload-images.jianshu.io/upload_images/4797359-7085b85ebbfdd97d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/374/format/webp" alt="img"></p><ol start="7"><li>下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来</li></ol><blockquote><p><a href="https://github.com/iJinxin/hexo-theme-sky">https://github.com/iJinxin/hexo-theme-sky</a></p></blockquote><ol start="8"><li>依次执行以下三条命令提交网站相关的文件</li></ol><blockquote><p>git add .</p><p>git commit -m “…”</p><p>git push origin hexo</p></blockquote><ol start="9"><li>执行hexo g -d 生成网站并部署到github上 (每次可以在前面输入 hexo clean 清理下)</li></ol><blockquote><p>hexo clean</p><p>hexo g -d</p></blockquote><h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p><strong>分支hexo储存的是网站的原始文件</strong></p><p><strong>分支master用来储存生成的静态网页</strong></p><h1 id="二、日常改动"><a href="#二、日常改动" class="headerlink" title="二、日常改动"></a>二、日常改动</h1><h3 id="本地添加文章，样式等"><a href="#本地添加文章，样式等" class="headerlink" title="本地添加文章，样式等"></a>本地添加文章，样式等</h3><ol><li>依次执行以下命令git到分支hexo上</li></ol><blockquote><p>git add .</p><p>git commit -m “…”</p><p>git push origin hexo</p></blockquote><ol start="2"><li>再执行以下命令发布网站到分支master</li></ol><blockquote><p>hexo g -d</p></blockquote><h1 id="三、其他电脑更新github博客"><a href="#三、其他电脑更新github博客" class="headerlink" title="三、其他电脑更新github博客"></a>三、其他电脑更新github博客</h1><ol><li>使用命令将仓库拷贝到本地</li></ol><blockquote><p>git clone <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#105;&#116;&#104;&#117;&#x62;&#x2e;&#x63;&#x6f;&#x6d;</a>:Godbn/Godbn.github.io.git</p></blockquote><ol start="2"><li>在Godbn.github.io文件夹中通过以下恢复原始文件</li></ol><blockquote><p>npm install hexo</p><p>npm install</p><p>npm install hexo-deployer-git –save</p></blockquote><h1 id="四、结束"><a href="#四、结束" class="headerlink" title="四、结束"></a>四、结束</h1><p>以上是get到知乎上的回答搭建的</p><p>传送门：</p><blockquote><p><a href="https://www.zhihu.com/question/21193762">https://www.zhihu.com/question/21193762</a></p></blockquote>]]></content>
       
       
       <categories>
@@ -575,31 +600,6 @@
         <tags>
             
             <tag> Linux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Mybatis笔记</title>
-      <link href="/post/156023d7.html"/>
-      <url>/post/156023d7.html</url>
-      
-        <content type="html"><![CDATA[<h3 id="Mybatis笔记"><a href="#Mybatis笔记" class="headerlink" title="Mybatis笔记"></a>Mybatis笔记</h3><p>第一天  </p><blockquote><p>mybatis的映射配置文件位置必须和dao接口的包结构相同    </p><p>映射配置文件的mapper标签namespace属性的取值必须是dao接口的全限定类名  </p><p>映射配置文件的操作配置（select），id属性的取值必须是dao接口的方法名</p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 后端 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Mybatis </tag>
             
         </tags>
       
