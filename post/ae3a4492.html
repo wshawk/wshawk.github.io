@@ -1,0 +1,254 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL之Redo Log | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之Redo Log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL之Redo Log">
+<meta property="og:url" content="http://wshawk.github.io/post/ae3a4492.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:description" content="MySQL之Redo Log">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="article:published_time" content="2022-11-02T14:30:31.000Z">
+<meta property="article:modified_time" content="2022-11-02T14:26:43.929Z">
+<meta property="article:author" content="wshawk">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/ae3a4492"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL之Redo Log',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-02 22:26:43'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL之Redo Log</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-02T14:30:31.000Z" title="发表于 2022-11-02 22:30:31">2022-11-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-02T14:26:43.929Z" title="更新于 2022-11-02 22:26:43">2022-11-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL之Redo Log"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL之Redo-Log"><a href="#MySQL之Redo-Log" class="headerlink" title="MySQL之Redo Log"></a>MySQL之Redo Log</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>重做日志，也就是<code>Redo Log</code><strong>是<code>MySQL</code>中<code>InnoDB</code>存储引擎特有的事务日志</strong>，它是一种<strong>物理日志</strong>，存储着数据被修改的具体的数据值。</p>
+<p><code>Redo Log</code>主要有以下作用</p>
+<ul>
+<li><strong>实现事务的持久性，让 <code>MySQL</code> 有 <code>crash-safe</code> 的能力</strong>，能够保证 <code>MySQL </code>在任何时间段突然崩溃，重启后之前已提交的记录都不会丢失；</li>
+<li><strong>将写操作从「随机写」变成了「顺序写」</strong>，提升<code>MySQL</code> 写入磁盘的性能。</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/531957976">2 万字 + 30 张图 ｜ 细聊 MySQL undo log、redo log、binlog 有什么用？ - 知乎 (zhihu.com)</a></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p><code>MySQL</code>中更新数据的流程大概如下：</p>
+<blockquote>
+<ol>
+<li>将数据从磁盘中读取到内存中(<code>Buffer Pool</code>)</li>
+<li>在内存中修改数据，产生脏页</li>
+<li>将脏页刷回磁盘</li>
+</ol>
+</blockquote>
+<p>说明：</p>
+<blockquote>
+<p><strong>脏页</strong>：修改后的数据，和磁盘上的数据会不一致，称这种有差异的数据为脏页</p>
+<p>页：此处留坑，后面补充。</p>
+</blockquote>
+<p>通过上面的更新流程，大概会产生下列问题：</p>
+<blockquote>
+<ol>
+<li>如果每次有脏页产生就刷回磁盘，就会产生海量<code>IO</code>，严重影响性能</li>
+<li>如果在刷回磁盘的过程中出现故障，就会造成数据的丢失</li>
+</ol>
+</blockquote>
+<p><code>MySQL</code>是怎么解决上面两个问题的呢？答案就是<code>redo log</code>。</p>
+<h2 id="Redo-Log"><a href="#Redo-Log" class="headerlink" title="Redo Log"></a>Redo Log</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wupeixuan/p/11734501.html">MySQL 日志系统之 redo log 和 binlog </a></p>
+<p><code>Redo Log</code>主要由两部分构成，分别是<code>Redo Log Buffer</code>和<code>Redo Log</code>文件，其中<code>Redo Log Buffer</code>是<code>MySQL</code>在内存中开辟出来的一部分区域。</p>
+<p><code>Redo Log</code>文件有如下几个特点：</p>
+<blockquote>
+<ol>
+<li><strong>循环写</strong>：文件从头开始写，写到末尾之后，又开始从头写。</li>
+<li><strong>固定大小</strong></li>
+</ol>
+</blockquote>
+<p>比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么日志总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写，如下图所示。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1356806/201910/1356806-20191024195802574-1128675546.png"></p>
+<p><code>check point</code>： 是当前要擦除的位置，擦除记录前需要先把对应的数据落盘（更新内存页，等待刷脏页）。</p>
+<p><code>write pos</code>：当前记录所在的位置，<code>write pos</code>和<code>check point</code>之间的区域即可写区域。</p>
+<blockquote>
+<p>当<code>write pos</code>和<code>check point</code>相遇时，则表明必须要将数据刷入磁盘了，此时数据库会停止进行更新语句的执行，转而进行<code>Redo Log</code> 日志同步到磁盘中。</p>
+</blockquote>
+<p>**<code>innodb_flush_log_at_trx_commit</code>**变量用于控制<code>Redo Log</code>的刷盘策略，有以下几个值可以配置：</p>
+<blockquote>
+<p><strong>0</strong>：每次事务提交，只把<code>Redo Log</code> 内容写入<code>Redo Log Buffer</code>， 通过单独的后台线程，默认每隔<code>1s</code>写入<code>OS Cache</code>并调用 <code>fsync()</code>函数刷盘， <strong>MySQL 进程的崩溃会导致上一秒钟所有事务数据的丢失</strong></p>
+<p><strong>1</strong>：每次事务提交时都把<code>Redo Log</code> 直接持久化到磁盘（调用<code>fsync</code>进行持久化，保证落盘），<strong>数据不会丢失</strong></p>
+<p><strong>2</strong>：事务提交时不写入<code>Redo Log Buffer</code>，而是写入文件系统缓冲（<code>OS Cache</code>）,默认每隔<code>1s</code>调用<code>fsync()</code>函数刷盘， <strong>MySQL 进程的崩溃并不会丢失数据，只有在操作系统崩溃或者系统断电的情况下，上一秒钟所有事务数据才可能丢失</strong></p>
+</blockquote>
+<p>比较如下：</p>
+<ul>
+<li>数据安全性：参数 1 &gt; 参数 2 &gt; 参数 0</li>
+<li>写入性能：参数 0 &gt; 参数 2&gt; 参数 1</li>
+</ul>
+<p><img src="https://pic2.zhimg.com/80/v2-e50b42db395f2d41068c28d054103e45_720w.webp"></p>
+<p><strong><code>innodb_flush_log_at_timeout</code>变量用于控制刷盘的频率</strong></p>
+<blockquote>
+<p>决定了刷新到文件的频率， 默认为<code>1s</code>一次</p>
+</blockquote>
+<p>上面的更新数据流程会变成下面这样：</p>
+<blockquote>
+<ol>
+<li>将数据从磁盘中读取到内存中(<code>Buffer Pool</code>)</li>
+<li>在内存中修改数据，产生脏页，将修改的数据记录到<code>redo log(redolog buffer)</code>里面，并更新内存（<code>Buffer Pool</code>）</li>
+<li>根据<code>innodb_flush_log_at_trx_commit</code>变量和<code>innodb_flush_log_at_timeout</code>变量决定何时将更新的数据刷入磁盘</li>
+</ol>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43213517/article/details/117457184">Mysql中的redo log</a></p>
+<p>更新数据流程大概变成了这样：</p>
+<p><img src="https://img-blog.csdnimg.cn/20210602222622679.png?x-oss-process=image,size_16,color_FFFFFF,t_70"></p>
+<h2 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h2><p>对于<code>MySQL InnoDB</code>存储引擎而言，每次修改后，不仅需要记录<code>Redo Log</code>还需要记录<code>Bin Log</code>，而且这两个操作必须保证同时成功或者同时失败，否则就会造成数据不一致。为此<code>MySQL</code>引入两阶段提交。</p>
+<p><img src="https://img-blog.csdnimg.cn/454d2349ea5540a78457e25dcadaea56.png"></p>
+<h2 id="redo-log-和-binlog-有什么区别？"><a href="#redo-log-和-binlog-有什么区别？" class="headerlink" title="redo log 和 binlog 有什么区别？"></a><strong>redo log 和 binlog 有什么区别？</strong></h2><p>这两个日志有四个区别。</p>
+<p><em>1、适用对象不同：</em></p>
+<ul>
+<li>binlog 是 MySQL 的 Server 层实现的日志，所有存储引擎都可以使用；</li>
+<li>redo log 是 Innodb 存储引擎实现的日志；</li>
+</ul>
+<p><em>2、文件格式不同：</em></p>
+<ul>
+<li><p>binlog 有 3 种格式类型，分别是 STATEMENT（默认格式）、ROW、 MIXED，区别如下：</p>
+</li>
+<li><ul>
+<li>STATEMENT：每一条修改数据的 SQL 都会被记录到 binlog 中（相当于记录了逻辑操作，所以针对这种格式， binlog 可以称为逻辑日志），主从复制中 slave 端再根据 SQL 语句重现。但 STATEMENT 有动态函数的问题，比如你用了 uuid 或者 now 这些函数，你在主库上执行的结果并不是你在从库执行的结果，这种随时在变的函数会导致复制的数据不一致；</li>
+<li>ROW：记录行数据最终被修改成什么样了（这种格式的日志，就不能称为逻辑日志了），不会出现 STATEMENT 下动态函数的问题。但 ROW 的缺点是每行数据的变化结果都会被记录，比如执行批量 update 语句，更新多少行数据就会产生多少条记录，使 binlog 文件过大，而在 STATEMENT 格式下只会记录一个 update 语句而已；</li>
+<li>MIXED：包含了 STATEMENT 和 ROW 模式，它会根据不同的情况自动使用 ROW 模式和 STATEMENT 模式；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>redo log 是物理日志，记录的是在某个数据页做了什么修改，比如对 XXX 表空间中的 YYY 数据页 ZZZ 偏移量的地方做了AAA 更新；</li>
+</ul>
+<p><em>3、写入方式不同：</em></p>
+<ul>
+<li>binlog 是追加写，写满一个文件，就创建一个新的文件继续写，不会覆盖以前的日志，保存的是全量的日志。</li>
+<li>redo log 是循环写，日志空间大小是固定，全部写满就从头开始，<strong>保存未被刷入磁盘的脏页日志</strong>。</li>
+</ul>
+<p><em>4、用途不同：</em></p>
+<ul>
+<li>binlog 用于备份恢复、主从复制；</li>
+<li>redo log 用于掉电等故障恢复。</li>
+</ul>
+<blockquote>
+<p>如果不小心整个数据库的数据被删除了，能使用 redo log 文件恢复数据吗？</p>
+</blockquote>
+<p>不可以使用 redo log 文件恢复，只能使用 binlog 文件恢复。</p>
+<p>因为 redo log 文件是循环写，是会边写边擦除日志的，只记录未被刷入磁盘的数据的物理日志，已经刷入磁盘的数据都会从 redo log 文件里擦除。</p>
+<p>binlog 文件保存的是全量的日志，也就是保存了所有数据变更的情况，理论上只要记录在 binlog 上的数据，都可以恢复，所以如果不小心整个数据库的数据被删除了，得用 binlog 文件恢复数据。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/ae3a4492.html">http://wshawk.github.io/post/ae3a4492.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/43a71ae4.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL索引</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/43a71ae4.html" title="MySQL索引"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-01</div><div class="title">MySQL索引</div></div></a></div><div><a href="/post/b3cb123.html" title="MySQL基础架构"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-31</div><div class="title">MySQL基础架构</div></div></a></div><div><a href="/post/d940f18d.html" title="MySQL锁"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-27</div><div class="title">MySQL锁</div></div></a></div><div><a href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-25</div><div class="title">SQL优化笔记（MySQL）</div></div></a></div><div><a href="/post/f91535f.html" title="MySQL事务"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-23</div><div class="title">MySQL事务</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8BRedo-Log"><span class="toc-number">1.</span> <span class="toc-text">MySQL之Redo Log</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.2.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redo-Log"><span class="toc-number">1.3.</span> <span class="toc-text">Redo Log</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4"><span class="toc-number">1.4.</span> <span class="toc-text">两阶段提交</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redo-log-%E5%92%8C-binlog-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">redo log 和 binlog 有什么区别？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4492.html" title="MySQL之Redo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Redo Log"/></a><div class="content"><a class="title" href="/post/ae3a4492.html" title="MySQL之Redo Log">MySQL之Redo Log</a><time datetime="2022-11-02T14:30:31.000Z" title="发表于 2022-11-02 22:30:31">2022-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/43a71ae4.html" title="MySQL索引"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL索引"/></a><div class="content"><a class="title" href="/post/43a71ae4.html" title="MySQL索引">MySQL索引</a><time datetime="2022-11-01T15:30:31.000Z" title="发表于 2022-11-01 23:30:31">2022-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b3cb123.html" title="MySQL基础架构"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL基础架构"/></a><div class="content"><a class="title" href="/post/b3cb123.html" title="MySQL基础架构">MySQL基础架构</a><time datetime="2022-10-31T15:30:31.000Z" title="发表于 2022-10-31 23:30:31">2022-10-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d940f18d.html" title="MySQL锁"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL锁"/></a><div class="content"><a class="title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a><time datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL优化笔记（MySQL）"/></a><div class="content"><a class="title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a><time datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
