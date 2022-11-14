@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-11-02 22:28:42'
+  postUpdate: '2022-11-14 22:50:09'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -137,7 +137,106 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wshawk's blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/a26b78e0.html" title="接口幂等性">接口幂等性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">接口幂等性1. 概念接口幂等性
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">wshawk's blog</h1><div id="site_social_icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/hexo/">hexo</a></span></div><div class="content">
+转载于： Github搭建Hexo双分支博客防止本地文件丢失
+
+一、关于搭建流程
+创建仓库，Godbn.github.io
+
+创建两个分支:master和hexo
+
+在options里面设置hexo为默认分支(注意这个分支保存的是网站源文件，并不是生成后上传github上用于显示的)
+
+使用以下命令拷贝仓库到本地桌面
+
+
+
+git clone &#103;&#x69;&#116;&#64;&#x67;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;:Godbn/Godbn.github.io.git
+
+
+终端进入Godbn.github.io目录，依次执行
+
+
+  npm install hexo
+  hexo init
+  npm install
+  npm install hexo-deployer-git (用于生成上传至github)
+
+
+修改_config.yml中的deploy参数
+
+
+
+下载hexo themes主题自己百度安装调试好,我目前使用的是Sky，地址我贴出来
+
+
+https://github.com/i ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Tomcat概述1. Tomcat 核心组件
+
+Connector(连接器): 由 端口号 + 协议 组成。
+
+2. 核心组件协作过程
+
+要点：
+
+连接器可以有多个，不同的连接器可以对应同一个站点
+同一个连接器下，可以有多个站点
+
+即，连接器和站点之间的关系是多对多的。
+站点和应用上下文之间是一对多的关系，即一个站点对应该站点下多个应用上下文。站点和资源同样是一对多的关系
+
+3. 源码剖析3.1 server.xml
+
+Connector(连接器)：
+
+port：端口
+protocol：协议
+
+Host(站点)：
+
+name: 域名
+appBase：站点对应资源的路径，可配置全路径或者相对路径，相对路径是相对于tomcat的根路径。
+unpackWARs：是否自动将WAR文件解压
+autoDeploy：是否自动部署
+
+
+
+
+Context(应用上下文): 在Host对应的appBase目录下的文件夹是隐式的Context， 通过Context标签可以显示的设置Host下的Context
+
+3.2 请求流程分析
+
+Engine、Host、Context 每一层都有自己的一个pipline ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/b39fa119.html" title="高并发名词">高并发名词</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-22T15:30:31.000Z" title="发表于 2021-12-22 23:30:31">2021-12-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">高并发名词1. PV（Page View）
+页面浏览量统计，用户每刷新一次页面，PV值加一。
+
+2. UV（User View）
+用户访问量统计，根据用户来统计，同一个用户在系统里无论点击多少个页面，UV 统计只加一。
+
+3. RT（Response Time）
+响应时间。前端页面发出请求开始到接收到后台响应之间的时间。
+一般来说，
+1ms~100ms之间的响应，人们基本感觉不到这个请求的耗时；
+1s左右的响应时间，人们明显能感觉的到系统反应慢，但勉强能接受；
+大于3s的响应时间，人们已经无法接受了，基本都会认为系统有问题；
+
+4. 并发用户数
+并发用户数是指系统可以同时承载的正常使用系统功能的用户的数量。
+
+5. TPS（Transactions Per Second）
+系统每秒处理交易数。
+比如下单事务，中间可能调用多个接口，但是属于下单这个流程，完成一整个下单流程，TPS记为 1。 
+
+6.  QPS（Query Per Second）
+系统每秒处理查询次数，单位是次/秒。 对于互联网业务中，如果某些业务有且仅有一个请求连接，那么TPS=QPS=HPS，一般情况下用TPS来衡量整 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/3857b8c0.html" title="HTTP的Content-Length头字段">HTTP的Content-Length头字段</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a></span></div><div class="content">HTTP的Content-Length头字段Content-Length用于描述HTTP消息实体的传输长度（the transfer-length of the message-body）。
+在HTTP协议中，消息实体长度和消息实体的传输长度是有区别的。
+
+消息实体长度：消息实体本身的长度。
+消息实体的传输长度：消息实体在传输时的长度。
+
+比如说gzip压缩下，消息实体长度就是压缩前的长度，消息实体的传输长度是gzip压缩后的长度。
+在具体的HTTP交互中，客户端是如何获取消息长度的呢，主要基于以下几个规则：响应为1xx，204，304或者head请求，则直接忽视掉消息实体内容。
+如果有Transfer-Encoding，则优先采用Transfer-Encoding里面的方法来找到对应的长度。比如说Chunked模式。
+如果head中有Content-Length，那么这个Content-Length既表示实体长度，又表示传输长度。
+如果实体长度和传输长度不相等（比如说设置了Transfer-Encoding），那么则不能设置Content-Length。如果设置了Transfer-E ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/a26b78e0.html" title="接口幂等性">接口幂等性</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">接口幂等性1. 概念接口幂等性
 
 一次和多次请求某一个资源，对资源本身所产生的的影响均与一次执行的影响相同。
 幂等性是系统服务对外的一种承诺，承诺只要调用接口成功了，多次调用对系统的影响是一致的。
@@ -229,81 +328,12 @@ Java config配置
 
 
 
-123456789101112/***明星接口的具体实现类*/public class StarServiceImpl implements StarService&#123;    public void sing() &#123;        System.out.println(&quot; sing a song &quot;);    &#125;    public void jump() &#123;        System.out.println(&quot; just dance &quot;);   ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/d842f132.html" title="Java知识点总结">Java知识点总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-08T07:20:34.000Z" title="发表于 2020-04-08 15:20:34">2020-04-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">Java知识点总结1.  类的初始化顺序
-父类静态变量（静态代码块）
-子类静态变量（静态代码块）
-父类成员变量
-父类构造方法
-子类成员变量
-子类构造方法
-
-2. final修饰符
-修饰变量， 必须显示地赋初值，且赋初值后不能再赋值
-
-被final修饰的实例变量必须显示地赋初值，且只能以下三种方式：
-　　1.  定义时初始化
-　　2.  在非静态初始化块中为final实例变量指定初始值
-　　3.  在构造器中指定初始值
-final修饰的静态变量只能在两个地方进行初始化
-
-定义final类变量时指定初始值 
-在静态初始化块中为final类变量指定初始值 
-
-
-
-修饰方法，该方法不能被重写
-
-修饰类，该类不能被继承   
-
-
-3.  static修饰符
-修饰变量，被static修饰的变量实质上就是全局变量，所有的类实例（对象），共享该变量；且该变量可以以类名.变量名的方式进行访问
-
-修饰方法，该方法被称为静态方法，可直接使用类名.静态方法名进行调用，不需要实例化对象。
-
-静态方法有以下特点：
-
-只能访问static变量
-只能调用其他static方法
-不能使用this或者super关键字，因为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/300023f4.html" title="为什么重写equals()方法时，要重写hashCode()方法">为什么重写equals()方法时，要重写hashCode()方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-07T12:51:31.000Z" title="发表于 2020-04-07 20:51:31">2020-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/Java/">Java</a></span></div><div class="content">为什么重写equals()方法时，要重写hashCode()方法1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
-
-
- 由以上源代码知，Object类中的equals()方法是直接使用==运算符来判断两个对象相等的。
-
-引用类型变量使用==时，比较的是引用类型变量指向的对象的内存地址
-基本类型使用==时，比较值
-
-
-Objcect类中的hashCode源代码如下：
-123456789101112131415161718192021222324252627282930313233343536/**    * Returns a hash code value for the object. This method is    * supported for the benefit of hash tables such as those provided by ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/e8d9b9d3.html" title="equals()方法和hashCode()方法详解">equals()方法和hashCode()方法详解</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-07T11:51:31.000Z" title="发表于 2020-04-07 19:51:31">2020-04-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="content">equals()方法和hashCode()方法详解1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;
-
-
- 由以上源代码知，Object类中的equals()方法是直接使用==运算符来判断两个对象相等的。
-
-引用类型变量使用==时，比较的是引用类型变量指向的对象的内存地址
-基本类型使用==时，比较值
-
-
-Objcect类中的hashCode源代码如下：
-123456789101112131415161718192021222324252627282930313233343536/**    * Returns a hash code value for the object. This method is    * supported for the benefit of hash tables such as those provided by    * & ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/post/4a17b156.html" title="Hello World">Hello World</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-04T11:57:18.558Z" title="发表于 2020-04-04 19:57:18">2020-04-04</time></span></div><div class="content">Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
-
-More info: Writing
-Run server1$ hexo server
-
-More info: Server
-Generate static files1$ hexo generate
-
-More info: Generating
-Deploy to remote sites1$ hexo deploy
-
-More info: Deployment
-</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4492.html" title="MySQL之Redo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Redo Log"/></a><div class="content"><a class="title" href="/post/ae3a4492.html" title="MySQL之Redo Log">MySQL之Redo Log</a><time datetime="2022-11-02T14:30:31.000Z" title="发表于 2022-11-02 22:30:31">2022-11-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/43a71ae4.html" title="MySQL索引"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL索引"/></a><div class="content"><a class="title" href="/post/43a71ae4.html" title="MySQL索引">MySQL索引</a><time datetime="2022-11-01T15:30:31.000Z" title="发表于 2022-11-01 23:30:31">2022-11-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b3cb123.html" title="MySQL基础架构"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL基础架构"/></a><div class="content"><a class="title" href="/post/b3cb123.html" title="MySQL基础架构">MySQL基础架构</a><time datetime="2022-10-31T15:30:31.000Z" title="发表于 2022-10-31 23:30:31">2022-10-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d940f18d.html" title="MySQL锁"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL锁"/></a><div class="content"><a class="title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a><time datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SQL优化笔记（MySQL）"/></a><div class="content"><a class="title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a><time datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+123456789101112/***明星接口的具体实现类*/public class StarServiceImpl implements StarService&#123;    public void sing() &#123;        System.out.println(&quot; sing a song &quot;);    &#125;    public void jump() &#123;        System.out.println(&quot; just dance &quot;);   ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB Buffer Pool"/></a><div class="content"><a class="title" href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool">MySQL之InnoDB Buffer Pool</a><time datetime="2022-11-14T14:45:31.000Z" title="发表于 2022-11-14 22:45:31">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/209c3cef.html" title="MySQL之MVCC"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之MVCC"/></a><div class="content"><a class="title" href="/post/209c3cef.html" title="MySQL之MVCC">MySQL之MVCC</a><time datetime="2022-11-14T09:38:45.000Z" title="发表于 2022-11-14 17:38:45">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB数据页"/></a><div class="content"><a class="title" href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页">MySQL之InnoDB数据页</a><time datetime="2022-11-14T09:27:12.000Z" title="发表于 2022-11-14 17:27:12">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/81fc7f34.html" title="MySQL之InnoDB行记录"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB行记录"/></a><div class="content"><a class="title" href="/post/81fc7f34.html" title="MySQL之InnoDB行记录">MySQL之InnoDB行记录</a><time datetime="2022-11-10T12:21:06.000Z" title="发表于 2022-11-10 20:21:06">2022-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4492.html" title="MySQL之Redo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Redo Log"/></a><div class="content"><a class="title" href="/post/ae3a4492.html" title="MySQL之Redo Log">MySQL之Redo Log</a><time datetime="2022-11-02T14:30:31.000Z" title="发表于 2022-11-02 22:30:31">2022-11-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">14</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.5em; color: #99a9bf">Java</a> <a href="/tags/JavaScript/" style="font-size: 1.2em; color: #999da3">JavaScript</a> <a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/MySQL/" style="font-size: 1.4em; color: #99a5b6">MySQL</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.2em; color: #999da3">后端</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">28</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">26.3k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-02T14:28:42.426Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">14</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.4em; color: #99a5b6">Java</a> <a href="/tags/JavaScript/" style="font-size: 1.2em; color: #999da3">JavaScript</a> <a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/MySQL/" style="font-size: 1.5em; color: #99a9bf">MySQL</a> <a href="/tags/Redis/" style="font-size: 1.1em; color: #999">Redis</a> <a href="/tags/Spring/" style="font-size: 1.1em; color: #999">Spring</a> <a href="/tags/Tomcat/" style="font-size: 1.1em; color: #999">Tomcat</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.2em; color: #999da3">后端</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/11/"><span class="card-archive-list-date">十一月 2022</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/10/"><span class="card-archive-list-date">十月 2022</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/05/"><span class="card-archive-list-date">五月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/10/"><span class="card-archive-list-date">十月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/09/"><span class="card-archive-list-date">九月 2020</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/05/"><span class="card-archive-list-date">五月 2020</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">32</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">37.9k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-11-14T14:50:08.976Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

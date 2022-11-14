@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL之MVCC | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之MVCC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL之MVCC">
+<meta property="og:url" content="http://wshawk.github.io/post/209c3cef.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:description" content="MySQL之MVCC">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="article:published_time" content="2022-11-14T09:38:45.000Z">
+<meta property="article:modified_time" content="2022-11-14T14:48:30.318Z">
+<meta property="article:author" content="wshawk">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/209c3cef"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL之MVCC',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-14 22:48:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL之MVCC</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-14T09:38:45.000Z" title="发表于 2022-11-14 17:38:45">2022-11-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-14T14:48:30.318Z" title="更新于 2022-11-14 22:48:30">2022-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL之MVCC"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL之MVCC"><a href="#MySQL之MVCC" class="headerlink" title="MySQL之MVCC"></a>MySQL之MVCC</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><blockquote>
+<p>在前面的<strong>MySQL锁</strong>文章中有提到过，<code>MyISAM</code>表的读操作与写操作，以及写操作之间是串行的。</p>
+<p>并且默认情况下写操作命令的执行优先于读操作执行，即使读请求早于写请求到达，写锁也会插队到读请求前面，因为<code>MySQL</code>认为写请求一般比读请求要重要。</p>
+<p>在<code>InnoDB</code>中，就是通过多版本并发控制（<code>MVCC</code>）来解决读请求和写请求的并发问题，<strong>提高数据库的并发能力</strong>。并且在<code>InnoDB</code>中是默认读不加锁，读写不冲突的。</p>
+</blockquote>
+<h2 id="两个概念"><a href="#两个概念" class="headerlink" title="两个概念"></a>两个概念</h2><h3 id="快照读"><a href="#快照读" class="headerlink" title="快照读"></a>快照读</h3><blockquote>
+<p>不加锁的<code>select</code>操作就是快照读，即不加锁的非阻塞读。当我们执行<code>select xxx from table_name where xxx=yyy</code>语句时，就是快照读。</p>
+</blockquote>
+<p>不是所有的隔离级别下都支持快照读。</p>
+<blockquote>
+<ul>
+<li><strong>读未提交： 不支持</strong>，未提交读总是读取最新的数据行，而不是符合当前事务版本的数据行</li>
+<li><strong>读已提交：支持</strong>，每次<code>select</code>都生成一个快照读</li>
+<li><strong>可重复读：支持</strong>，开启事务后执行第一个<code>select</code>语句才生成快照读，而不是一开启事务就生成快照读, 并且整个事务只生成一个快照读</li>
+<li><strong>串行化：不支持</strong>，在此隔离级别下，读请求都是当前读。</li>
+</ul>
+</blockquote>
+<h3 id="当前读"><a href="#当前读" class="headerlink" title="当前读"></a>当前读</h3><blockquote>
+<p><strong>读取的是最新版本, 并且对读取的记录加锁, 阻塞其他事务同时改动相同记录，避免出现安全问题。</strong></p>
+</blockquote>
+<p>可执行以下语句来进行当前读：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">for</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... lock <span class="keyword">in</span> share mode</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，还有隐式的当前读，如执行<code>insert</code>/<code>update</code>/<code>delete</code>语句时，这些语句会获取<strong>排他锁</strong>，自然保证了数据是最新的。</p>
+<blockquote>
+<p><code>ps</code>: 这里获取的排他锁，其实就是<code>InnoDB</code>中的<code>next-key lock</code>(即<code>record lock</code> + <code>gap lock</code>)</p>
+</blockquote>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="隐藏列"><a href="#隐藏列" class="headerlink" title="隐藏列"></a>隐藏列</h3><blockquote>
+<p>在<code>MySQL</code>表中除了我们创建的字段列以外，还有一些隐藏列字段，正是通过一些隐藏列字段来实现<code>MVCC</code>。</p>
+</blockquote>
+<p><strong>DB_TRX_ID</strong></p>
+<blockquote>
+<p>最近修改(修改/插入)事务<code>id</code>(6字节)：记录创建这条记录/最后一次修改该记录的事务<code>id</code></p>
+</blockquote>
+<p><strong>DB_ROLL_PTR</strong></p>
+<blockquote>
+<p>回滚指针（7字节）：指向这条记录的上一个版本（存储于<code>rollback segment</code>里）</p>
+</blockquote>
+<p><strong>DB_ROW_ID</strong></p>
+<blockquote>
+<p>隐藏主键（6字节）：隐含的自增<code>id</code>，如果数据表没有主键，<code>InnoDB</code>会自动以<code>DB_ROW_ID</code>产生一个聚簇索引</p>
+</blockquote>
+<h3 id="Undo-Log-版本链"><a href="#Undo-Log-版本链" class="headerlink" title="Undo Log 版本链"></a>Undo Log 版本链</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/thesprit/article/details/112970122">【数据库】MySQL的ReadView</a></p>
+<p><code>undo log</code> 版本链是基于 <code>undo log</code> 实现的。<code>undo log</code> 中主要保存了数据的基本信息，比如说日志开始的位置、结束的位置，主键的长度、表<code>id</code>，日志编号、日志类型。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210121192322560.png#pic_center"></p>
+<p>此外，<code>undo log</code> 还包含两个隐藏字段 <code>trx_id</code> 和 <code>roll_pointer</code>。<code>trx_id</code> 表示当前这个事务的 <code>id</code>，<code>MySQL</code> 会为每个事务分配一个 <code>id</code>，这个<code> id</code> 是递增的。<code>roll_pointer</code> 是一个指针，指向这个事务之前的 <code>undo log</code>。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210121192333997.png#pic_center"></p>
+<p>示例</p>
+<p>执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> student <span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;张三&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210121192349964.png#pic_center"></p>
+<p>继续执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> name<span class="operator">=</span><span class="string">&#x27;李四&#x27;</span> <span class="keyword">WHERE</span> id<span class="operator">=</span><span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210121192402415.png#pic_center"></p>
+<p>继续执行：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> student <span class="keyword">SET</span> name<span class="operator">=</span><span class="string">&#x27;王五&#x27;</span> <span class="keyword">WHERE</span> id<span class="operator">=</span><span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20210121192413555.png"></p>
+<p>如此，数据行的每一次变化都会记录在<code>undo log</code>中。为了保证事务并发操作时，在写各自的<code>undo log</code>时不产生冲突，<code>InnoDB</code>采用回滚段的方式来维护<code>undo log</code>的并发写入和持久化。回滚段实际上是一种<code>undo</code>文件组织方式。</p>
+<blockquote>
+<p><code>ps</code>：<code>select</code>操作不会记录到<code>undo log</code>中，因为并没有改变数据行。</p>
+</blockquote>
+<h3 id="Read-View（读视图）"><a href="#Read-View（读视图）" class="headerlink" title="Read View（读视图）"></a>Read View（读视图）</h3><p>由上面的<code>Undo Log</code>版本链，我们知道在<code>MySQL</code>中同一行数据会有多个版本，那在事务进行数据读取的时候，怎么判断数据具体应该读取哪一个版本呢？</p>
+<p>在执行<strong>当前读</strong>时，明显我们是要读取数据行的最新版本，这个是确定的。</p>
+<p>当执行<strong>快照读</strong>时，我们可以根据当前事务的事务<code>id</code>来判断，具体该读取数据行的哪一个版本。</p>
+<blockquote>
+<p><code>ps</code>：每个事务开启时，都会被分配一个<code>id</code>，这个<code>id</code>是默认递增的，所以事务越新，<code>id</code>越大</p>
+</blockquote>
+<p>在<code>MySQL</code>执行<strong>快照读</strong>时，会生成数据库系统当前的一个快照，根据事务状态或者事务<code>id</code>，大概有以下几类信息</p>
+<ul>
+<li>已提交事务列表</li>
+<li>未提交事务列表（活跃事务）</li>
+<li>还未分配事务<code>id</code>(最大活跃事务<code>id</code> + 1)</li>
+</ul>
+<blockquote>
+<p>当前事务<code>id</code>可见的数据，是根据事务<code>id</code>来进行判断的。</p>
+<p>大于最大事务<code>id</code>，不可见<br>在活跃事务<code>id</code>集合中的，不可见</p>
+<p>小于最小的活跃事务<code>id</code>的，可见<br>事务<code>id</code>为本事务<code>id</code>的，可见</p>
+</blockquote>
+<p><strong>总结</strong>：</p>
+<blockquote>
+<p><code>Read View</code>就是协助<code>MVCC</code>来实现并发读写时，保证事务能正确读取数据行信息。</p>
+</blockquote>
+<h2 id="可重复读的实现"><a href="#可重复读的实现" class="headerlink" title="可重复读的实现"></a>可重复读的实现</h2><p>在<strong>可重复读</strong>的隔离级别下，我们在事务中，多次读取数据，前后总是一致的。这个就是依赖<code>MVCC</code>来实现的。</p>
+<blockquote>
+<p>在可重复读的隔离级别下，事务中第一个执行<code>select</code>语句的时刻，数据库才会生成一个<code>Read View</code>，事务后续的快照读都会使用这个<code>Read View</code>来读取数据。</p>
+</blockquote>
+<h2 id="MVCC解决幻读了吗"><a href="#MVCC解决幻读了吗" class="headerlink" title="MVCC解决幻读了吗"></a>MVCC解决幻读了吗</h2><p><a target="_blank" rel="noopener" href="https://www.modb.pro/db/398186">MySQL(九)：MVCC能否解决幻读问题</a></p>
+<p><strong>幻读：</strong></p>
+<blockquote>
+<p><strong>事务A执行多次读取操作过程中，由于在事务提交之前，事务B（<code>insert</code>/<code>delete</code>/<code>update</code>）写入了一些符合事务A的查询条件的记录，导致事务A在之后的查询结果与之前的结果不一致，这种情况称之为幻读</strong>。</p>
+</blockquote>
+<p>在<strong>可重复读</strong>的隔离级别下</p>
+<blockquote>
+<p><strong>快照读时</strong>，事务读取数据都是通过<code>Read View</code>来读取的，并且事务中第一个执行<code>select</code>语句的时刻，数据库才会生成一个<code>Read View</code>，事务后续的快照读都会使用这个<code>Read View</code>来读取数据。</p>
+<p>这样并不会读取到其他事务提交的数据行，保证了多次读取数据的结果是一致的，所以解决了幻读的问题。</p>
+</blockquote>
+<blockquote>
+<p><strong>当前读时</strong>，事务总是会读取数据行的最新版本，在不做其他限制的情况下，<code>MVCC</code>并不会阻止其他事务进行数据行的插入，所以不能解决幻读的问题。</p>
+</blockquote>
+<p><strong>结论</strong></p>
+<blockquote>
+<p><strong><code>MVCC</code>在快照读的情况下可以解决幻读问题，但是在当前读的情况下不能解决，需要配合间隙锁才能解决</strong></p>
+</blockquote>
+<h2 id="可重复读隔离级别一定不会发生幻读吗？"><a href="#可重复读隔离级别一定不会发生幻读吗？" class="headerlink" title="可重复读隔离级别一定不会发生幻读吗？"></a>可重复读隔离级别一定不会发生幻读吗？</h2><p><strong>不一定</strong>，在事务中交叉使用 <strong>当前读</strong> 和  <strong>快照读</strong> 时，仍然会发生幻读问题。</p>
+<p>情况一：</p>
+<blockquote>
+<ol>
+<li>事务A先查询，此时数据库没有记录a</li>
+<li>事务B插入记录a，并提交事务</li>
+<li>事务A更新不存在的记录a</li>
+<li>然后事务A就可以看到事务B提交的记录a了，即出现了幻读</li>
+</ol>
+</blockquote>
+<p>情况二：</p>
+<blockquote>
+<ol>
+<li>事务A执行快照读，查询记录行数</li>
+<li>事务B插入一条数据，并提交事务</li>
+<li>事务A执行当前读，查询记录行数，行数不一致，即出现了幻读</li>
+</ol>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/209c3cef.html">http://wshawk.github.io/post/209c3cef.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/b70a251f.html"><img class="prev-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL之InnoDB Buffer Pool</div></div></a></div><div class="next-post pull-right"><a href="/post/ffd4a6fe.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL之InnoDB数据页</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之InnoDB Buffer Pool</div></div></a></div><div><a href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之InnoDB数据页</div></div></a></div><div><a href="/post/81fc7f34.html" title="MySQL之InnoDB行记录"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-10</div><div class="title">MySQL之InnoDB行记录</div></div></a></div><div><a href="/post/ae3a4492.html" title="MySQL之Redo Log"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-02</div><div class="title">MySQL之Redo Log</div></div></a></div><div><a href="/post/43a71ae4.html" title="MySQL索引"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-01</div><div class="title">MySQL索引</div></div></a></div><div><a href="/post/b3cb123.html" title="MySQL基础架构"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-31</div><div class="title">MySQL基础架构</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8BMVCC"><span class="toc-number">1.</span> <span class="toc-text">MySQL之MVCC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">两个概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E7%85%A7%E8%AF%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">快照读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E5%89%8D%E8%AF%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">当前读</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.3.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%88%97"><span class="toc-number">1.3.1.</span> <span class="toc-text">隐藏列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Undo-Log-%E7%89%88%E6%9C%AC%E9%93%BE"><span class="toc-number">1.3.2.</span> <span class="toc-text">Undo Log 版本链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Read-View%EF%BC%88%E8%AF%BB%E8%A7%86%E5%9B%BE%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">Read View（读视图）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">可重复读的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVCC%E8%A7%A3%E5%86%B3%E5%B9%BB%E8%AF%BB%E4%BA%86%E5%90%97"><span class="toc-number">1.5.</span> <span class="toc-text">MVCC解决幻读了吗</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E4%B8%80%E5%AE%9A%E4%B8%8D%E4%BC%9A%E5%8F%91%E7%94%9F%E5%B9%BB%E8%AF%BB%E5%90%97%EF%BC%9F"><span class="toc-number">1.6.</span> <span class="toc-text">可重复读隔离级别一定不会发生幻读吗？</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB Buffer Pool"/></a><div class="content"><a class="title" href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool">MySQL之InnoDB Buffer Pool</a><time datetime="2022-11-14T14:45:31.000Z" title="发表于 2022-11-14 22:45:31">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/209c3cef.html" title="MySQL之MVCC"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之MVCC"/></a><div class="content"><a class="title" href="/post/209c3cef.html" title="MySQL之MVCC">MySQL之MVCC</a><time datetime="2022-11-14T09:38:45.000Z" title="发表于 2022-11-14 17:38:45">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB数据页"/></a><div class="content"><a class="title" href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页">MySQL之InnoDB数据页</a><time datetime="2022-11-14T09:27:12.000Z" title="发表于 2022-11-14 17:27:12">2022-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/81fc7f34.html" title="MySQL之InnoDB行记录"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB行记录"/></a><div class="content"><a class="title" href="/post/81fc7f34.html" title="MySQL之InnoDB行记录">MySQL之InnoDB行记录</a><time datetime="2022-11-10T12:21:06.000Z" title="发表于 2022-11-10 20:21:06">2022-11-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4492.html" title="MySQL之Redo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Redo Log"/></a><div class="content"><a class="title" href="/post/ae3a4492.html" title="MySQL之Redo Log">MySQL之Redo Log</a><time datetime="2022-11-02T14:30:31.000Z" title="发表于 2022-11-02 22:30:31">2022-11-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
