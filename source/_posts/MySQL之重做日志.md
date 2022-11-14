@@ -3,6 +3,7 @@ title: MySQL之Redo Log
 categories:
   - 数据库
 tags: MySQL
+abbrlink: ae3a4492
 date: 2022-11-02 22:30:31
 ---
 
