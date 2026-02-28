@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>MySQL之Undo Log</title>
+      <link href="/post/ae3a4483.html"/>
+      <url>/post/ae3a4483.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="MySQL之Undo-Log"><a href="#MySQL之Undo-Log" class="headerlink" title="MySQL之Undo Log"></a>MySQL之Undo Log</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><code>Undo Log</code>是<code>InnoDB</code>存储引擎生成的逻辑日志，实现了事务<code>ACID</code>特性中的<strong>原子性</strong>，主要作用于**事务回滚和<code>MVCC</code>**。</p><p><a href="https://www.cnblogs.com/f-ck-need-u/archive/2018/05/08/9010872.html">详细分析MySQL事务日志(redo log和undo log) - 骏马金龙 - 博客园 (cnblogs.com)</a><br><a href="http://mysql.taobao.org/monthly/2021/10/01/">MySQL · 引擎特性 · 庖丁解InnoDB之UNDO LOG (taobao.org)</a><br><a href="http://mysql.taobao.org/monthly/2015/04/01/">MySQL · 引擎特性 · InnoDB undo log 漫游 (taobao.org)</a></p><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>在数据修改的时候，不仅记录了<code>redo</code>，还记录了相对应的<code>undo</code>，如果因为某些原因导致事务失败或回滚了，可以借助该<code>undo</code>进行回滚。</p><p><code>undo log</code>和<code>redo log</code>记录物理日志不一样，它是逻辑日志。<strong>可以认为当<code>delete</code>一条记录时，<code>undo log</code>中会记录一条对应的<code>insert</code>记录，反之亦然，当<code>update</code>一条记录时，它记录一条对应相反的<code>update</code>记录。</strong></p><p>当执行<code>rollback</code>时，就可以从<code>undo log</code>中的逻辑记录读取到相应的内容并进行回滚。有时候应用到行版本控制的时候，也是通过<code>undo log</code>来实现的：当读取的某一行被其他事务锁定时，它可以从<code>undo log</code>中分析出该行记录以前的数据是什么，从而提供该行版本信息，让用户实现快照读。</p><p><strong><code>undo log</code>是采用段(<code>segment</code>)的方式来记录的，每个<code>undo</code>操作在记录的时候占用一个<code>undo log segment</code>。</strong></p><p>另外，**<code>undo log</code>也会产生<code>redo log</code>，因为<code>undo log</code>也要实现持久性保护。**</p><blockquote><p><code>ps</code>：<code>select</code>操作没有对数据行进行修改，不会生成<code>Undo Log</code>。</p></blockquote><h2 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h2><p><strong><code>undo log</code>是采用段(<code>segment</code>)的方式来记录的，每个<code>undo</code>操作在记录的时候占用一个<code>undo log segment</code>。</strong></p><p>一个<code>rollback segment</code>中有<strong>1024</strong>个<code>undo log segment</code></p><blockquote><p><strong>版本 &lt;  5.5</strong>： 只支持1个<code>rollback segment</code>，这样就只能记录1024个<code>undo log segment</code>。</p><p><strong>版本 &gt;= MySQL 5.5</strong>：可以支持128个<code>rollback segment</code>，即支持128*1024个<code>undo</code>操作，还可以通过变量<code>innodb_undo_logs</code>(5.6版本以前该变量是 <code>innodb_rollback_segments</code> )自定义多少个<code>rollback segment</code>，默认值为128。</p></blockquote><p>存储位置：</p><blockquote><p>默认存放在共享表空间中。</p><p>如果开启了 <code>innodb_file_per_table</code> ，将放在每个表的<code>.ibd</code>文件中。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数据库 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> MySQL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MySQL之InnoDB Buffer Pool</title>
       <link href="/post/b70a251f.html"/>
       <url>/post/b70a251f.html</url>
