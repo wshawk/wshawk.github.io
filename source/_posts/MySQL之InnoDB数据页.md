@@ -3,6 +3,7 @@ title: MySQL之InnoDB数据页
 categories:
   - 数据库
 tags: MySQL
+abbrlink: ffd4a6fe
 date: 2022-11-14 17:27:12
 ---
 

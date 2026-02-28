@@ -3,6 +3,7 @@ title: MySQL之InnoDB行记录
 categories:
   - 数据库
 tags: MySQL
+abbrlink: 81fc7f34
 date: 2022-11-10 20:21:06
 ---
 

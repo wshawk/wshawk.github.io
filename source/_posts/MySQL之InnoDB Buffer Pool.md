@@ -3,6 +3,7 @@ title: MySQL之InnoDB Buffer Pool
 categories:
   - 数据库
 tags: MySQL
+abbrlink: b70a251f
 date: 2022-11-14 22:45:31
 ---
 

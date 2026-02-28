@@ -3,6 +3,7 @@ title: MySQL之MVCC
 categories:
   - 数据库
 tags: MySQL
+abbrlink: 209c3cef
 date: 2022-11-14 17:38:45
 ---
 
