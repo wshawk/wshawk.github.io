@@ -1,0 +1,212 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL之高可用集群方案 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之高可用集群方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL之高可用集群方案">
+<meta property="og:url" content="http://wshawk.github.io/post/ae3a4477.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:description" content="MySQL之高可用集群方案">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="article:published_time" content="2023-03-20T13:22:31.000Z">
+<meta property="article:modified_time" content="2026-02-28T11:17:05.269Z">
+<meta property="article:author" content="wshawk">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/ae3a4477"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL之高可用集群方案',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-28 19:17:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL之高可用集群方案</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-20T13:22:31.000Z" title="发表于 2023-03-20 21:22:31">2023-03-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-28T11:17:05.269Z" title="更新于 2026-02-28 19:17:05">2026-02-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL之高可用集群方案"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL之高可用集群方案"><a href="#MySQL之高可用集群方案" class="headerlink" title="MySQL之高可用集群方案"></a>MySQL之高可用集群方案</h1><p>[20 InnoDB Cluster：改变历史的新产品.md (lianglianglee.com)](<a target="_blank" rel="noopener" href="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/20">https://learn.lianglianglee.com/专栏/MySQL实战宝典/20</a>  InnoDB Cluster：改变历史的新产品.md)</p>
+<h2 id="MHA（Master-High-Availability）"><a href="#MHA（Master-High-Availability）" class="headerlink" title="MHA（Master High Availability）"></a>MHA（Master High Availability）</h2><p>MHA(Master High Availability)是一款开源的 MySQL 高可用程序，它为 MySQL 数据库主从复制架构提供了 automating master failover 的功能。</p>
+<p>MHA 是由业界大名鼎鼎的 Facebook 工程师 Yoshinorim 开发，开源地址为：<a target="_blank" rel="noopener" href="https://github.com/yoshinorim/mha4mysql-manager%E5%AE%83%E7%94%B1%E4%B8%A4%E5%A4%A7%E7%BB%84%E4%BB%B6%E6%89%80%E7%BB%84%E6%88%90%EF%BC%8CMHA">https://github.com/yoshinorim/mha4mysql-manager它由两大组件所组成，MHA</a> Manger 和 MHA Node。</p>
+<p>MHA Manager 通常部署在一台服务器上，用来判断多个 MySQL 高可用组是否可用。当发现有主服务器发生宕机，就发起 failover 操作。MHA Manger 可以看作是 failover 的总控服务器。</p>
+<p>而 MHA Node 部署在每台 MySQL 服务器上，MHA Manager 通过执行 Node 节点的脚本完成failover 切换操作。</p>
+<p>MHA Manager 和 MHA Node 的通信是采用 ssh 的方式，也就是需要在生产环境中打通 MHA Manager 到所有 MySQL 节点的 ssh 策略，那么这里就存在潜在的安全风险。</p>
+<p>另外，ssh 通信，效率也不是特别高。</p>
+<p>所以，<strong>MHA 比较适合用于规模不是特别大的公司，所有MySQL 数据库的服务器数量不超过 20 台</strong>。</p>
+<p><img src="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/assets/Cgp9HWDVmMOAevY4AAEiqr35GSw848.png"></p>
+<h2 id="Orchestrator"><a href="#Orchestrator" class="headerlink" title="Orchestrator"></a>Orchestrator</h2><p>Orchestrator 是另一款开源的 MySQL 高可用套件，除了支持 failover 的切换，还可通过Orchestrator 完成 MySQL 数据库的一些简单的复制管理操作。Orchestrator 的开源地址为：<a target="_blank" rel="noopener" href="https://github.com/openark/orchestrator">https://github.com/openark/orchestrator</a></p>
+<p>你可以把 Orchestrator 当成 MHA 的升级版，而且提供了 HTTP 接口来进行相关数据库的操作，比起 MHA 需要每次登录 MHA Manager 服务器来说，方便很多。</p>
+<p>下图显示了 Orchestrator 的高可用设计架构：</p>
+<p><img src="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/assets/CioPOWDVmLaAd1fTAAOTUVey1gw096.png" alt="Drawing 5.png"></p>
+<p>其基本实现原理与 MHA 是一样的，只是把元数据信息存储在了元数据库中，并且提供了HTTP 接口和命令的访问方式，使用上更为友好。</p>
+<p>但是由于管控节点到下面的 MySQL 数据库的管理依然是 ssh 的方式，依然存在 MHA 一样的短板问题，总的来说，关于 Orchestrator 我想提醒你，依然只建议使用在较小规模的数据库集群。</p>
+<h2 id="InnoDB-Cluster-MGR"><a href="#InnoDB-Cluster-MGR" class="headerlink" title="InnoDB Cluster(MGR)"></a>InnoDB Cluster(MGR)</h2><h3 id="MGR技术"><a href="#MGR技术" class="headerlink" title="MGR技术"></a>MGR技术</h3><p>MGR 是官方在 MySQL 5.7 版本推出的一种基于状态机的数据同步机制。与半同步插件类似，MGR 是通过插件的方式启用或禁用此功能。</p>
+<p><img src="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/assets/Cgp9HWDdkMWAYcbMAAELdJr4eqw754.png" alt="图片2.png"></p>
+<p>MGR 复制结构图</p>
+<p>注意，我们谈及 MGR，不要简单认为它是一种新的数据同步技术，而是应该把它理解为高可用解决方案，而且特别适合应用于对于数据一致性要求极高的金融级业务场景。</p>
+<p>首先，MGR 之间的数据同步并没有采用复制技术，而是采用 GCS（Group Communication System）协议的日志同步技术。</p>
+<p>GSC 本身是一种类似 Paxos 算法的协议，要求组中的大部分节点都接收到日志，事务才能提交。所以，MRG 是严格要求数据一致的，特别适合用于金融级的环境。由于是类 Paxos 算法，集群的节点要求数量是奇数个，这样才能满足大多数的要求。</p>
+<p>有的同学可能会问了：之前介绍的无损半同步也能保证数据强一致的要求吗？</p>
+<p>是的，虽然通过无损半同步复制也能保证主从数据的一致性，但通过 GCS 进行数据同步有着更好的性能：当启用 MGR 插件时，MySQL 会新开启一个端口用于数据的同步，而不是如复制一样使用MySQL 服务端口，这样会大大提升复制的效率。</p>
+<p>其次，MGR 有两种模式：</p>
+<ul>
+<li>单主（Single Primary）模式；</li>
+<li>多主（Multi Primary）模式。</li>
+</ul>
+<p>单主模式只有 1 个节点可以写入，多主模式能让每个节点都可以写入。而多个节点之间写入，如果存在变更同一行的冲突，MySQL 会自动回滚其中一个事务，自动保证数据在多个节点之间的完整性和一致性。</p>
+<p>最后，在单主模式下，MGR 可以自动进行 Failover 切换，不用依赖外部的各种高可用套件，所有的事情都由数据库自己完成，比如最复杂的选主（Primary Election）逻辑，都是由 MGR 自己完成，用户不用部署额外的 Agent 等组件。</p>
+<p><strong>说了这么多 MGR 的优势，那么它有没有缺点或限制呢？</strong> 当然有，主要是这样几点：</p>
+<ol>
+<li>仅支持 InnoDB 表，并且每张表一定要有一个主键；</li>
+<li>目前一个 MGR 集群，最多只支持 9 个节点；</li>
+<li>有一个节点网络出现抖动或不稳定，会影响集群的性能。</li>
+</ol>
+<p>第 1、2 点问题不大，因为目前用 MySQL 主流的就是使用 InnoDB 存储引擎，9 个节点也足够用了。</p>
+<p>而第 3 点我想提醒你注意，和复制不一样的是，由于 MGR 使用的是 Paxos 协议，对于网络极其敏感，如果其中一个节点网络变慢，则会影响整个集群性能。而半同步复制，比如 ACK 为1，则 1 个节点网络出现问题，不影响整个集群的性能。所以，在决定使用 MGR 后，切记一定要严格保障网络的质量。</p>
+<p>而多主模式是一种全新的数据同步模式，接下来我们看一看在使用多主模式时，该做哪些架构上的调整，从而充分发挥 MGR 多主的优势。</p>
+<h3 id="多主模式的注意事项"><a href="#多主模式的注意事项" class="headerlink" title="多主模式的注意事项"></a>多主模式的注意事项</h3><h4 id="冲突检测"><a href="#冲突检测" class="headerlink" title="冲突检测"></a>冲突检测</h4><p>MGR 多主模式是近几年数据库领域最大的一种创新，而且目前来看，仅 MySQL 支持这种多写的 Share Nothing 架构。</p>
+<p>多主模式要求每个事务在本节点提交时，还要去验证其他节点是否有同样的记录也正在被修改。如果有的话，其中一个事务要被回滚。</p>
+<p>比如两个节点同时执行下面的 SQL 语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 节点1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">User</span> <span class="keyword">set</span> money <span class="operator">=</span> money <span class="operator">-</span> <span class="number">100</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 节点2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">User</span> <span class="keyword">set</span> money <span class="operator">=</span> money <span class="operator">+</span> <span class="number">300</span> <span class="keyword">WHERE</span> id <span class="operator">=</span> <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果一开始用户的余额为 200，当节点 1 执行 SQL 后，用户余额变为 100，当节点 2 执行SQL，用户余额变味了 500，这样就导致了节点数据的不同。所以 MGR 多主模式会在事务提交时，进行行记录冲突检测，发现冲突，就会对事务进行回滚。</p>
+<p>在上面的例子中，若节点 2 上的事务先提交，则节点 1 提交时会失败，事务会进行回滚。</p>
+<p>所以，如果要发挥多主模式的优势，就要避免写入时有冲突。<strong>最好的做法是：每个节点写各自的数据库，比如节点 1 写 DB1，节点 2 写 DB2，节点 3 写 DB3，这样集群的写入性能就能线性提升了。</strong></p>
+<p>不过这要求我们在架构设计时，就做好这样的考虑，否则多主不一定能带来预期中的性能提升。</p>
+<h4 id="自增处理"><a href="#自增处理" class="headerlink" title="自增处理"></a>自增处理</h4><p>在多主模式下，自增的逻辑发生了很大的变化。简单来说，自增不再连续自增。</p>
+<p>因为，如果连续自增，这要求每次写入时要等待自增值在多个节点中的分配，这样性能会大幅下降，所以 MGR 多主模式下，我们可以通过设置自增起始值和步长来解决自增的性能问题。看下面的参数：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">group_replication_auto_increment_increment</span> = <span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<p>参数 group_replication_auto_increment_increment 默认为 7，自增起始值就是 server-id。</p>
+<p>假设 MGR 有 3 个节点 Node1、Node2、Node3，对应的 server-id 分别是 1、2、3, 如果这时多主插入自增的顺序为 Node1、Node1、Node2、Node3、Node1，则自增值产生的结果为：</p>
+<p><img src="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/assets/Cgp9HWDdkPSAG1iMAAC--XyGLbc889.png" alt="图片3.png"></p>
+<p>可以看到，由于是多主模式，允许多个节点并发的产生自增值。所以自增的产生结果为1、8、16、17、22，自增值不一定是严格连续的，而仅仅是单调递增的，这与单实例 MySQL 有着很大的不同。</p>
+<p>在 05 讲表结构设计中，我也强调过：尽量不要使用自增值做主键，在 MGR 存在问题，在后续分布式架构中也一样存在类似的自增问题。<strong>所以，对于核心业务表，还是使用有序 UUID 的方式更为可靠，性能也会更好。</strong></p>
+<p>总之，使用 MGR 技术后，所有高可用事情都由数据库自动完成。那么，业务该如何利用 MGR的能力，是否还需要 VIP、DNS 等机制保证业务的透明性呢？接下来，我们就来看一下，<strong>业务如何利用 MGR 的特性构建高可用解决方案。</strong></p>
+<h3 id="InnoDB-Cluster"><a href="#InnoDB-Cluster" class="headerlink" title="InnoDB Cluster"></a>InnoDB Cluster</h3><p>MGR 是基于 Paxos 算法的数据同步机制，将数据库状态和日志通过 Paxos 算法同步到各个节点，但如果要实现一个完整的数据库高可用解决方案，就需要更高一层级的 InnoDB Cluster 完成。</p>
+<p>一个 InnoDB Cluster 由三个组件组成：MGR 集群、MySQL Shell、MySQL Router。具体如下图所示：</p>
+<p><img src="https://learn.lianglianglee.com/%E4%B8%93%E6%A0%8F/MySQL%E5%AE%9E%E6%88%98%E5%AE%9D%E5%85%B8/assets/CioPOWDdkV2AVrxFAAIKlxjsK_I547.png" alt="图片4.png"></p>
+<p>其中，MySQL Shell 用来管理 MGR 集群的创建、变更等操作。以后我们最好不要手动去管理 MGR 集群，而是通过 MySQL Shell 封装的各种接口完成 MGR 的各种操作。如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">mysql-js&gt; cluster.<span class="title function_">status</span>(<span class="params"></span>)</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;clusterName&quot;</span>: <span class="string">&quot;myCluster&quot;</span>, </span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;defaultReplicaSet&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;name&quot;</span>: <span class="string">&quot;default&quot;</span>, </span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;primary&quot;</span>: <span class="string">&quot;ic-2:3306&quot;</span>, </span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;ssl&quot;</span>: <span class="string">&quot;REQUIRED&quot;</span>, </span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;status&quot;</span>: <span class="string">&quot;OK&quot;</span>, </span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;statusText&quot;</span>: <span class="string">&quot;Cluster is ONLINE and can tolerate up to ONE failure.&quot;</span>, </span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;topology&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">            <span class="string">&quot;ic-1:3306&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;address&quot;</span>: <span class="string">&quot;ic-1:3306&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;mode&quot;</span>: <span class="string">&quot;R/O&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;readReplicas&quot;</span>: &#123;&#125;, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;role&quot;</span>: <span class="string">&quot;HA&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;ONLINE&quot;</span></span><br><span class="line"></span><br><span class="line">            &#125;, </span><br><span class="line"></span><br><span class="line">            <span class="string">&quot;ic-2:3306&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;address&quot;</span>: <span class="string">&quot;ic-2:3306&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;mode&quot;</span>: <span class="string">&quot;R/W&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;readReplicas&quot;</span>: &#123;&#125;, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;role&quot;</span>: <span class="string">&quot;HA&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;ONLINE&quot;</span></span><br><span class="line"></span><br><span class="line">            &#125;, </span><br><span class="line"></span><br><span class="line">            <span class="string">&quot;ic-3:3306&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;address&quot;</span>: <span class="string">&quot;ic-3:3306&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;mode&quot;</span>: <span class="string">&quot;R/O&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;readReplicas&quot;</span>: &#123;&#125;, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;role&quot;</span>: <span class="string">&quot;HA&quot;</span>, </span><br><span class="line"></span><br><span class="line">                <span class="string">&quot;status&quot;</span>: <span class="string">&quot;ONLINE&quot;</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;, </span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;groupInformationSourceMember&quot;</span>: <span class="string">&quot;mysql://root@localhost:6446&quot;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>MySQL Router 是一个轻量级的代理，用于业务访问 MGR 集群中的数据，当 MGR 发生切换时（这里指 Single Primary 模式），自动路由到新的 MGR 主节点，这样业务就不用感知下层MGR 数据的切换。</p>
+<p>为了减少引入 MySQL Router 带来的性能影响，官方建议 MySQL Router 与客户端程序部署在一起，以一种类似 sidecar 的方式进行物理部署。这样能减少额外一次额外的网络开销，基本消除引入 MySQL Router 带来的影响。</p>
+<p>所以，这里 MySQL Router 的定位是一种轻量级的路由转发，而不是一个数据库中间件，主要解决数据库切换后，做到对业务无感知。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/ae3a4477.html">http://wshawk.github.io/post/ae3a4477.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/b70a2522.html"><img class="prev-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL之binlog</div></div></a></div><div class="next-post pull-right"><a href="/post/ae3a4474.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL之主从复制</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">MySQL之InnoDB存储结构</div></div></a></div><div><a href="/post/b70a2522.html" title="MySQL之binlog"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">MySQL之binlog</div></div></a></div><div><a href="/post/ae3a4474.html" title="MySQL之主从复制"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-12</div><div class="title">MySQL之主从复制</div></div></a></div><div><a href="/post/ae3a4483.html" title="MySQL之Undo Log"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-02</div><div class="title">MySQL之Undo Log</div></div></a></div><div><a href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之InnoDB Buffer Pool</div></div></a></div><div><a href="/post/209c3cef.html" title="MySQL之MVCC"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之MVCC</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8B%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4%E6%96%B9%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">MySQL之高可用集群方案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MHA%EF%BC%88Master-High-Availability%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">MHA（Master High Availability）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Orchestrator"><span class="toc-number">1.2.</span> <span class="toc-text">Orchestrator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InnoDB-Cluster-MGR"><span class="toc-number">1.3.</span> <span class="toc-text">InnoDB Cluster(MGR)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MGR%E6%8A%80%E6%9C%AF"><span class="toc-number">1.3.1.</span> <span class="toc-text">MGR技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E4%B8%BB%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">多主模式的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%B2%E7%AA%81%E6%A3%80%E6%B5%8B"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">冲突检测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%A2%9E%E5%A4%84%E7%90%86"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">自增处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB-Cluster"><span class="toc-number">1.3.3.</span> <span class="toc-text">InnoDB Cluster</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB存储结构"/></a><div class="content"><a class="title" href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构">MySQL之InnoDB存储结构</a><time datetime="2023-10-14T11:27:12.000Z" title="发表于 2023-10-14 19:27:12">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b70a2522.html" title="MySQL之binlog"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之binlog"/></a><div class="content"><a class="title" href="/post/b70a2522.html" title="MySQL之binlog">MySQL之binlog</a><time datetime="2023-06-15T15:45:31.000Z" title="发表于 2023-06-15 23:45:31">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4477.html" title="MySQL之高可用集群方案"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之高可用集群方案"/></a><div class="content"><a class="title" href="/post/ae3a4477.html" title="MySQL之高可用集群方案">MySQL之高可用集群方案</a><time datetime="2023-03-20T13:22:31.000Z" title="发表于 2023-03-20 21:22:31">2023-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4474.html" title="MySQL之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之主从复制"/></a><div class="content"><a class="title" href="/post/ae3a4474.html" title="MySQL之主从复制">MySQL之主从复制</a><time datetime="2023-03-12T12:10:31.000Z" title="发表于 2023-03-12 20:10:31">2023-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4483.html" title="MySQL之Undo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Undo Log"/></a><div class="content"><a class="title" href="/post/ae3a4483.html" title="MySQL之Undo Log">MySQL之Undo Log</a><time datetime="2023-03-02T12:30:31.000Z" title="发表于 2023-03-02 20:30:31">2023-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

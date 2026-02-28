@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL之InnoDB存储结构 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之InnoDB存储结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL之InnoDB存储结构">
+<meta property="og:url" content="http://wshawk.github.io/post/ffd4a644.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:description" content="MySQL之InnoDB存储结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="article:published_time" content="2023-10-14T11:27:12.000Z">
+<meta property="article:modified_time" content="2026-02-28T11:19:05.444Z">
+<meta property="article:author" content="wshawk">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/ffd4a644"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'MySQL之InnoDB存储结构',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-02-28 19:19:05'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL之InnoDB存储结构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-14T11:27:12.000Z" title="发表于 2023-10-14 19:27:12">2023-10-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-28T11:19:05.444Z" title="更新于 2026-02-28 19:19:05">2026-02-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL之InnoDB存储结构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL之InnoDB存储结构"><a href="#MySQL之InnoDB存储结构" class="headerlink" title="MySQL之InnoDB存储结构"></a>MySQL之InnoDB存储结构</h1><p>本文转载于<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Neeo/articles/13883976.html">MySQL - InnoDB - 听雨危楼 - 博客园 (cnblogs.com)</a></p>
+<h2 id="InnoDB逻辑存储结构"><a href="#InnoDB逻辑存储结构" class="headerlink" title="InnoDB逻辑存储结构"></a>InnoDB逻辑存储结构</h2><h3 id="表空间（table-space）"><a href="#表空间（table-space）" class="headerlink" title="表空间（table space）"></a>表空间（table space）</h3><p>在InnoDB存储引擎中，所有数据都存放在表空间(table space)中，表空间由段(segment)、区(extent)、页(page)、行（Row）组成，它们的关系如下图：<br><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1168165/202105/1168165-20210512162144068-1806137285.png"><img src="https://img2020.cnblogs.com/blog/1168165/202105/1168165-20210512162144068-1806137285.png" alt="img"></a></p>
+<h3 id="段（segment）"><a href="#段（segment）" class="headerlink" title="段（segment）"></a>段（segment）</h3><p>表空间由各个段组成，常见的段类型有：数据段、索引段、回滚段。<br><strong>由于InnoDB表采用的是聚簇索引，所以数据段可以看成是B+树的叶子节点，索引段可以看成是B+树的非索引节点。</strong></p>
+<h3 id="区（extend）"><a href="#区（extend）" class="headerlink" title="区（extend）"></a>区（extend）</h3><p>一个段由多个区组成，区由多个连续页组成，每个区的大小为1MB，默认情况下，每个页的大小为16KB：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select @@innodb_page_size;</span><br><span class="line">+--------------------+</span><br><span class="line">| @@innodb_page_size |</span><br><span class="line">+--------------------+</span><br><span class="line">|              16384 |</span><br><span class="line">+--------------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>即一个区中一共有64个连续页。用户可通过innodb_page_size参数设置每个页的大小。</p>
+<p><strong>默认情况下，用户在创建一张InnoDB表后，该表对应的独立表空间文件为96KB，在每个段开始时会先用32个碎片页来存放数据，使用完这32个页后才是64个连续页的申请。</strong>这么做是考虑到有些表的数据相对来说是比较少的，可以节省磁盘空间，因为申请64个页（即1个区）需要1MB空间。</p>
+<h3 id="页（page）"><a href="#页（page）" class="headerlink" title="页（page）"></a>页（page）</h3><p>页是InnoDB磁盘管理的最小单位，默认大小为16KB。常见的页类型有：</p>
+<ul>
+<li>数据页（B-tree Node）</li>
+<li>undo页（undo Log Page）</li>
+<li>系统页（System Page）</li>
+<li>事务数据页（Transaction system Page）</li>
+<li>插入缓冲位图页（Insert Buffer Bitmap）</li>
+<li>插入缓冲空闲列表页（Insert Buffer Free List）</li>
+<li>未压缩的二进制大对象页（Uncompressed BLOB Page）</li>
+<li>压缩的二进制大对象页（compressed BLOB Page）</li>
+</ul>
+<h3 id="行（Row）"><a href="#行（Row）" class="headerlink" title="行（Row）"></a>行（Row）</h3><p>InnoDB存储引擎将数据按行进行存放，每个页最多存放7992行记录（16KB除以2~200），InnoDB存储引擎提供了Compact、Redundant、Compressed、Dynamic四种格式来存放行记录数据，用户可通过命令<code>show table status like &#39;table_name&#39;</code>来查看该属性。</p>
+<p>其中Row_format就是行记录格式。</p>
+<h2 id="InnoDB物理存储结构"><a href="#InnoDB物理存储结构" class="headerlink" title="InnoDB物理存储结构"></a>InnoDB物理存储结构</h2><p>最直观的物理存储结构，我们能看到的，就是MySQL的存储目录<code>data</code>：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@cs ~]# ll /<span class="class"><span class="keyword">data</span>/mysql</span></span><br><span class="line">总用量 <span class="number">188468</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql       56 6月   8 09:25 auto.cnf</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql     7386 8月  17 17:06 cs.err</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql        4 9月  21 11:24 cs.pid</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql       20 8月  17 18:00 data_test</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql      596 9月   1 03:11 ib_buffer_pool</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql 79691776 9月  22 16:35 ibdata1</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql 50331648 9月  22 16:35 ib_logfile0</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql 50331648 9月  15 16:25 ib_logfile1</span></span><br><span class="line">-rw-r<span class="comment">----- 1 mysql mysql 12582912 9月  22 16:35 ibtmp1</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql     4096 6月   8 09:25 mysql</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql     8192 6月   8 09:25 performance_schema</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql       60 9月  17 21:22 pp</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql      160 8月  26 00:02 school</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql     8192 6月   8 09:25 sys</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql     4096 9月  22 16:35 tt</span></span><br><span class="line"><span class="title">drwxr</span>-x<span class="comment">--- 2 mysql mysql      172 9月  22 16:20 world</span></span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>ib_logfile0 ~ ib_logfile1</code>：<code>REDO</code>日志文件，事务日志文件</li>
+<li><code>ibdata1</code>：系统数据字典(统计信息)，<code>UNDO</code>表空间等数据</li>
+<li><code>ibtmp1</code>：临时表空间磁盘位置，存储临时表</li>
+</ul>
+<p>基于InnoDB的表都会建立：</p>
+<ul>
+<li><code>frm</code>：存储表的字段信息</li>
+<li><code>ibd</code>：表的数据行和索引</li>
+</ul>
+<h3 id="表空间"><a href="#表空间" class="headerlink" title="表空间"></a>表空间</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace.html">https://dev.mysql.com/doc/refman/5.7/en/innodb-tablespace.html</a></p>
+</blockquote>
+<p>MySQL在5.5版本(能够上生产环境，稳定的版本)才有了表空间(Table space)的概念，恰好这个时间节点是在被Oracle收购后…..</p>
+<p>这里简单说说表空间。虽然MySQL将数据存储到段、区、页中，但是这其中还经历了一个逻辑层 ，物理层面的逻辑层！这里称之为表空间。</p>
+<p>PS：一般提到表空间的概念，基本上都是说的是Oracle表空间，这里MySQL可能借鉴了……你有兴趣也可以参考<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/LVM/6571177?fr=aladdin">LVM</a>的原理，都类似。</p>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1168165/202011/1168165-20201118110003189-1001840048.jpg"><img src="https://img2020.cnblogs.com/blog/1168165/202011/1168165-20201118110003189-1001840048.jpg" alt="img"></a></p>
+<p>如上图左侧部分，如果MySQL将<code>ibd</code>文件直接从内存中写入到<code>sdb1</code>磁盘中，如果有一天该<code>sdb1</code>磁盘满了怎么办？一般来说可以将<code>sdb1</code>中的数据导入到磁盘空间更大的磁盘<code>sdb2</code>中，然后MySQL后续直接往<code>sdb2</code>中写入数据即可，直到有一天………</p>
+<p>MySQL为了解决这个问题，也可能是借鉴了Oracle…….在MySQL层和磁盘层中间再加上一层逻辑层，即表空间，MySQL将<code>ibd</code>文件都存储到<code>table space</code>层，后续的磁盘都可以动态的挂载到<code>table space</code>层……….</p>
+<p>而在MySQL中的表空间，经过发展现在有共享表空间和独立表空间两个概念。</p>
+<h3 id="共享表空间"><a href="#共享表空间" class="headerlink" title="共享表空间"></a>共享表空间</h3><p><code>Innodb</code>所有数据保存在一个单独的表空间里面，我们称这个表空间为共享表空间，毕竟所有表都在这个共享表空间里面嘛！<br>这个表空间可以由很多个文件组成，一个表可以跨多个文件存在，所以其大小限制不再是文件大小的限制，而是其自身的限制。从<code>Innodb</code>的官方文档中可以看到，其表空间的最大限制为64TB，也就是说，<code>Innodb</code>的单表限制基本上也在64TB左右了，当然这个大小是包括这个表的所有记录、索引和其他相关数据。</p>
+<p>随着MySQL初始化时，默认的共享表空间也随之建立，即数据目录中的<code>ibdata1</code>文件(后续可以是多个)，并且初始就一个<code>ibdata1</code>文件，且文件的初始大小为12MB，然后随着数据量的推移，以64MB为单位增加。</p>
+<p>可以通过以下参数来查看该<code>ibdata1</code>文件：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@innodb</span>_data_file_path;</span><br><span class="line"><span class="comment">-- SHOW VARIABLES LIKE &#x27;innodb_data_file%&#x27;;</span></span><br><span class="line"><span class="keyword">SELECT</span> @<span class="variable">@innodb</span>_autoextend_increment;</span><br></pre></td></tr></table></figure>
+
+<p>也可以<code>vim /etc/my.cnf</code>配置文件：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------- 在默认的datadir目录下设置多个 ibdata 文件 ----------</span></span><br><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"><span class="attr">innodb_data_file_path</span>=ibdata1:<span class="number">1</span>G<span class="comment">;ibdata2:12M:autoextend:max:512M    # 自增长到最大512MB</span></span><br><span class="line"><span class="comment"># innodb_data_file_path=ibdata1:1G;ibdata2:12M:autoextend	# 初始12M，自增长直到64TB</span></span><br><span class="line"><span class="comment"># 另外，自增长只针对后面的ibdata文件，上面的ibdata1就是写死的1GB大小了</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 在指定目录设置多个 ibdata 文件 ----------</span></span><br><span class="line"><span class="attr">innodb_data_home_dir</span>= /data/mysql/mysql3307/data</span><br><span class="line"><span class="attr">innodb_data_file_path</span>=ibdata1:<span class="number">1</span>G<span class="comment">;ibdata2:12M:autoextend      # 会在 innodb_data_home_dir 目录下设置多个 ibdata 文件</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># ---------- 在指定目录设置多个 ibdata 文件 ----------</span></span><br><span class="line">innodb_data_home_dir=        <span class="comment"># innodb_data_home_dir的值保留为空，但该参数不能不写</span></span><br><span class="line"><span class="attr">innodb_data_file_path</span>=ibdata1:<span class="number">12</span>M<span class="comment">;/data/mysql/mysql3307/data/ibdata2:12M:autoextend</span></span><br><span class="line"><span class="comment"># 如上例子会在 datadir 下创建 ibdata1；会在 /data/mysql/mysql3307/data/ 目录创建 ibdata2</span></span><br></pre></td></tr></table></figure>
+
+<p>还有另一种情况就是：当没有配置<code>innodb_data_file_path</code>时，默认<code>innodb_data_file_path = ibdata1:12M:autoextend</code>；当需要改为1G时，不能直接在配置文件把 ibdata1 改为 1G ；而应该再添加一个 <code>ibdata2:1G</code>，如<code>innodb_data_file_path = ibdata1:12M;ibdata2:1G:autoextend</code>。</p>
+<p>另外，一般，对于共享表空间的设置，在MySQL初始化之前就设计好了，那么在MySQL初始化的时候，按照你的设置，就自动的建立好相应的文件了。</p>
+<p>MySQL5.6版本，共享空间虽然得以保留，但也只用来存储：数据字典、<code>UNDO</code>、临时表</p>
+<p>而在5.7版本，临时表被独立出去了….</p>
+<p>8.0版本，<code>UNDO</code>也被独立出去了…..</p>
+<p>点击以下链接查看架构演示：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.6/en/innodb-architecture.html">5.6 InnoDB架构</a><br><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/5.7/en/innodb-architecture.html">5.7 Innodb架构</a><br><a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/innodb-architecture.html">8.0 InnoDB架构</a></p>
+</blockquote>
+<h3 id="独立表空间"><a href="#独立表空间" class="headerlink" title="独立表空间"></a>独立表空间</h3><p>从5.6开始，默认表空间不再使用共享表空间，替换为独立表空间，主要存储的是用户数据。</p>
+<p>存储特点：每个表都有自己的表空间，表空间内存放着<code>ibd</code>文件，<code>idb</code>文件被称之为表空间的数据文件，主要用来存储数据行以及索引信息；而基本的表结构和元数据存储在<code>frm</code>文件中。</p>
+<p>除了上述的<code>frm</code>和<code>ibd</code>文件之外，还搭配的有：</p>
+<ul>
+<li><code>Redo Log</code>，重做日志。</li>
+<li><code>Undo Log</code>，存储在共享表空间中，回滚日志。</li>
+<li><code>ibtmp</code>，临时表，存储在<code>JOIN</code>和<code>UNION</code>操作产生的临时数据，用完自动删除。</li>
+</ul>
+<p><strong>独立表空间/共享表空间切换</strong></p>
+<p>我们可以对表的元数据、数据、索引信息进行单独管理，那么也能单独对表空间进行管理，比如设置表使用共享表空间。</p>
+<p>通过<code>innodb_file_per_table</code>参数来控制MySQL对表使用共享表空间还是独立表空间，而默认值<code>1</code>表示使用独立表空间(一个表就是一个独立的<code>idb</code>文件)，而改成<code>0</code>就是使用共享表空间。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@innodb</span>_file_per_table;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="operator">|</span> @<span class="variable">@innodb</span>_file_per_table <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="operator">|</span>                       <span class="number">1</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>现在我们测试一下，将<code>innodb_file_per_table</code>的值改为<code>0</code>，然后新建一张表(修改操作对原来建立的表没有影响，只会影响修改值后新建的表)：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> <span class="keyword">global</span> innodb_file_per_table<span class="operator">=</span><span class="number">0</span>;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> @<span class="variable">@innodb</span>_file_per_table;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="operator">|</span> @<span class="variable">@innodb</span>_file_per_table <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="operator">|</span>                       <span class="number">0</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tt.t6(id <span class="type">int</span>);</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.03</span> sec)</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们来看磁盘上的关于<code>tt</code>数据库下<code>t6</code>表的物理存储结构：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[<span class="symbol">root@</span>cs ~]# ll /<span class="keyword">data</span>/mysql/tt/t6*</span><br><span class="line">-rw-r----- <span class="number">1</span> mysql mysql <span class="number">8556</span> <span class="number">10</span>月 <span class="number">20</span> <span class="number">16</span>:<span class="number">59</span> /<span class="keyword">data</span>/mysql/tt/t6.frm</span><br><span class="line">[<span class="symbol">root@</span>cs ~]# ^C</span><br><span class="line">[<span class="symbol">root@</span>cs ~]# ll /<span class="keyword">data</span>/mysql/tt/t5*       </span><br><span class="line">-rw-r----- <span class="number">1</span> mysql mysql  <span class="number">8608</span> <span class="number">9</span>月  <span class="number">29</span> <span class="number">10</span>:<span class="number">14</span> /<span class="keyword">data</span>/mysql/tt/t5.frm</span><br><span class="line">-rw-r----- <span class="number">1</span> mysql mysql <span class="number">98304</span> <span class="number">9</span>月  <span class="number">29</span> <span class="number">10</span>:<span class="number">16</span> /<span class="keyword">data</span>/mysql/tt/t5.ibd</span><br></pre></td></tr></table></figure>
+
+<p>上述结果中，<code>t5</code>表是之前建立的表，它有<code>ibd</code>和<code>frm</code>两个文件分别存储数据、索引和元数据信息；而<code>innodb_file_per_table=0</code>后创建的<code>t6</code>表，它的物理存储结构中，就只剩下了<code>frm</code>文件，用来存储元数据信息，而数据和索引信息不在存储自己的独立表空间中，即自己的<code>idb</code>文件中了，而是存储到了共享表空间中了(<code>idbata</code>)。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/ffd4a644.html">http://wshawk.github.io/post/ffd4a644.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/b70a2522.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL之binlog</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/b70a2522.html" title="MySQL之binlog"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">MySQL之binlog</div></div></a></div><div><a href="/post/ae3a4477.html" title="MySQL之高可用集群方案"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-20</div><div class="title">MySQL之高可用集群方案</div></div></a></div><div><a href="/post/ae3a4474.html" title="MySQL之主从复制"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-12</div><div class="title">MySQL之主从复制</div></div></a></div><div><a href="/post/ae3a4483.html" title="MySQL之Undo Log"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-02</div><div class="title">MySQL之Undo Log</div></div></a></div><div><a href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之InnoDB Buffer Pool</div></div></a></div><div><a href="/post/209c3cef.html" title="MySQL之MVCC"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之MVCC</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8BInnoDB%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">MySQL之InnoDB存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#InnoDB%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text">InnoDB逻辑存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%A9%BA%E9%97%B4%EF%BC%88table-space%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">表空间（table space）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%EF%BC%88segment%EF%BC%89"><span class="toc-number">1.1.2.</span> <span class="toc-text">段（segment）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%EF%BC%88extend%EF%BC%89"><span class="toc-number">1.1.3.</span> <span class="toc-text">区（extend）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%EF%BC%88page%EF%BC%89"><span class="toc-number">1.1.4.</span> <span class="toc-text">页（page）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%EF%BC%88Row%EF%BC%89"><span class="toc-number">1.1.5.</span> <span class="toc-text">行（Row）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#InnoDB%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">InnoDB物理存储结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">1.2.1.</span> <span class="toc-text">表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">1.2.2.</span> <span class="toc-text">共享表空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E8%A1%A8%E7%A9%BA%E9%97%B4"><span class="toc-number">1.2.3.</span> <span class="toc-text">独立表空间</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之InnoDB存储结构"/></a><div class="content"><a class="title" href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构">MySQL之InnoDB存储结构</a><time datetime="2023-10-14T11:27:12.000Z" title="发表于 2023-10-14 19:27:12">2023-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/b70a2522.html" title="MySQL之binlog"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之binlog"/></a><div class="content"><a class="title" href="/post/b70a2522.html" title="MySQL之binlog">MySQL之binlog</a><time datetime="2023-06-15T15:45:31.000Z" title="发表于 2023-06-15 23:45:31">2023-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4477.html" title="MySQL之高可用集群方案"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之高可用集群方案"/></a><div class="content"><a class="title" href="/post/ae3a4477.html" title="MySQL之高可用集群方案">MySQL之高可用集群方案</a><time datetime="2023-03-20T13:22:31.000Z" title="发表于 2023-03-20 21:22:31">2023-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4474.html" title="MySQL之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之主从复制"/></a><div class="content"><a class="title" href="/post/ae3a4474.html" title="MySQL之主从复制">MySQL之主从复制</a><time datetime="2023-03-12T12:10:31.000Z" title="发表于 2023-03-12 20:10:31">2023-03-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ae3a4483.html" title="MySQL之Undo Log"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL之Undo Log"/></a><div class="content"><a class="title" href="/post/ae3a4483.html" title="MySQL之Undo Log">MySQL之Undo Log</a><time datetime="2023-03-02T12:30:31.000Z" title="发表于 2023-03-02 20:30:31">2023-03-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
