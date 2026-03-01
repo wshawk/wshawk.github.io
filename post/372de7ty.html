@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>AI自动化协作体系中的关键概念 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1. 初始AI模型交互与提示词演进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI自动化协作体系中的关键概念">
+<meta property="og:url" content="http://wshawk.github.io/post/372de7ty.html">
+<meta property="og:site_name" content="wshawk&#39;s blog">
+<meta property="og:description" content="1. 初始AI模型交互与提示词演进">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="article:published_time" content="2025-12-01T18:30:31.000Z">
+<meta property="article:modified_time" content="2026-03-01T05:50:00.860Z">
+<meta property="article:author" content="wshawk">
+<meta property="article:tag" content="概念">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/372de7ty"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AI自动化协作体系中的关键概念',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-03-01 13:50:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AI自动化协作体系中的关键概念</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-01T05:50:00.860Z" title="更新于 2026-03-01 13:50:00">2026-03-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/AI/">AI</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AI自动化协作体系中的关键概念"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="1-初始AI模型交互与提示词演进"><a href="#1-初始AI模型交互与提示词演进" class="headerlink" title="1. 初始AI模型交互与提示词演进"></a>1. 初始AI模型交互与提示词演进</h2><p>这是最基础的人机交互层面，解释了用户如何与AI沟通以及如何让AI更好地理解用户意图。</p>
+<h3 id="1-1-用户提示词"><a href="#1-1-用户提示词" class="headerlink" title="1.1 用户提示词"></a>1.1 用户提示词</h3><ul>
+<li>  <strong>定义</strong>：这是最直观的交互方式，即用户向AI提出的问题或指令（例如：“写一首关于夏天的诗”）。</li>
+<li><strong>局限性</strong>：<ul>
+<li>  <strong>A) 缺乏人设</strong>：AI不知道提问者的身份（是学生、老师还是程序员？），无法给出针对性回答。</li>
+<li>  <strong>B) 回答平庸</strong>：由于缺乏背景，AI倾向于给出最安全、最通用的回答，缺乏个性。</li>
+<li>  <strong>C) 无法区分上下文</strong>：即使是同一个问题，在不同的场景下可能需要不同的答案，但仅靠用户提示词无法传递这些信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-系统提示词"><a href="#1-2-系统提示词" class="headerlink" title="1.2 系统提示词"></a>1.2 系统提示词</h3><ul>
+<li>  <strong>产生背景</strong>：早期为了给AI设定人设，用户需要将背景信息也写进问题里（例如：“你是一个专业的律师，请帮我看看这份合同…”），但这让对话显得很不自然。</li>
+<li>  <strong>定义</strong>：为了解决这个问题，系统提示词被独立出来。它是一个隐藏的、由系统预设的指令，包含了AI的<strong>人设、性格、背景信息和回复语气</strong>。用户只需要发送自己的核心问题即可。</li>
+<li>  <strong>机制</strong>：当用户发送消息时，系统会自动将预设的系统提示词附加在用户消息之前或一起发送给AI。这样，AI在回复时就知道该以什么角色、什么语气来回应，从而使对话更加自然流畅。</li>
+<li><strong>应用场景</strong>：<ul>
+<li>  <strong>网页聊天机器人</strong>：开发者会在后台设置好系统提示词，用户无法直接看到或修改。</li>
+<li>  <strong>自定义GPTs</strong>：在ChatGPT等平台上，用户可以自定义偏好（如“你是一位风趣的物理老师”），平台会自动将这些偏好转化为系统提示词的一部分，在后台发挥作用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-AI智能体及其工具"><a href="#2-AI智能体及其工具" class="headerlink" title="2. AI智能体及其工具"></a>2. AI智能体及其工具</h2><p>这一阶段，AI从“只会说”升级到“能够做”，通过工具与外部世界交互。</p>
+<h3 id="2-1-AI-Agent的工具"><a href="#2-1-AI-Agent的工具" class="headerlink" title="2.1 AI Agent的工具"></a>2.1 AI Agent的工具</h3><ul>
+<li>  <strong>需求背景</strong>：基础AI模型只能提供文本答案或建议，无法自主执行实际操作（比如读取本地文件、发送邮件）。</li>
+<li><strong>概念</strong>：<ul>
+<li>  <strong>A) Agent</strong>：它是一个协调程序，充当AI模型、工具和用户之间的桥梁。</li>
+<li>  <strong>B) Agent Tool</strong>：提供给AI模型调用的具体功能，例如文件读写、网络搜索、计算器等。</li>
+</ul>
+</li>
+<li><strong>早期实践（AutoGPT示例）</strong>：<ul>
+<li>  <strong>架构</strong>：AutoGPT是一个在本地运行的程序。</li>
+<li>  <strong>工具链</strong>：开发者需要预先编写好工具（如 <code>list_files</code> 函数），并注册到系统中，同时描述清楚它的功能和使用方法。</li>
+<li>  <strong>系统提示词生成</strong>：AutoGPT会根据注册的工具信息，自动生成一个复杂的系统提示词，告知AI模型：“你现在可以使用以下工具，当你需要执行操作时，请严格按照格式返回指令。”</li>
+</ul>
+</li>
+<li><strong>任务流程</strong>：<ol>
+<li> 用户请求：“帮我找一找电脑里周杰伦的歌目录。”</li>
+<li> 系统将用户请求和包含工具信息的系统提示词一同发给AI模型。</li>
+<li> AI模型理解请求，决定调用 <code>list_files</code> 工具。</li>
+<li> AutoGPT程序解析AI的返回，执行 <code>list_files</code> 函数。</li>
+<li> 函数执行结果（文件列表）被发送回AI模型。</li>
+<li> AI模型根据结果判断任务是否完成，如需进一步操作则继续循环，直至结束。</li>
+</ol>
+</li>
+</ul>
+<h3 id="2-2-早期Agent架构的挑战"><a href="#2-2-早期Agent架构的挑战" class="headerlink" title="2.2 早期Agent架构的挑战"></a>2.2 早期Agent架构的挑战</h3><ul>
+<li>  <strong>核心不确定性</strong>：AI模型的输出本质上是自然语言，即使系统提示词要求它返回特定格式（如JSON），它也可能出错（比如返回了带有解释文字的JSON）。</li>
+<li>  <strong>解决方案</strong>：当时的开发者常常通过让Agent<strong>自动重试</strong>来解决这个问题——如果AI返回的格式不对，就再问一次。</li>
+<li>  <strong>现状</strong>：这种方式（如早期的Kline）增加了系统的不确定性和开发复杂度，稳定性较差。</li>
+</ul>
+<h2 id="3-函数调用"><a href="#3-函数调用" class="headerlink" title="3. 函数调用"></a>3. 函数调用</h2><p>为了解决早期Agent架构中AI输出格式不稳定的问题，大模型厂商推出了标准化方案。</p>
+<h3 id="3-1-Function-Calling的提出"><a href="#3-1-Function-Calling的提出" class="headerlink" title="3.1 Function Calling的提出"></a>3.1 Function Calling的提出</h3><ul>
+<li>  <strong>背景</strong>：为了解决AI返回格式不确定的问题，OpenAI、Claude、Gemini等厂商推出了Function Calling功能。</li>
+<li>  <strong>核心思想</strong>：<strong>统一规范</strong>。由模型厂商在模型层面定义一套标准，而不是让开发者在提示词层面“碰运气”。</li>
+</ul>
+<h3 id="3-2-Function-Calling的机制"><a href="#3-2-Function-Calling的机制" class="headerlink" title="3.2 Function Calling的机制"></a>3.2 Function Calling的机制</h3><ul>
+<li><strong>工具描述标准化</strong>：<ul>
+<li>  工具不再用自然语言写在系统提示词里，而是用一个<strong>结构化的JSON对象</strong>来描述。</li>
+<li>  这个对象包含了标准的字段：<code>name</code>（工具名）、<code>description</code>（功能说明）、<code>parameters</code>（所需参数，包括类型和描述）。</li>
+<li>  这些JSON对象被存储在一个专门的字段中，与系统提示词分离。</li>
+</ul>
+</li>
+<li><strong>AI返回格式规范化</strong>：<ul>
+<li>  AI模型在内部经过了特殊训练，当它决定调用工具时，<strong>必须</strong>按照Function Calling规范返回一个结构化的数据对象，而不是自然语言。</li>
+</ul>
+</li>
+<li><strong>优化效果</strong>：<ul>
+<li>  工具管理变得集中、统一。</li>
+<li>  AI返回的调用指令格式统一，易于程序解析，无需复杂的正则匹配或重试逻辑。</li>
+<li>  系统提示词不再需要包含复杂的格式说明，变得更加简洁、可读，专注于角色设定。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-3-Function-Calling的局限"><a href="#3-3-Function-Calling的局限" class="headerlink" title="3.3 Function Calling的局限"></a>3.3 Function Calling的局限</h3><ul>
+<li>  <strong>技术限制</strong>：这是一个由商业公司推动的功能，尚未成为所有模型的行业标准。</li>
+<li>  <strong>兼容性问题</strong>：许多优秀的开源模型（尤其是早期版本或小参数模型）并未针对Function Calling进行训练，因此无法支持。</li>
+<li>  <strong>现状</strong>：目前是“系统提示词+手动解析”和“Function Calling”两种方式并存，开发者需要根据所选模型的能力来选择方案。</li>
+</ul>
+<h2 id="4-MCP协议"><a href="#4-MCP协议" class="headerlink" title="4. MCP协议"></a>4. MCP协议</h2><p>这是解决Agent与Tool服务之间通信问题的“标准化语言”，也是当前AI互操作性发展的前沿方向。</p>
+<h3 id="4-1-MCP的诞生背景"><a href="#4-1-MCP的诞生背景" class="headerlink" title="4.1 MCP的诞生背景"></a>4.1 MCP的诞生背景</h3><ul>
+<li>  <strong>问题</strong>：假设有人开发了一个非常通用的“网页浏览器工具”，如果每个Agent开发者都要为这个工具写一套调用代码，就会造成巨大的重复劳动。</li>
+<li>  <strong>解决方案</strong>：将工具服务化。把浏览器工具部署成一个独立的服务（MCP Server），统一托管起来，所有Agent都可以通过标准协议来调用它。</li>
+</ul>
+<h3 id="4-2-MCP定义与组件"><a href="#4-2-MCP定义与组件" class="headerlink" title="4.2 MCP定义与组件"></a>4.2 MCP定义与组件</h3><ul>
+<li>  <strong>定义</strong>：MCP（模型上下文协议）是一个开放的通信协议，专门用于规范Agent（客户端）与Tool服务（服务器端）之间的交互方式。可以理解为AI界的“USB-C接口”。</li>
+<li><strong>核心组件</strong>：<ul>
+<li>  <strong>MCP Server</strong>：提供具体功能的服务器（例如：一个提供获取天气功能的服务器）。</li>
+<li>  <strong>MCP Client</strong>：需要调用这些功能的Agent程序。</li>
+</ul>
+</li>
+<li>  <strong>MCP模块</strong>：协议详细规定了客户端和服务器如何握手、如何认证、如何传输数据。</li>
+</ul>
+<h3 id="4-3-MCP-Server提供的服务类型"><a href="#4-3-MCP-Server提供的服务类型" class="headerlink" title="4.3 MCP Server提供的服务类型"></a>4.3 MCP Server提供的服务类型</h3><p>一个MCP Server不仅可以提供工具调用，还可以提供其他类型的服务：</p>
+<ul>
+<li>  <strong>Tool</strong>：可执行的操作（如：发送邮件、计算）。</li>
+<li>  <strong>Resource</strong>：可访问的数据或资源（如：获取数据库中的用户列表）。</li>
+<li>  <strong>Prompt</strong>：为Agent提供预设的提示词模板，帮助Agent更好地完成任务。</li>
+</ul>
+<h3 id="4-4-MCP的服务方式"><a href="#4-4-MCP的服务方式" class="headerlink" title="4.4 MCP的服务方式"></a>4.4 MCP的服务方式</h3><ul>
+<li>  图片中此处可能有笔误，核心意思是：<strong>Agent通过MCP协议建立连接，通过标准化的API（应用程序接口）调用来使用MCP Server上的Tool、Resource或Prompt</strong>。</li>
+</ul>
+<h3 id="4-5-MCP与AI模型的关系"><a href="#4-5-MCP与AI模型的关系" class="headerlink" title="4.5 MCP与AI模型的关系"></a>4.5 MCP与AI模型的关系</h3><ul>
+<li>  <strong>重要影响</strong>：MCP是AI基础设施的重要组成部分。它让AI模型的能力不再局限于自身，而是可以接入整个数字世界。</li>
+<li>  <strong>影响</strong>：它不仅影响AI的<strong>使用方式</strong>（让应用更强大），也影响AI的<strong>开发方式</strong>（开发者可以专注于提供高质量的服务，而非兼容各种调用方式）。</li>
+</ul>
+<h2 id="5-整体流程梳理与相互关系"><a href="#5-整体流程梳理与相互关系" class="headerlink" title="5. 整体流程梳理与相互关系"></a>5. 整体流程梳理与相互关系</h2><p>这部分将前面的概念串联起来，形成一个完整的协作流程。</p>
+<h3 id="5-1-完整协作流程示例"><a href="#5-1-完整协作流程示例" class="headerlink" title="5.1 完整协作流程示例"></a>5.1 完整协作流程示例</h3><ol>
+<li> <strong>用户请求</strong>：用户输入自然语言指令。</li>
+<li> <strong>Agent处理</strong>：Agent（通常是Function Calling Agent）接收到请求。</li>
+<li> <strong>Agent反馈</strong>：Agent可能需要调用工具，它会根据Function Calling规范或系统提示词的要求，决定如何操作。</li>
+<li> <strong>Agent与Tool服务</strong>：如果需要调用外部功能，Agent会通过<strong>MCP协议</strong>与对应的<strong>MCP Server</strong>建立连接，并调用其上的Tool。MCP Server执行完任务后，将结果返回给Agent。</li>
+<li> Agent将最终结果整理成自然语言，返回给用户。</li>
+</ol>
+<h3 id="5-2-关键概念之间的关系"><a href="#5-2-关键概念之间的关系" class="headerlink" title="5.2 关键概念之间的关系"></a>5.2 关键概念之间的关系</h3><ul>
+<li>  <strong>系统提示词</strong>：负责设定AI的<strong>角色和语气</strong>。</li>
+<li>  <strong>Function Calling</strong>：负责标准化AI<strong>调用工具的指令格式</strong>。</li>
+<li>  <strong>MCP协议</strong>：负责标准化Agent<strong>与远端Tool服务的通信方式</strong>。</li>
+<li>  <strong>Agent</strong>：作为中枢，协调上述所有组件，完成用户的最终目标。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>AI从单一的文本交互向<strong>自动化协作体系</strong>演进的路径：</p>
+<ol>
+<li> <strong>提示词工程</strong>解决了如何与AI对话的问题。</li>
+<li> <strong>Agent与工具</strong>解决了AI如何执行动作的问题。</li>
+<li> <strong>Function Calling</strong>解决了AI执行动作时的格式规范问题。</li>
+<li> <strong>MCP协议</strong>解决了AI智能体之间以及智能体与服务之间如何互联互通的问题，为构建更复杂的AI应用生态奠定了基础。</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/372de7ty.html">http://wshawk.github.io/post/372de7ty.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A6%82%E5%BF%B5/">概念</a><a class="post-meta__tags" href="/tags/AI/">AI</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/3b7df5c5.html"><img class="prev-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringBoot 启动时实现缓存预热</div></div></a></div><div class="next-post pull-right"><a href="/post/ffd4a614.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">日志系统搭建</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">43</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%88%9D%E5%A7%8BAI%E6%A8%A1%E5%9E%8B%E4%BA%A4%E4%BA%92%E4%B8%8E%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%BC%94%E8%BF%9B"><span class="toc-number">1.</span> <span class="toc-text">1. 初始AI模型交互与提示词演进</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%94%A8%E6%88%B7%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 用户提示词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 系统提示词</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-AI%E6%99%BA%E8%83%BD%E4%BD%93%E5%8F%8A%E5%85%B6%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">2. AI智能体及其工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-AI-Agent%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 AI Agent的工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%97%A9%E6%9C%9FAgent%E6%9E%B6%E6%9E%84%E7%9A%84%E6%8C%91%E6%88%98"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 早期Agent架构的挑战</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">3. 函数调用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Function-Calling%E7%9A%84%E6%8F%90%E5%87%BA"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 Function Calling的提出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Function-Calling%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 Function Calling的机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Function-Calling%E7%9A%84%E5%B1%80%E9%99%90"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 Function Calling的局限</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-MCP%E5%8D%8F%E8%AE%AE"><span class="toc-number">4.</span> <span class="toc-text">4. MCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-MCP%E7%9A%84%E8%AF%9E%E7%94%9F%E8%83%8C%E6%99%AF"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 MCP的诞生背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-MCP%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%BB%84%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 MCP定义与组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-MCP-Server%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 MCP Server提供的服务类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-MCP%E7%9A%84%E6%9C%8D%E5%8A%A1%E6%96%B9%E5%BC%8F"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 MCP的服务方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-MCP%E4%B8%8EAI%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 MCP与AI模型的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86%E4%B8%8E%E7%9B%B8%E4%BA%92%E5%85%B3%E7%B3%BB"><span class="toc-number">5.</span> <span class="toc-text">5. 整体流程梳理与相互关系</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%AE%8C%E6%95%B4%E5%8D%8F%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 完整协作流程示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 关键概念之间的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot 启动时实现缓存预热"/></a><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/372de7ty.html" title="AI自动化协作体系中的关键概念"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI自动化协作体系中的关键概念"/></a><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系中的关键概念">AI自动化协作体系中的关键概念</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a614.html" title="日志系统搭建"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志系统搭建"/></a><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/cb377744.html" title="Spring Bean"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Bean"/></a><div class="content"><a class="title" href="/post/cb377744.html" title="Spring Bean">Spring Bean</a><time datetime="2025-09-05T15:30:31.000Z" title="发表于 2025-09-05 23:30:31">2025-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/d842f1av.html" title="Java接口参数校验"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java接口参数校验"/></a><div class="content"><a class="title" href="/post/d842f1av.html" title="Java接口参数校验">Java接口参数校验</a><time datetime="2025-06-08T07:20:34.000Z" title="发表于 2025-06-08 15:20:34">2025-06-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
