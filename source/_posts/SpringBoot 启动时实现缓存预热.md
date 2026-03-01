@@ -1,3 +1,15 @@
+---
+title: SpringBoot 启动时实现缓存预热
+categories:
+  - 后端
+tags: 
+  - Spring
+  - SpringBoot
+  - Java
+  - 缓存
+abbrlink: 3b7df5c5
+date: 2026-02-28 22:51:31
+---
 # SpringBoot 启动时实现缓存预热
 
 Spring Boot 启动时预热缓存，核心思路就是在应用启动完成后、对外提供服务之前，把数据库里的热点数据或配置数据主动写入Redis。
