@@ -1,5 +1,5 @@
 ---
-title: AI自动化协作体系中的关键概念
+title: AI自动化协作体系的演进
 categories:
   - AI
 tags: 
@@ -106,7 +106,7 @@ date: 2025-12-02 02:30:31
 -   **Prompt**：为Agent提供预设的提示词模板，帮助Agent更好地完成任务。
 
 ### 4.4 MCP的服务方式
--   图片中此处可能有笔误，核心意思是：**Agent通过MCP协议建立连接，通过标准化的API（应用程序接口）调用来使用MCP Server上的Tool、Resource或Prompt**。
+**Agent通过MCP协议建立连接，通过标准化的API（应用程序接口）调用来使用MCP Server上的Tool、Resource或Prompt**。
 
 ### 4.5 MCP与AI模型的关系
 -   **重要影响**：MCP是AI基础设施的重要组成部分。它让AI模型的能力不再局限于自身，而是可以接入整个数字世界。
