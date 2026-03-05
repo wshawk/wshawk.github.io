@@ -1,5 +1,5 @@
 ---
-title: MySQL之MVCC
+title: Redis之主从复制
 categories:
   - 后端
 tags: 
