@@ -1,5 +1,12 @@
 ---
-abbrlink: '0'
+title: Redis之主从复制
+categories:
+  - 后端
+tags: 
+  - Redis
+  - redisDb
+abbrlink: 209c3ceq
+date: 2026-03-04 17:38:45
 ---
 # Redis之redisDb
 
