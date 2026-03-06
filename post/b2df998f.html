@@ -1,27 +1,131 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>The literal 10000000000 of type int is out of range | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="出现上述报错的主要原因是：">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>The literal 10000000000 of type int is out of range | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="出现上述报错的主要原因是：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The literal 10000000000 of type int is out of range">
 <meta property="og:url" content="http://wshawk.github.io/post/b2df998f.html">
 <meta property="og:site_name" content="wshawk&#39;s blog">
 <meta property="og:description" content="出现上述报错的主要原因是：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="og:image" content="http://wshawk.github.io/img/avatar.jpg">
 <meta property="article:published_time" content="2019-11-05T11:51:31.000Z">
 <meta property="article:modified_time" content="2022-10-30T14:11:18.308Z">
 <meta property="article:author" content="wshawk">
-<meta property="article:tag" content="Java">
 <meta property="article:tag" content="踩坑">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/b2df998f"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "The literal 10000000000 of type int is out of range",
+  "url": "http://wshawk.github.io/post/b2df998f.html",
+  "image": "http://wshawk.github.io/img/avatar.jpg",
+  "datePublished": "2019-11-05T11:51:31.000Z",
+  "dateModified": "2022-10-30T14:11:18.308Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "wshawk",
+      "url": "http://wshawk.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/b2df998f.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  localSearch: undefined,
   translate: undefined,
-  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -29,7 +133,7 @@
     post: false
   },
   runtime: '',
-  date_suffix: {
+  dateSuffix: {
     just: '刚刚',
     min: '分钟前',
     hour: '小时前',
@@ -37,141 +141,351 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'The literal 10000000000 of type int is out of range',
-  isPost: true,
-  isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-10-30 22:11:18'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">The literal 10000000000 of type int is out of range</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-11-05T11:51:31.000Z" title="发表于 2019-11-05 19:51:31">2019-11-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-30T14:11:18.308Z" title="更新于 2022-10-30 22:11:18">2022-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">99</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="The literal 10000000000 of type int is out of range"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><img src="data:image/png;base64,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" alt="image"><br>出现上述报错的主要原因是：  </p>
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">wshawk's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">The literal 10000000000 of type int is out of range</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">The literal 10000000000 of type int is out of range</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2019-11-05T11:51:31.000Z" title="发表于 2019-11-05 19:51:31">2019-11-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-30T14:11:18.308Z" title="更新于 2022-10-30 22:11:18">2022-10-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">99</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2022-10-30 22:11:18&quot;}" hidden></div><p><img src="data:image/png;base64,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" alt="image"><br>出现上述报错的主要原因是：  </p>
 <blockquote>
 <p>Java中默认整数为int类型，虽然图片中的数字未超过long类型的最大值，但由于默认整数为int类型，该数超过了int类型的最大值，所以报错；  </p>
 </blockquote>
 <h4 id="解决方法如下："><a href="#解决方法如下：" class="headerlink" title="解决方法如下："></a>解决方法如下：</h4><blockquote>
 <p>在声明时，在数字的后面添加<font color="red">l</font>或者<font color="red">L</font>即可，建议添加<font color="red">L</font>，更容易区别</p>
 </blockquote>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/b2df998f.html">http://wshawk.github.io/post/b2df998f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/8184ba83.html"><img class="prev-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vue项目中实现回车登录</div></div></a></div><div class="next-post pull-right"><a href="/post/3b7df5c1.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">unix时间戳转时间</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="title">SpringBoot 启动时实现缓存预热</div></div></a></div><div><a href="/post/ffd4a614.html" title="日志系统搭建"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-14</div><div class="title">日志系统搭建</div></div></a></div><div><a href="/post/d842f1av.html" title="Java接口参数校验"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-08</div><div class="title">Java接口参数校验</div></div></a></div><div><a href="/post/9ca5d950.html" title="HashMap详解-源码分析"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="title">HashMap详解-源码分析</div></div></a></div><div><a href="/post/e63723a.html" title="Java中的代理"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-08</div><div class="title">Java中的代理</div></div></a></div><div><a href="/post/d842f132.html" title="Java知识点总结"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-08</div><div class="title">Java知识点总结</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">解决方法如下：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/209c3cee.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/209c3ceq.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot 启动时实现缓存预热"/></a><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/372de7ty.html" title="AI自动化协作体系的演进"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI自动化协作体系的演进"/></a><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a614.html" title="日志系统搭建"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志系统搭建"/></a><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaidWrap.length) {
-    window.runMermaid = () => {
-      window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
-
-      Array.from($mermaidWrap).forEach((item, index) => {
-        const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-        const mermaidID = 'mermaid-' + index
-        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
-        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
-        })
-      })
-    }
-
-    const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
-    }
-
-    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/b2df998f.html">http://wshawk.github.io/post/b2df998f.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%B8%A9%E5%9D%91/">踩坑</a><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/post/3b7df5c1.html" title="unix时间戳转时间"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">unix时间戳转时间</div></div><div class="info-2"><div class="info-item-1">123456String unixTimeStr=  &quot;1572251400&quot;;long s = Long.parseLong(unixTimeStr);s *= 1000; // 乘以1000，变成毫秒SimpleDateFormat t = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss&quot;);String date = t.format(new Date(s));System.out.println(date); //2019-10-28 16:30:00</div></div></div></a><a class="pagination-related" href="/post/6ac22eb.html" title="进程和线程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">进程和线程</div></div><div class="info-2"><div class="info-item-1">记录：   多任务操作系统的实现方式 单核cpu     操作系统让cpu轮流交替执行任务，因为cpu的执行效率远高于计算机内的其他组件，所以让人感觉有多个任务在同时进行，实际上确定的时间点上，cpu只执行某一个任务。     多核cpu    多个核心的cpu可在真正意义上实现多任务执行。但由于任务数量会超过cpu的核心数，所以操作系统也会自动把很多任务轮流调度到每个核心上执行。   进程和线程进程：     对于操作系统来说，一个任务就是一个进程（Process），比如打开一个浏览器就是启动一个浏览器进程，打开一个记事本就启动了一个记事本进程，打开两个记事本就启动了两个记事本进程，打开一个Word就启动了一个Word进程。    线程：  有些进程还不止同时干一件事，比如Word，它可以同时进行打字、拼写检查、打印等事情。在一个进程内部，要同时干多件事，就需要同时运行多个“子任务”，我们把进程内的这些“子任务”称为线程（Thread）  小结  线程是最小的执行单元，而进程由至少一个线程组成。如何调度进程和线程，完全由操作系统决定，程序自己不能决定什么时候执行，执行多长时间 ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/post/d842f132.html" title="Java知识点总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-08</div><div class="info-item-2">Java知识点总结</div></div><div class="info-2"><div class="info-item-1">Java知识点总结1.  类的初始化顺序 父类静态变量（静态代码块） 子类静态变量（静态代码块） 父类成员变量 父类构造方法 子类成员变量 子类构造方法  2. final修饰符 修饰变量， 必须显示地赋初值，且赋初值后不能再赋值  被final修饰的实例变量必须显示地赋初值，且只能以下三种方式： 　　1.  定义时初始化 　　2.  在非静态初始化块中为final实例变量指定初始值 　　3.  在构造器中指定初始值 final修饰的静态变量只能在两个地方进行初始化  定义final类变量时指定初始值  在静态初始化块中为final类变量指定初始值     修饰方法，该方法不能被重写  修饰类，该类不能被继承      3.  static修饰符 修饰变量，被static修饰的变量实质上就是全局变量，所有的类实例（对象），共享该变量；且该变量可以以类名.变量名的方式进行访问  修饰方法，该方法被称为静态方法，可直接使用类名.静态方法名进行调用，不需要实例化对象。  静态方法有以下特点：  只能访问static变量 只能调用其他static方法 不能使用this或者super关键字...</div></div></div></a><a class="pagination-related" href="/post/d842f1av.html" title="Java接口参数校验"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-08</div><div class="info-item-2">Java接口参数校验</div></div><div class="info-2"><div class="info-item-1">Java接口参数校验后端服务接口接收参数后，一般都需要根据业务规则进行参数的校验，没有接触过Validation的Java新手可能使用如下述代码来校验参数。 123456789101112131415161718192021222324252627282930@RestController@RequestMapping(&quot;/user&quot;)public class UserController &#123;		@Resource	private UserService userService;	@PostMapping(&quot;/register&quot;)    public ServerResult&lt;String&gt; registerUser(@RequestBody UserRegisterDTO userRegisterDTO) &#123;    	String username = userRegisterDTO.getUsername();    	String password = userRegisterDTO.getPasswo...</div></div></div></a><a class="pagination-related" href="/post/9ca5d950.html" title="HashMap详解-源码分析"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-05-26</div><div class="info-item-2">HashMap详解-源码分析</div></div><div class="info-2"><div class="info-item-1">HashMap详解-源码分析HashMap类声明源码如下： 12public class HashMap&lt;K,V&gt; extends AbstractMap&lt;K,V&gt;    implements Map&lt;K,V&gt;, Cloneable, Serializable   分析：  继承了AbstractMap抽象类，而AbstractMap类已经实现了Map部分接口，可以直接使用 实现了Map、Cloneable、Serializable接口，即实现Map接口中的相应方法，支持clone，支持序列化及反序列化  成员变量源码如下： 123456789101112131415161718192021222324252627   private static final long serialVersionUID = 362498820763181265L;   static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16   static final int MAXIMUM_CA...</div></div></div></a><a class="pagination-related" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-02-28</div><div class="info-item-2">SpringBoot 启动时实现缓存预热</div></div><div class="info-2"><div class="info-item-1">SpringBoot 启动时实现缓存预热Spring Boot 启动时预热缓存，核心思路就是在应用启动完成后、对外提供服务之前，把数据库里的热点数据或配置数据主动写入Redis。 主流方案有三种  CommandLineRunner / ApplicationRunner @PostConstruct 注解 监听 ApplicationReadyEvent 事件  @PostConstruct 注解在某个 Bean 初始化完成后执行预热逻辑。 执行时机较早（Bean 初始化阶段），此时可能其他依赖还未完全准备好（例如数据库连接池、Redis 连接等），不适合依赖外部资源的预热。 12345678910111213@Componentpublic class CachePreloader &#123;    @Autowired    private SomeService someService;    @PostConstruct    public void preload() &#123;        // 加载数据到缓存        List&lt;Data&gt; ...</div></div></div></a><a class="pagination-related" href="/post/300023f4.html" title="为什么重写equals()方法时，要重写hashCode()方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-07</div><div class="info-item-2">为什么重写equals()方法时，要重写hashCode()方法</div></div><div class="info-2"><div class="info-item-1">为什么重写equals()方法时，要重写hashCode()方法1. Object类中equals()方法源代码如下所示：123456/***	Object类中的equals()方法*/public boolean equals(Object obj) &#123;        return (this == obj);    &#125;    由以上源代码知，Object类中的equals()方法是直接使用==运算符来判断两个对象相等的。  引用类型变量使用==时，比较的是引用类型变量指向的对象的内存地址 基本类型使用==时，比较值   Objcect类中的hashCode源代码如下： 123456789101112131415161718192021222324252627282930313233343536/**    * Returns a hash code value for the object. This method is    * supported for the benefit of hash tables such as those provided...</div></div></div></a><a class="pagination-related" href="/post/ffd4a614.html" title="日志系统搭建"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-11-14</div><div class="info-item-2">日志系统搭建</div></div><div class="info-2"><div class="info-item-1">日志系统搭建案例链接京东云技术团队 https://www.cnblogs.com/jingdongkeji/p/17816753.html 美团技术团队 https://tech.meituan.com/2021/09/16/operational-logbook.html 美团高性能终端日志系统建设时间  https://tech.meituan.com/2022/11/03/logan-real-time-log.html 基于AOP方式实现1https://github.com/macrozheng/mall/blob/master/mall-common/src/main/java/com/macro/mall/common/log/WebLogAspect.java    123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">wshawk</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">解决方法如下：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之redisDb">Redis之redisDb</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By wshawk</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const parseViewBox = viewBox => {
+    if (!viewBox) return null
+    const parts = viewBox.trim().split(/[\s,]+/).map(n => Number(n))
+    if (parts.length !== 4 || parts.some(n => Number.isNaN(n))) return null
+    return parts
   }
+
+  const getSvgViewBox = svg => {
+    const attr = parseViewBox(svg.getAttribute('viewBox'))
+    if (attr) return attr
+
+    // Fallback: use bbox to build a viewBox
+    try {
+      const bbox = svg.getBBox()
+      if (bbox && bbox.width && bbox.height) return [bbox.x, bbox.y, bbox.width, bbox.height]
+    } catch (e) {
+      // getBBox may fail on some edge cases; ignore
+    }
+
+    const w = Number(svg.getAttribute('width')) || 0
+    const h = Number(svg.getAttribute('height')) || 0
+    if (w > 0 && h > 0) return [0, 0, w, h]
+    return [0, 0, 100, 100]
+  }
+
+  const setSvgViewBox = (svg, vb) => {
+    svg.setAttribute('viewBox', `${vb[0]} ${vb[1]} ${vb[2]} ${vb[3]}`)
+  }
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+  const openSvgInNewTab = ({ source, initViewBox }) => {
+    const getClonedSvg = () => {
+      if (typeof source === 'string') {
+        const template = document.createElement('template')
+        template.innerHTML = source.trim()
+        const svg = template.content.querySelector('svg')
+        return svg ? svg.cloneNode(true) : null
+      }
+      if (source && typeof source.cloneNode === 'function') {
+        return source.cloneNode(true)
+      }
+      return null
+    }
+
+    const clone = getClonedSvg()
+    if (!clone) return
+    if (initViewBox && initViewBox.length === 4) {
+      clone.setAttribute('viewBox', initViewBox.join(' '))
+    }
+    if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    if (!clone.getAttribute('xmlns:xlink') && clone.outerHTML.includes('xlink:')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
+    // inject background to match current theme
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    const bg = getComputedStyle(document.body).backgroundColor || (isDark ? '#1e1e1e' : '#ffffff')
+    if (!clone.style.background) clone.style.background = bg
+
+    const serializer = new XMLSerializer()
+    const svgSource = serializer.serializeToString(clone)
+    const htmlSource = `<!doctype html><html><head><meta charset="utf-8" />
+      <style>
+        html, body { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; background: ${bg}; }
+        svg { max-width: 100%; max-height: 100%; height: auto; width: auto; }
+      </style>
+      </head><body>${svgSource}</body></html>`
+    const blob = new Blob([htmlSource], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank', 'noopener')
+    setTimeout(() => URL.revokeObjectURL(url), 30000)
+  }
+
+  const attachMermaidViewerButton = wrap => {
+    let btn = wrap.querySelector('.mermaid-open-btn')
+    if (!btn) {
+      btn = document.createElement('button')
+      btn.type = 'button'
+      btn.className = 'mermaid-open-btn'
+      wrap.appendChild(btn)
+    }
+
+    btn.innerHTML = '<i class="fa fa-search fa-fw" aria-hidden="true"></i>'
+
+    if (!btn.__mermaidViewerBound) {
+      btn.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        const svg = wrap.__mermaidOriginalSvg || wrap.querySelector('svg')
+        if (!svg) return
+        const initViewBox = wrap.__mermaidInitViewBox
+        if (typeof svg === 'string') {
+          openSvgInNewTab({ source: svg, initViewBox })
+          return
+        }
+        openSvgInNewTab({ source: svg, initViewBox })
+      })
+      btn.__mermaidViewerBound = true
+    }
+  }
+
+  // Zoom around a point (px, py) in the SVG viewport (in viewBox coordinates)
+  const zoomAtPoint = (vb, factor, px, py) => {
+    const w = vb[2] * factor
+    const h = vb[3] * factor
+    const nx = px - (px - vb[0]) * factor
+    const ny = py - (py - vb[1]) * factor
+    return [nx, ny, w, h]
+  }
+
+  const initMermaidGestures = wrap => {
+    const svg = wrap.querySelector('svg')
+    if (!svg) return
+
+    // Ensure viewBox exists so gestures always work
+    const initVb = getSvgViewBox(svg)
+    wrap.__mermaidInitViewBox = initVb
+    wrap.__mermaidCurViewBox = initVb.slice()
+    setSvgViewBox(svg, initVb)
+
+    // Avoid binding multiple times on themeChange/pjax
+    if (wrap.__mermaidGestureBound) return
+    wrap.__mermaidGestureBound = true
+
+    // Helper: map client (viewport) coordinate -> viewBox coordinate
+    const clientToViewBox = (clientX, clientY) => {
+      const rect = svg.getBoundingClientRect()
+      const vb = wrap.__mermaidCurViewBox || getSvgViewBox(svg)
+      const x = vb[0] + (clientX - rect.left) * (vb[2] / rect.width)
+      const y = vb[1] + (clientY - rect.top) * (vb[3] / rect.height)
+      return { x, y, rect, vb }
+    }
+
+    const state = {
+      pointers: new Map(),
+      startVb: null,
+      startDist: 0,
+      startCenter: null
+    }
+
+    const clampVb = vb => {
+      const init = wrap.__mermaidInitViewBox || vb
+      const minW = init[2] * 0.1
+      const maxW = init[2] * 10
+      const minH = init[3] * 0.1
+      const maxH = init[3] * 10
+      vb[2] = clamp(vb[2], minW, maxW)
+      vb[3] = clamp(vb[3], minH, maxH)
+      return vb
+    }
+
+    const setCurVb = vb => {
+      vb = clampVb(vb)
+      wrap.__mermaidCurViewBox = vb
+      setSvgViewBox(svg, vb)
+    }
+
+    const onPointerDown = e => {
+      // Allow only primary button for mouse
+      if (e.pointerType === 'mouse' && e.button !== 0) return
+      svg.setPointerCapture(e.pointerId)
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      if (state.pointers.size === 1) {
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      } else if (state.pointers.size === 2) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        state.startDist = Math.hypot(dx, dy)
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        state.startCenter = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
+      }
+    }
+
+    const onPointerMove = e => {
+      if (!state.pointers.has(e.pointerId)) return
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      // Pan with 1 pointer
+      if (state.pointers.size === 1 && state.startVb) {
+        const p = [...state.pointers.values()][0]
+        const prev = { x: e.clientX - e.movementX, y: e.clientY - e.movementY }
+        // movementX/Y unreliable on touch, compute from stored last position
+        const last = wrap.__mermaidLastSinglePointer || p
+        const dxClient = p.x - last.x
+        const dyClient = p.y - last.y
+        wrap.__mermaidLastSinglePointer = p
+
+        const { rect } = clientToViewBox(p.x, p.y)
+        const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        const dx = dxClient * (vb[2] / rect.width)
+        const dy = dyClient * (vb[3] / rect.height)
+        setCurVb([vb[0] - dx, vb[1] - dy, vb[2], vb[3]])
+        return
+      }
+
+      // Pinch zoom with 2 pointers
+      if (state.pointers.size === 2 && state.startVb && state.startDist > 0) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        const dist = Math.hypot(dx, dy)
+        if (!dist) return
+        const factor = state.startDist / dist // dist bigger => zoom in (viewBox smaller)
+
+        const cx = (pts[0].x + pts[1].x) / 2
+        const cy = (pts[0].y + pts[1].y) / 2
+        const centerClient = { x: cx, y: cy }
+
+        const pxy = clientToViewBox(centerClient.x, centerClient.y)
+        const cpx = pxy.x
+        const cpy = pxy.y
+
+        const vb = zoomAtPoint(state.startVb, factor, cpx, cpy)
+        setCurVb(vb)
+      }
+    }
+
+    const onPointerUpOrCancel = e => {
+      state.pointers.delete(e.pointerId)
+      if (state.pointers.size === 0) {
+        state.startVb = null
+        state.startDist = 0
+        state.startCenter = null
+        wrap.__mermaidLastSinglePointer = null
+      } else if (state.pointers.size === 1) {
+        // reset single pointer baseline to avoid jump
+        wrap.__mermaidLastSinglePointer = [...state.pointers.values()][0]
+      }
+    }
+
+    // Wheel zoom (mouse/trackpad)
+    const onWheel = e => {
+      // ctrlKey on mac trackpad pinch; we treat both as zoom
+      e.preventDefault()
+      const delta = e.deltaY
+      const zoomFactor = delta > 0 ? 1.1 : 0.9
+      const { x, y } = clientToViewBox(e.clientX, e.clientY)
+      const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      setCurVb(zoomAtPoint(vb, zoomFactor, x, y))
+    }
+
+    const onDblClick = () => {
+      const init = wrap.__mermaidInitViewBox
+      if (!init) return
+      wrap.__mermaidCurViewBox = init.slice()
+      setSvgViewBox(svg, init)
+    }
+
+    svg.addEventListener('pointerdown', onPointerDown)
+    svg.addEventListener('pointermove', onPointerMove)
+    svg.addEventListener('pointerup', onPointerUpOrCancel)
+    svg.addEventListener('pointercancel', onPointerUpOrCancel)
+    svg.addEventListener('wheel', onWheel, { passive: false })
+    svg.addEventListener('dblclick', onDblClick)
+  }
+
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : ''
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+
+      // Clear old render (themeChange/pjax will rerun)
+      const oldSvg = item.querySelector('svg')
+      if (oldSvg) oldSvg.remove()
+      item.__mermaidGestureBound = false
+
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+        if (true) initMermaidGestures(item)
+        item.__mermaidOriginalSvg = svg
+        if (true) attachMermaidViewerButton(item)
+      }
+
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
 })()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

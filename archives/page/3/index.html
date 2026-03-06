@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>归档 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>归档 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="归档">
 <meta property="og:url" content="http://wshawk.github.io/archives/page/3/index.html">
 <meta property="og:site_name" content="wshawk&#39;s blog">
@@ -6,16 +6,105 @@
 <meta property="og:image" content="http://wshawk.github.io/img/avatar.jpg">
 <meta property="article:author" content="wshawk">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/archives/page/3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/archives/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  localSearch: undefined,
   translate: undefined,
-  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -23,7 +112,7 @@
     post: false
   },
   runtime: '',
-  date_suffix: {
+  dateSuffix: {
     just: '刚刚',
     min: '分钟前',
     hour: '小时前',
@@ -31,142 +120,436 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: '归档',
-  isPost: false,
-  isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2026-03-05 22:19:52'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="page-site-info"><h1 id="site-title">归档</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">文章总览 - 46</div><div class="article-sort"><div class="article-sort-item year">2022</div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/d940f18d.html" title="MySQL锁"><img src="/img/top.png" alt="MySQL锁" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div><a class="article-sort-item-title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）"><img src="/img/top.png" alt="SQL优化笔记（MySQL）" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div><a class="article-sort-item-title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/f91535f.html" title="MySQL事务"><img src="/img/top.png" alt="MySQL事务" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-23T15:30:31.000Z" title="发表于 2022-10-23 23:30:31">2022-10-23</time></div><a class="article-sort-item-title" href="/post/f91535f.html" title="MySQL事务">MySQL事务</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失"><img src="/img/top.png" alt="Github搭建Hexo双分支博客防止本地文件丢失" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></div><a class="article-sort-item-title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/b5f2cfa4.html" title="Tomcat概述"><img src="/img/top.png" alt="Tomcat概述" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></div><a class="article-sort-item-title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/b5f2cfa1.html" title="Tomcat 源码阅读环境搭建（9.0.53）"><img src="/img/top.png" alt="Tomcat 源码阅读环境搭建（9.0.53）" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-12T15:30:31.000Z" title="发表于 2022-04-12 23:30:31">2022-04-12</time></div><a class="article-sort-item-title" href="/post/b5f2cfa1.html" title="Tomcat 源码阅读环境搭建（9.0.53）">Tomcat 源码阅读环境搭建（9.0.53）</a></div></div><div class="article-sort-item year">2021</div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/b39fa119.html" title="高并发名词"><img src="/img/top.png" alt="高并发名词" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-22T15:30:31.000Z" title="发表于 2021-12-22 23:30:31">2021-12-22</time></div><a class="article-sort-item-title" href="/post/b39fa119.html" title="高并发名词">高并发名词</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/3857b8c0.html" title="HTTP的Content-Length头字段"><img src="/img/top.png" alt="HTTP的Content-Length头字段" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></div><a class="article-sort-item-title" href="/post/3857b8c0.html" title="HTTP的Content-Length头字段">HTTP的Content-Length头字段</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/a26b78e0.html" title="接口幂等性"><img src="/img/top.png" alt="接口幂等性" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></div><a class="article-sort-item-title" href="/post/a26b78e0.html" title="接口幂等性">接口幂等性</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/post/d30a1526.html" title="Linux安装Redis 6.0.5 ./install_server.sh报错"><img src="/img/top.png" alt="Linux安装Redis 6.0.5 ./install_server.sh报错" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-05-10T15:30:31.000Z" title="发表于 2021-05-10 23:30:31">2021-05-10</time></div><a class="article-sort-item-title" href="/post/d30a1526.html" title="Linux安装Redis 6.0.5 ./install_server.sh报错">Linux安装Redis 6.0.5 ./install_server.sh报错</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/209c3cee.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/209c3ceq.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot 启动时实现缓存预热"/></a><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/372de7ty.html" title="AI自动化协作体系的演进"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI自动化协作体系的演进"/></a><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a614.html" title="日志系统搭建"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志系统搭建"/></a><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+  pageType: 'archive'
+}</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/top.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">wshawk's blog</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">归档</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 46</div><div class="article-sort"><div class="article-sort-item year">2022</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-27T15:30:31.000Z" title="发表于 2022-10-27 23:30:31">2022-10-27</time></div><a class="article-sort-item-title" href="/post/d940f18d.html" title="MySQL锁">MySQL锁</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-25T15:30:31.000Z" title="发表于 2022-10-25 23:30:31">2022-10-25</time></div><a class="article-sort-item-title" href="/post/9ae99909.html" title="SQL优化笔记（MySQL）">SQL优化笔记（MySQL）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-23T15:30:31.000Z" title="发表于 2022-10-23 23:30:31">2022-10-23</time></div><a class="article-sort-item-title" href="/post/f91535f.html" title="MySQL事务">MySQL事务</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-10-17T16:28:30.000Z" title="发表于 2022-10-18 00:28:30">2022-10-18</time></div><a class="article-sort-item-title" href="/post/6c408847.html" title="Github搭建Hexo双分支博客防止本地文件丢失">Github搭建Hexo双分支博客防止本地文件丢失</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-16T15:30:31.000Z" title="发表于 2022-04-16 23:30:31">2022-04-16</time></div><a class="article-sort-item-title" href="/post/b5f2cfa4.html" title="Tomcat概述">Tomcat概述</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2022-04-12T15:30:31.000Z" title="发表于 2022-04-12 23:30:31">2022-04-12</time></div><a class="article-sort-item-title" href="/post/b5f2cfa1.html" title="Tomcat 源码阅读环境搭建（9.0.53）">Tomcat 源码阅读环境搭建（9.0.53）</a></div></div><div class="article-sort-item year">2021</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-22T15:30:31.000Z" title="发表于 2021-12-22 23:30:31">2021-12-22</time></div><a class="article-sort-item-title" href="/post/b39fa119.html" title="高并发名词">高并发名词</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></div><a class="article-sort-item-title" href="/post/3857b8c0.html" title="HTTP的Content-Length头字段">HTTP的Content-Length头字段</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-12-04T15:30:31.000Z" title="发表于 2021-12-04 23:30:31">2021-12-04</time></div><a class="article-sort-item-title" href="/post/a26b78e0.html" title="接口幂等性">接口幂等性</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2021-05-10T15:30:31.000Z" title="发表于 2021-05-10 23:30:31">2021-05-10</time></div><a class="article-sort-item-title" href="/post/d30a1526.html" title="Linux安装Redis 6.0.5 ./install_server.sh报错">Linux安装Redis 6.0.5 ./install_server.sh报错</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/archives/page/2/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/4/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">wshawk</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之redisDb">Redis之redisDb</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
-            </div>
-            <ul class="card-category-list" id="aside-cat-list">
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/AI/"><span class="card-category-list-name">AI</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/hexo/"><span class="card-category-list-name">hexo</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/"><span class="card-category-list-name">前端</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/"><span class="card-category-list-name">后端</span><span class="card-category-list-count">21</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/Java/"><span class="card-category-list-name">Java</span><span class="card-category-list-count">2</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">16</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/"><span class="card-category-list-name">网络</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.4em; color: #99a5b6">Java</a> <a href="/tags/JavaScript/" style="font-size: 1.2em; color: #999da3">JavaScript</a> <a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/MySQL/" style="font-size: 1.5em; color: #99a9bf">MySQL</a> <a href="/tags/Redis/" style="font-size: 1.3em; color: #99a1ac">Redis</a> <a href="/tags/Spring/" style="font-size: 1.3em; color: #99a1ac">Spring</a> <a href="/tags/SpringBoot/" style="font-size: 1.1em; color: #999">SpringBoot</a> <a href="/tags/Tomcat/" style="font-size: 1.2em; color: #999da3">Tomcat</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/redisDb/" style="font-size: 1.1em; color: #999">redisDb</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/" style="font-size: 1.1em; color: #999">主从同步</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" style="font-size: 1.2em; color: #999da3">参数校验</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.2em; color: #999da3">后端</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 1.1em; color: #999">日志</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 1.1em; color: #999">概念</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 1.1em; color: #999">缓存</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/03/"><span class="card-archive-list-date">三月 2026</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/02/"><span class="card-archive-list-date">二月 2026</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/12/"><span class="card-archive-list-date">十二月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/09/"><span class="card-archive-list-date">九月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/06/"><span class="card-archive-list-date">六月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/10/"><span class="card-archive-list-date">十月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">六月 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">46</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-03-05T14:19:52.263Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaidWrap.length) {
-    window.runMermaid = () => {
-      window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
-
-      Array.from($mermaidWrap).forEach((item, index) => {
-        const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-        const mermaidID = 'mermaid-' + index
-        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
-        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
-        })
-      })
-    }
-
-    const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
-    }
-
-    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Linux/" style="font-size: 1.3em; color: #99a1ac">Linux</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 1.2em; color: #999da3">后端</a> <a href="/tags/Vue/" style="font-size: 1.1em; color: #999">Vue</a> <a href="/tags/redisDb/" style="font-size: 1.1em; color: #999">redisDb</a> <a href="/tags/Spring/" style="font-size: 1.3em; color: #99a1ac">Spring</a> <a href="/tags/JDK/" style="font-size: 1.1em; color: #999">JDK</a> <a href="/tags/Java/" style="font-size: 1.4em; color: #99a5b6">Java</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 1.1em; color: #999">概念</a> <a href="/tags/SpringBoot/" style="font-size: 1.1em; color: #999">SpringBoot</a> <a href="/tags/hexo/" style="font-size: 1.1em; color: #999">hexo</a> <a href="/tags/%E6%97%A5%E5%BF%97/" style="font-size: 1.1em; color: #999">日志</a> <a href="/tags/%E6%97%B6%E9%97%B4%E6%88%B3/" style="font-size: 1.1em; color: #999">时间戳</a> <a href="/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">动态代理</a> <a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 1.1em; color: #999">缓存</a> <a href="/tags/Tomcat/" style="font-size: 1.2em; color: #999da3">Tomcat</a> <a href="/tags/%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C/" style="font-size: 1.2em; color: #999da3">参数校验</a> <a href="/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/" style="font-size: 1.1em; color: #999">主从同步</a> <a href="/tags/%E8%B8%A9%E5%9D%91/" style="font-size: 1.1em; color: #999">踩坑</a> <a href="/tags/Redis/" style="font-size: 1.3em; color: #99a1ac">Redis</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.1em; color: #999">随笔</a> <a href="/tags/MySQL/" style="font-size: 1.5em; color: #99a9bf">MySQL</a> <a href="/tags/%E4%BB%A3%E7%90%86/" style="font-size: 1.1em; color: #999">代理</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/JavaScript/" style="font-size: 1.2em; color: #999da3">JavaScript</a> <a href="/tags/HTTP/" style="font-size: 1.1em; color: #999">HTTP</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/03/">
+            <span class="card-archive-list-date">
+              三月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/12/">
+            <span class="card-archive-list-date">
+              十二月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/11/">
+            <span class="card-archive-list-date">
+              十一月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/09/">
+            <span class="card-archive-list-date">
+              九月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/10/">
+            <span class="card-archive-list-date">
+              十月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/06/">
+            <span class="card-archive-list-date">
+              六月 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">46</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">75.7k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-03-06T07:39:07.028Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By wshawk</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const parseViewBox = viewBox => {
+    if (!viewBox) return null
+    const parts = viewBox.trim().split(/[\s,]+/).map(n => Number(n))
+    if (parts.length !== 4 || parts.some(n => Number.isNaN(n))) return null
+    return parts
   }
+
+  const getSvgViewBox = svg => {
+    const attr = parseViewBox(svg.getAttribute('viewBox'))
+    if (attr) return attr
+
+    // Fallback: use bbox to build a viewBox
+    try {
+      const bbox = svg.getBBox()
+      if (bbox && bbox.width && bbox.height) return [bbox.x, bbox.y, bbox.width, bbox.height]
+    } catch (e) {
+      // getBBox may fail on some edge cases; ignore
+    }
+
+    const w = Number(svg.getAttribute('width')) || 0
+    const h = Number(svg.getAttribute('height')) || 0
+    if (w > 0 && h > 0) return [0, 0, w, h]
+    return [0, 0, 100, 100]
+  }
+
+  const setSvgViewBox = (svg, vb) => {
+    svg.setAttribute('viewBox', `${vb[0]} ${vb[1]} ${vb[2]} ${vb[3]}`)
+  }
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+  const openSvgInNewTab = ({ source, initViewBox }) => {
+    const getClonedSvg = () => {
+      if (typeof source === 'string') {
+        const template = document.createElement('template')
+        template.innerHTML = source.trim()
+        const svg = template.content.querySelector('svg')
+        return svg ? svg.cloneNode(true) : null
+      }
+      if (source && typeof source.cloneNode === 'function') {
+        return source.cloneNode(true)
+      }
+      return null
+    }
+
+    const clone = getClonedSvg()
+    if (!clone) return
+    if (initViewBox && initViewBox.length === 4) {
+      clone.setAttribute('viewBox', initViewBox.join(' '))
+    }
+    if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    if (!clone.getAttribute('xmlns:xlink') && clone.outerHTML.includes('xlink:')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
+    // inject background to match current theme
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    const bg = getComputedStyle(document.body).backgroundColor || (isDark ? '#1e1e1e' : '#ffffff')
+    if (!clone.style.background) clone.style.background = bg
+
+    const serializer = new XMLSerializer()
+    const svgSource = serializer.serializeToString(clone)
+    const htmlSource = `<!doctype html><html><head><meta charset="utf-8" />
+      <style>
+        html, body { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; background: ${bg}; }
+        svg { max-width: 100%; max-height: 100%; height: auto; width: auto; }
+      </style>
+      </head><body>${svgSource}</body></html>`
+    const blob = new Blob([htmlSource], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank', 'noopener')
+    setTimeout(() => URL.revokeObjectURL(url), 30000)
+  }
+
+  const attachMermaidViewerButton = wrap => {
+    let btn = wrap.querySelector('.mermaid-open-btn')
+    if (!btn) {
+      btn = document.createElement('button')
+      btn.type = 'button'
+      btn.className = 'mermaid-open-btn'
+      wrap.appendChild(btn)
+    }
+
+    btn.innerHTML = '<i class="fa fa-search fa-fw" aria-hidden="true"></i>'
+
+    if (!btn.__mermaidViewerBound) {
+      btn.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        const svg = wrap.__mermaidOriginalSvg || wrap.querySelector('svg')
+        if (!svg) return
+        const initViewBox = wrap.__mermaidInitViewBox
+        if (typeof svg === 'string') {
+          openSvgInNewTab({ source: svg, initViewBox })
+          return
+        }
+        openSvgInNewTab({ source: svg, initViewBox })
+      })
+      btn.__mermaidViewerBound = true
+    }
+  }
+
+  // Zoom around a point (px, py) in the SVG viewport (in viewBox coordinates)
+  const zoomAtPoint = (vb, factor, px, py) => {
+    const w = vb[2] * factor
+    const h = vb[3] * factor
+    const nx = px - (px - vb[0]) * factor
+    const ny = py - (py - vb[1]) * factor
+    return [nx, ny, w, h]
+  }
+
+  const initMermaidGestures = wrap => {
+    const svg = wrap.querySelector('svg')
+    if (!svg) return
+
+    // Ensure viewBox exists so gestures always work
+    const initVb = getSvgViewBox(svg)
+    wrap.__mermaidInitViewBox = initVb
+    wrap.__mermaidCurViewBox = initVb.slice()
+    setSvgViewBox(svg, initVb)
+
+    // Avoid binding multiple times on themeChange/pjax
+    if (wrap.__mermaidGestureBound) return
+    wrap.__mermaidGestureBound = true
+
+    // Helper: map client (viewport) coordinate -> viewBox coordinate
+    const clientToViewBox = (clientX, clientY) => {
+      const rect = svg.getBoundingClientRect()
+      const vb = wrap.__mermaidCurViewBox || getSvgViewBox(svg)
+      const x = vb[0] + (clientX - rect.left) * (vb[2] / rect.width)
+      const y = vb[1] + (clientY - rect.top) * (vb[3] / rect.height)
+      return { x, y, rect, vb }
+    }
+
+    const state = {
+      pointers: new Map(),
+      startVb: null,
+      startDist: 0,
+      startCenter: null
+    }
+
+    const clampVb = vb => {
+      const init = wrap.__mermaidInitViewBox || vb
+      const minW = init[2] * 0.1
+      const maxW = init[2] * 10
+      const minH = init[3] * 0.1
+      const maxH = init[3] * 10
+      vb[2] = clamp(vb[2], minW, maxW)
+      vb[3] = clamp(vb[3], minH, maxH)
+      return vb
+    }
+
+    const setCurVb = vb => {
+      vb = clampVb(vb)
+      wrap.__mermaidCurViewBox = vb
+      setSvgViewBox(svg, vb)
+    }
+
+    const onPointerDown = e => {
+      // Allow only primary button for mouse
+      if (e.pointerType === 'mouse' && e.button !== 0) return
+      svg.setPointerCapture(e.pointerId)
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      if (state.pointers.size === 1) {
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      } else if (state.pointers.size === 2) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        state.startDist = Math.hypot(dx, dy)
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        state.startCenter = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
+      }
+    }
+
+    const onPointerMove = e => {
+      if (!state.pointers.has(e.pointerId)) return
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      // Pan with 1 pointer
+      if (state.pointers.size === 1 && state.startVb) {
+        const p = [...state.pointers.values()][0]
+        const prev = { x: e.clientX - e.movementX, y: e.clientY - e.movementY }
+        // movementX/Y unreliable on touch, compute from stored last position
+        const last = wrap.__mermaidLastSinglePointer || p
+        const dxClient = p.x - last.x
+        const dyClient = p.y - last.y
+        wrap.__mermaidLastSinglePointer = p
+
+        const { rect } = clientToViewBox(p.x, p.y)
+        const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        const dx = dxClient * (vb[2] / rect.width)
+        const dy = dyClient * (vb[3] / rect.height)
+        setCurVb([vb[0] - dx, vb[1] - dy, vb[2], vb[3]])
+        return
+      }
+
+      // Pinch zoom with 2 pointers
+      if (state.pointers.size === 2 && state.startVb && state.startDist > 0) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        const dist = Math.hypot(dx, dy)
+        if (!dist) return
+        const factor = state.startDist / dist // dist bigger => zoom in (viewBox smaller)
+
+        const cx = (pts[0].x + pts[1].x) / 2
+        const cy = (pts[0].y + pts[1].y) / 2
+        const centerClient = { x: cx, y: cy }
+
+        const pxy = clientToViewBox(centerClient.x, centerClient.y)
+        const cpx = pxy.x
+        const cpy = pxy.y
+
+        const vb = zoomAtPoint(state.startVb, factor, cpx, cpy)
+        setCurVb(vb)
+      }
+    }
+
+    const onPointerUpOrCancel = e => {
+      state.pointers.delete(e.pointerId)
+      if (state.pointers.size === 0) {
+        state.startVb = null
+        state.startDist = 0
+        state.startCenter = null
+        wrap.__mermaidLastSinglePointer = null
+      } else if (state.pointers.size === 1) {
+        // reset single pointer baseline to avoid jump
+        wrap.__mermaidLastSinglePointer = [...state.pointers.values()][0]
+      }
+    }
+
+    // Wheel zoom (mouse/trackpad)
+    const onWheel = e => {
+      // ctrlKey on mac trackpad pinch; we treat both as zoom
+      e.preventDefault()
+      const delta = e.deltaY
+      const zoomFactor = delta > 0 ? 1.1 : 0.9
+      const { x, y } = clientToViewBox(e.clientX, e.clientY)
+      const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      setCurVb(zoomAtPoint(vb, zoomFactor, x, y))
+    }
+
+    const onDblClick = () => {
+      const init = wrap.__mermaidInitViewBox
+      if (!init) return
+      wrap.__mermaidCurViewBox = init.slice()
+      setSvgViewBox(svg, init)
+    }
+
+    svg.addEventListener('pointerdown', onPointerDown)
+    svg.addEventListener('pointermove', onPointerMove)
+    svg.addEventListener('pointerup', onPointerUpOrCancel)
+    svg.addEventListener('pointercancel', onPointerUpOrCancel)
+    svg.addEventListener('wheel', onWheel, { passive: false })
+    svg.addEventListener('dblclick', onDblClick)
+  }
+
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : ''
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+
+      // Clear old render (themeChange/pjax will rerun)
+      const oldSvg = item.querySelector('svg')
+      if (oldSvg) oldSvg.remove()
+      item.__mermaidGestureBound = false
+
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+        if (true) initMermaidGestures(item)
+        item.__mermaidOriginalSvg = svg
+        if (true) attachMermaidViewerButton(item)
+      }
+
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
 })()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

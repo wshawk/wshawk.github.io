@@ -1,26 +1,130 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>MySQL之InnoDB行记录 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之InnoDB行记录">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>MySQL之InnoDB行记录 | wshawk's blog</title><meta name="author" content="wshawk,ws_hawk@foxmail.com"><meta name="copyright" content="wshawk"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="MySQL之InnoDB行记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL之InnoDB行记录">
 <meta property="og:url" content="http://wshawk.github.io/post/81fc7f34.html">
 <meta property="og:site_name" content="wshawk&#39;s blog">
 <meta property="og:description" content="MySQL之InnoDB行记录">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://wshawk.github.io/img/top.png">
+<meta property="og:image" content="http://wshawk.github.io/img/avatar.jpg">
 <meta property="article:published_time" content="2022-11-10T12:21:06.000Z">
 <meta property="article:modified_time" content="2022-11-14T14:50:08.719Z">
 <meta property="article:author" content="wshawk">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://wshawk.github.io/img/top.png"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/81fc7f34"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+<meta name="twitter:image" content="http://wshawk.github.io/img/avatar.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MySQL之InnoDB行记录",
+  "url": "http://wshawk.github.io/post/81fc7f34.html",
+  "image": "http://wshawk.github.io/img/avatar.jpg",
+  "datePublished": "2022-11-10T12:21:06.000Z",
+  "dateModified": "2022-11-14T14:50:08.719Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "wshawk",
+      "url": "http://wshawk.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://wshawk.github.io/post/81fc7f34.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  localSearch: undefined,
   translate: undefined,
-  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
-  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
     success: '复制成功',
-    error: '复制错误',
+    error: '复制失败',
     noSupport: '浏览器不支持'
   },
   relativeDate: {
@@ -28,7 +132,7 @@
     post: false
   },
   runtime: '',
-  date_suffix: {
+  dateSuffix: {
     just: '刚刚',
     min: '分钟前',
     hour: '小时前',
@@ -36,113 +140,26 @@
     month: '个月前'
   },
   copyright: undefined,
-  lightbox: 'fancybox',
+  lightbox: 'null',
   Snackbar: undefined,
-  source: {
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
-    }
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
   },
   isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
   title: 'MySQL之InnoDB行记录',
-  isPost: true,
-  isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2022-11-14 22:50:08'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/top.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">wshawk's blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MySQL之InnoDB行记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-10T12:21:06.000Z" title="发表于 2022-11-10 20:21:06">2022-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-14T14:50:08.719Z" title="更新于 2022-11-14 22:50:08">2022-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="MySQL之InnoDB行记录"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="MySQL之InnoDB行记录"><a href="#MySQL之InnoDB行记录" class="headerlink" title="MySQL之InnoDB行记录"></a>MySQL之InnoDB行记录</h1><p><code>MySQL</code> 不同的存储引擎中真实数据存放的格式一般是不同的，下文简单介绍<code>InnoDB</code>中的行记录格式。</p>
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 5.4.2"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/top.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">wshawk's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">MySQL之InnoDB行记录</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">MySQL之InnoDB行记录</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-10T12:21:06.000Z" title="发表于 2022-11-10 20:21:06">2022-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-14T14:50:08.719Z" title="更新于 2022-11-14 22:50:08">2022-11-14</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">3.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;It has been&quot;,&quot;messageNext&quot;:&quot;days since the last update, the content of the article may be outdated.&quot;,&quot;postUpdate&quot;:&quot;2022-11-14 22:50:08&quot;}" hidden></div><h1 id="MySQL之InnoDB行记录"><a href="#MySQL之InnoDB行记录" class="headerlink" title="MySQL之InnoDB行记录"></a>MySQL之InnoDB行记录</h1><p><code>MySQL</code> 不同的存储引擎中真实数据存放的格式一般是不同的，下文简单介绍<code>InnoDB</code>中的行记录格式。</p>
 <p><code>InnoDB</code>存储引擎目前共支持四种行格式，如下表：</p>
 <table>
 <thead>
@@ -392,28 +409,325 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32099833/article/details/123078604"> MySQL行格式</a></li>
 <li>《从根上理解MySQL是如何运行的》</li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/81fc7f34.html">http://wshawk.github.io/post/81fc7f34.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post_share"><div class="social-share" data-image="/img/top.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/ae3a4486.html"><img class="prev-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL之日志写入顺序</div></div></a></div><div class="next-post pull-right"><a href="/post/ae3a4492.html"><img class="next-cover" src="/img/top.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL之Redo Log</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/ffd4a644.html" title="MySQL之InnoDB存储结构"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-10-14</div><div class="title">MySQL之InnoDB存储结构</div></div></a></div><div><a href="/post/b70a2522.html" title="MySQL之binlog"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">MySQL之binlog</div></div></a></div><div><a href="/post/ae3a4477.html" title="MySQL之高可用集群方案"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-20</div><div class="title">MySQL之高可用集群方案</div></div></a></div><div><a href="/post/ae3a4474.html" title="MySQL之主从复制"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-12</div><div class="title">MySQL之主从复制</div></div></a></div><div><a href="/post/ae3a4483.html" title="MySQL之Undo Log"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-02</div><div class="title">MySQL之Undo Log</div></div></a></div><div><a href="/post/b70a251f.html" title="MySQL之InnoDB Buffer Pool"><img class="cover" src="/img/top.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="title">MySQL之InnoDB Buffer Pool</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">wshawk</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8BInnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">MySQL之InnoDB行记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Compact"><span class="toc-number">1.1.</span> <span class="toc-text">Compact</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E7%9A%84%E9%A2%9D%E5%A4%96%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">记录的额外信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%95%BF%E5%AD%97%E6%AE%B5%E9%95%BF%E5%BA%A6%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">变长字段长度列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NULL%E5%80%BC%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">NULL值列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">记录头信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant"><span class="toc-number">1.2.</span> <span class="toc-text">Redundant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic"><span class="toc-number">1.3.</span> <span class="toc-text">Dynamic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Compressed"><span class="toc-number">1.4.</span> <span class="toc-text">Compressed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E6%BA%A2%E5%87%BA"><span class="toc-number">1.5.</span> <span class="toc-text">行溢出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.6.</span> <span class="toc-text">查看、修改行格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.2.</span> <span class="toc-text">修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.7.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/209c3cee.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/209c3ceq.html" title="Redis之主从复制"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis之主从复制"/></a><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot 启动时实现缓存预热"/></a><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/372de7ty.html" title="AI自动化协作体系的演进"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AI自动化协作体系的演进"/></a><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/ffd4a614.html" title="日志系统搭建"><img src="/img/top.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="日志系统搭建"/></a><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By wshawk</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
-  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
-  if ($mermaidWrap.length) {
-    window.runMermaid = () => {
-      window.loadMermaid = true
-      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
-
-      Array.from($mermaidWrap).forEach((item, index) => {
-        const mermaidSrc = item.firstElementChild
-        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
-        const mermaidID = 'mermaid-' + index
-        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
-        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
-          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
-        })
-      })
-    }
-
-    const loadMermaid = () => {
-      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
-    }
-
-    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://wshawk.github.io">wshawk</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://wshawk.github.io/post/81fc7f34.html">http://wshawk.github.io/post/81fc7f34.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://wshawk.github.io" target="_blank">wshawk's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/MySQL/">MySQL</a></div><div class="post-share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/post/ae3a4486.html" title="MySQL之日志写入顺序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">MySQL之日志写入顺序</div></div><div class="info-2"><div class="info-item-1">MySQL之日志写入顺序当MySQL执行一条UPDATE语句时，InnoDB存储引擎和Server层会协同工作，按照严格的顺序写入undo log、redo log和binlog，并通过两阶段提交保证数据一致性和崩溃恢复能力。以下是详细的执行流程和日志写入顺序： 1. 更新语句执行前的准备 客户端发送UPDATE语句，MySQL Server通过连接器、分析器、优化器后，调用InnoDB的接口执行更新。 如果更新的数据页不在内存的缓冲池中，InnoDB会先将该页从磁盘读入缓冲池。  2. 记录 undo log（回滚日志） 顺序：第1步写入在修改数据之前，InnoDB会先将修改前的旧值写入**undo log**，记录到undo log buffer中。   例如：将“修改前”的整行数据或主键信息保存下来，用于事务回滚或MVCC。   undo log本身也是物理修改（因为undo页也需要持久化），因此对undo页的修改也会在稍后被redo log保护。    3. 修改缓冲池中的数据页 顺序：第2步（内存操作）在内存中更新缓冲池里的数据页，将新值写入，此时该页变为“脏页”（内存...</div></div></div></a><a class="pagination-related" href="/post/ae3a4492.html" title="MySQL之Redo Log"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">MySQL之Redo Log</div></div><div class="info-2"><div class="info-item-1">MySQL之Redo Log简介重做日志，也就是Redo Log是MySQL中InnoDB存储引擎特有的事务日志，它是一种物理日志，存储着数据被修改的具体的数据值。 Redo Log主要有以下作用  实现事务的持久性，让 MySQL 有 crash-safe 的能力，能够保证 MySQL 在任何时间段突然崩溃，重启后之前已提交的记录都不会丢失； 将写操作从「随机写」变成了「顺序写」，提升MySQL 写入磁盘的性能。  2 万字 + 30 张图 ｜ 细聊 MySQL undo log、redo log、binlog 有什么用？ - 知乎 (zhihu.com) 背景MySQL中更新数据的流程大概如下：   将数据从磁盘中读取到内存中(Buffer Pool) 在内存中修改数据，产生脏页 将脏页刷回磁盘   说明：  脏页：修改后的数据，和磁盘上的数据会不一致，称这种有差异的数据为脏页 页：此处留坑，后面补充。  通过上面的更新流程，大概会产生下列问题：   如果每次有脏页产生就刷回磁盘，就会产生海量IO，严重影响性能 如果在刷回磁盘的过程中出现故障，就会造成数据的丢失   MySQ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/post/f91535f.html" title="MySQL事务"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-23</div><div class="info-item-2">MySQL事务</div></div><div class="info-2"><div class="info-item-1">MySQL事务(InnoDB)事务的概念事务就是一个不可分割的操作单元，其中的多个操作被认为是一个整体，要么全部执行成功，要么执行失败。 事务的特性通常来说，我们一般认为事务具有四个特性。 隔离性 不同的事务之间，是互相隔离的，不会互相影响。 通过锁和MVCC来实现。  持久性 一旦事务执行完成，那么对事务中影响到的数据的变化，是永久的，一般是指持久化到磁盘上或者日志文件中。 通过redo log来实现  原子性 一个事务中的多个操作，被认为是一个整体，不可再分割，只要其中一个操作执行失败，就认为整个事务执行失败了。 基于undo log。  一致性 事务执行完成后，对于数据的变化，要求要一致。举例来说，转帐，A向B转账，B向C转账，在两个操作结束之后，数据结果要求一致。 通过回滚，以及恢复，和在并发环境下的隔离做到一致性，也就是基于上述的 redo log、undo log、MVCC等一起实现。  并发事务可能产生的问题数据丢失 多个事务选择同一行数据进行更新，最后一个提交的事务所做的修改覆盖了前面其他事务提交的更新。  脏读 事务A可以读到事务B未commit的数据  不可重...</div></div></div></a><a class="pagination-related" href="/post/b70a2522.html" title="MySQL之binlog"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="info-item-2">MySQL之binlog</div></div><div class="info-2"><div class="info-item-1">MySQL之binlogMySQL的binlog是由MySQL Server生成的，记录了所有的DDL和DML语句（不会记录查询类的操作，比如 SELECT 和 SHOW），以事件形式记录，还包含语句执行所消耗的时间，并且是事务安全型的。 开启binlogMySQL的binlog日志 - 马丁传奇 - 博客园 (cnblogs.com) 12345678vi编辑打开mysql配置文件    # vi /usr/local/mysql/etc/my.cnf    在[mysqld] 区块    设置/添加 log-bin=mysql-bin  确认是打开状态(值 mysql-bin 是日志的基本名或前缀名)；    重启mysqld服务使配置生效    # pkill mysqld    # /usr/local/mysql/bin/mysqld_safe --user=mysql &amp;    查看binlog是否开启1234567show variables like &#x27;log_%&#x27;;+----------------------------------...</div></div></div></a><a class="pagination-related" href="/post/ffd4a6fe.html" title="MySQL之InnoDB数据页"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-14</div><div class="info-item-2">MySQL之InnoDB数据页</div></div><div class="info-2"><div class="info-item-1">MySQL之InnoDB数据页页是InnoDB管理存储空间的基本单位，一个页的大小一般是 16KB 。 InnoDB 为了不同的目的而设计了许多种不同类型的页 ，下文主要讲述存储数据行的页，官方称之为索引页。 页 一般由以下七个部分组成。  File Header (38字节) ： 文件头，存放页的一些通用信息 Page Header (56字节)：页面头，存放数据页专有的一些信息 Infimum + Superemum (26字节)：两个虚拟的行记录，分别指向当前页的最小记录和最大记录 User Records (大小不确定，数据行信息)： 实际存储的行记录内容 Free Space (大小不确定)：空闲空间，页中尚未使用的空间 Page Directory (大小不确定)：页面目录，页中某些记录的相对位置 File Tailer (8字节)：文件尾部，校验页是否完整  Infimum、Superemum Infimum记录（也就是最小记录）的下一条记录就是 本页中主键值最小的用户记录， 本页中主键值最大的用户记录的下一条记录就是 Supremum记录（也就是最大记录） Pag...</div></div></div></a><a class="pagination-related" href="/post/ae3a4486.html" title="MySQL之日志写入顺序"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-13</div><div class="info-item-2">MySQL之日志写入顺序</div></div><div class="info-2"><div class="info-item-1">MySQL之日志写入顺序当MySQL执行一条UPDATE语句时，InnoDB存储引擎和Server层会协同工作，按照严格的顺序写入undo log、redo log和binlog，并通过两阶段提交保证数据一致性和崩溃恢复能力。以下是详细的执行流程和日志写入顺序： 1. 更新语句执行前的准备 客户端发送UPDATE语句，MySQL Server通过连接器、分析器、优化器后，调用InnoDB的接口执行更新。 如果更新的数据页不在内存的缓冲池中，InnoDB会先将该页从磁盘读入缓冲池。  2. 记录 undo log（回滚日志） 顺序：第1步写入在修改数据之前，InnoDB会先将修改前的旧值写入**undo log**，记录到undo log buffer中。   例如：将“修改前”的整行数据或主键信息保存下来，用于事务回滚或MVCC。   undo log本身也是物理修改（因为undo页也需要持久化），因此对undo页的修改也会在稍后被redo log保护。    3. 修改缓冲池中的数据页 顺序：第2步（内存操作）在内存中更新缓冲池里的数据页，将新值写入，此时该页变为“脏页”（内存...</div></div></div></a><a class="pagination-related" href="/post/ae3a4474.html" title="MySQL之主从复制"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-03-12</div><div class="info-item-2">MySQL之主从复制</div></div><div class="info-2"><div class="info-item-1">MySQL之主从复制小白都能懂的Mysql主从复制原理（原理+实操） (qq.com) MySQL 主从复制原理不再难 - rickiyang - 博客园 (cnblogs.com) 概念MySQL 主从复制是指数据可以从一个MySQL数据库服务器主节点复制到一个或多个从节点。 MySQL 默认采用异步复制方式，这样从节点不用一直访问主服务器来更新自己的数据，数据的更新可以在远程连接上进行，从节点可以复制主数据库中的所有数据库或者特定的数据库，或者特定的表。 作用主从复制是MySQL高可用集群的基石，可以实现实时灾备、读写分离、高可用。 原理MySQL的主从复制是基于binlog来实现的，因为binlog记录了数据库中所有数据的改动。 根据binlog的记录的数据格式不同，复制的数据也有区别，目前主要有以下三种：  基于行的复制：binlog为ROW格式，把改变的内容复制过去，而不是把命令在从服务器上执行一遍. 从mysql5.0开始支持 基于语句的复制：binlog为STATEMENT格式，在主服务器执行SQL语句，在从服务器执行同样语句。 混合类型的复制：binlog为MIX...</div></div></div></a><a class="pagination-related" href="/post/d940f18d.html" title="MySQL锁"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-27</div><div class="info-item-2">MySQL锁</div></div><div class="info-2"><div class="info-item-1">MySQL锁[TOC]  按照锁思想分类乐观锁 需要应用程序实现，MySQL自身并未实现。  悲观锁按照锁类型分类读锁（共享锁、S锁）  加了读锁的事务，允许该事务进行读，不允许其他事务进行修改 同一行数据，可以被多个事务获得读锁 其他事务不能再获取写锁，只能等获得读锁的所有事务释放后，才能加写锁   写锁（排他锁、X锁）  一个事务获取了写锁，那么该事务可以进行数据的查看及修改 在该事务提交（释放锁）之前，不允许其他事务对该数据进行读操作或者写操作，会被阻塞住 即添加了写锁之后，只允许拥有该锁的事务进行读、写   意向锁  意向锁的主要用途是显示某人正在锁定一行，或者将要锁定表中的一行 想获取读锁或者写锁，必须先获取意向锁 申请意向锁的动作是数据库自动完成的   意向共享锁（IS Lock）意向排他锁（IX Lock）按照锁级别分类全局锁（数据库级别） FTWRL主要包括3个步骤：  上全局读锁(lock_global_read_lock) 清理表缓存(close_cached_tables) 上全局COMMIT锁(make_global_read_lock_block_com...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">wshawk</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/wshawk" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:wshawk@foxmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%B9%8BInnoDB%E8%A1%8C%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">MySQL之InnoDB行记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Compact"><span class="toc-number">1.1.</span> <span class="toc-text">Compact</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E7%9A%84%E9%A2%9D%E5%A4%96%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">记录的额外信息</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%98%E9%95%BF%E5%AD%97%E6%AE%B5%E9%95%BF%E5%BA%A6%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">变长字段长度列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NULL%E5%80%BC%E5%88%97%E8%A1%A8"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">NULL值列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">记录头信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redundant"><span class="toc-number">1.2.</span> <span class="toc-text">Redundant</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dynamic"><span class="toc-number">1.3.</span> <span class="toc-text">Dynamic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Compressed"><span class="toc-number">1.4.</span> <span class="toc-text">Compressed</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E6%BA%A2%E5%87%BA"><span class="toc-number">1.5.</span> <span class="toc-text">行溢出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E3%80%81%E4%BF%AE%E6%94%B9%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.6.</span> <span class="toc-text">查看、修改行格式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text">查看</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9"><span class="toc-number">1.6.2.</span> <span class="toc-text">修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">1.7.</span> <span class="toc-text">参考</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3ceq.html" title="Redis之redisDb">Redis之redisDb</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/209c3cee.html" title="Redis之主从复制">Redis之主从复制</a><time datetime="2026-03-04T09:38:45.000Z" title="发表于 2026-03-04 17:38:45">2026-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/3b7df5c5.html" title="SpringBoot 启动时实现缓存预热">SpringBoot 启动时实现缓存预热</a><time datetime="2026-02-28T14:51:31.000Z" title="发表于 2026-02-28 22:51:31">2026-02-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/372de7ty.html" title="AI自动化协作体系的演进">AI自动化协作体系的演进</a><time datetime="2025-12-01T18:30:31.000Z" title="发表于 2025-12-02 02:30:31">2025-12-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/ffd4a614.html" title="日志系统搭建">日志系统搭建</a><time datetime="2025-11-14T11:27:12.000Z" title="发表于 2025-11-14 19:27:12">2025-11-14</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2020 - 2026 By wshawk</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const parseViewBox = viewBox => {
+    if (!viewBox) return null
+    const parts = viewBox.trim().split(/[\s,]+/).map(n => Number(n))
+    if (parts.length !== 4 || parts.some(n => Number.isNaN(n))) return null
+    return parts
   }
+
+  const getSvgViewBox = svg => {
+    const attr = parseViewBox(svg.getAttribute('viewBox'))
+    if (attr) return attr
+
+    // Fallback: use bbox to build a viewBox
+    try {
+      const bbox = svg.getBBox()
+      if (bbox && bbox.width && bbox.height) return [bbox.x, bbox.y, bbox.width, bbox.height]
+    } catch (e) {
+      // getBBox may fail on some edge cases; ignore
+    }
+
+    const w = Number(svg.getAttribute('width')) || 0
+    const h = Number(svg.getAttribute('height')) || 0
+    if (w > 0 && h > 0) return [0, 0, w, h]
+    return [0, 0, 100, 100]
+  }
+
+  const setSvgViewBox = (svg, vb) => {
+    svg.setAttribute('viewBox', `${vb[0]} ${vb[1]} ${vb[2]} ${vb[3]}`)
+  }
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v))
+
+  const openSvgInNewTab = ({ source, initViewBox }) => {
+    const getClonedSvg = () => {
+      if (typeof source === 'string') {
+        const template = document.createElement('template')
+        template.innerHTML = source.trim()
+        const svg = template.content.querySelector('svg')
+        return svg ? svg.cloneNode(true) : null
+      }
+      if (source && typeof source.cloneNode === 'function') {
+        return source.cloneNode(true)
+      }
+      return null
+    }
+
+    const clone = getClonedSvg()
+    if (!clone) return
+    if (initViewBox && initViewBox.length === 4) {
+      clone.setAttribute('viewBox', initViewBox.join(' '))
+    }
+    if (!clone.getAttribute('xmlns')) clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg')
+    if (!clone.getAttribute('xmlns:xlink') && clone.outerHTML.includes('xlink:')) {
+      clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink')
+    }
+    // inject background to match current theme
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    const bg = getComputedStyle(document.body).backgroundColor || (isDark ? '#1e1e1e' : '#ffffff')
+    if (!clone.style.background) clone.style.background = bg
+
+    const serializer = new XMLSerializer()
+    const svgSource = serializer.serializeToString(clone)
+    const htmlSource = `<!doctype html><html><head><meta charset="utf-8" />
+      <style>
+        html, body { width: 100%; height: 100%; margin: 0; display: flex; align-items: center; justify-content: center; background: ${bg}; }
+        svg { max-width: 100%; max-height: 100%; height: auto; width: auto; }
+      </style>
+      </head><body>${svgSource}</body></html>`
+    const blob = new Blob([htmlSource], { type: 'text/html;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank', 'noopener')
+    setTimeout(() => URL.revokeObjectURL(url), 30000)
+  }
+
+  const attachMermaidViewerButton = wrap => {
+    let btn = wrap.querySelector('.mermaid-open-btn')
+    if (!btn) {
+      btn = document.createElement('button')
+      btn.type = 'button'
+      btn.className = 'mermaid-open-btn'
+      wrap.appendChild(btn)
+    }
+
+    btn.innerHTML = '<i class="fa fa-search fa-fw" aria-hidden="true"></i>'
+
+    if (!btn.__mermaidViewerBound) {
+      btn.addEventListener('click', e => {
+        e.preventDefault()
+        e.stopPropagation()
+        const svg = wrap.__mermaidOriginalSvg || wrap.querySelector('svg')
+        if (!svg) return
+        const initViewBox = wrap.__mermaidInitViewBox
+        if (typeof svg === 'string') {
+          openSvgInNewTab({ source: svg, initViewBox })
+          return
+        }
+        openSvgInNewTab({ source: svg, initViewBox })
+      })
+      btn.__mermaidViewerBound = true
+    }
+  }
+
+  // Zoom around a point (px, py) in the SVG viewport (in viewBox coordinates)
+  const zoomAtPoint = (vb, factor, px, py) => {
+    const w = vb[2] * factor
+    const h = vb[3] * factor
+    const nx = px - (px - vb[0]) * factor
+    const ny = py - (py - vb[1]) * factor
+    return [nx, ny, w, h]
+  }
+
+  const initMermaidGestures = wrap => {
+    const svg = wrap.querySelector('svg')
+    if (!svg) return
+
+    // Ensure viewBox exists so gestures always work
+    const initVb = getSvgViewBox(svg)
+    wrap.__mermaidInitViewBox = initVb
+    wrap.__mermaidCurViewBox = initVb.slice()
+    setSvgViewBox(svg, initVb)
+
+    // Avoid binding multiple times on themeChange/pjax
+    if (wrap.__mermaidGestureBound) return
+    wrap.__mermaidGestureBound = true
+
+    // Helper: map client (viewport) coordinate -> viewBox coordinate
+    const clientToViewBox = (clientX, clientY) => {
+      const rect = svg.getBoundingClientRect()
+      const vb = wrap.__mermaidCurViewBox || getSvgViewBox(svg)
+      const x = vb[0] + (clientX - rect.left) * (vb[2] / rect.width)
+      const y = vb[1] + (clientY - rect.top) * (vb[3] / rect.height)
+      return { x, y, rect, vb }
+    }
+
+    const state = {
+      pointers: new Map(),
+      startVb: null,
+      startDist: 0,
+      startCenter: null
+    }
+
+    const clampVb = vb => {
+      const init = wrap.__mermaidInitViewBox || vb
+      const minW = init[2] * 0.1
+      const maxW = init[2] * 10
+      const minH = init[3] * 0.1
+      const maxH = init[3] * 10
+      vb[2] = clamp(vb[2], minW, maxW)
+      vb[3] = clamp(vb[3], minH, maxH)
+      return vb
+    }
+
+    const setCurVb = vb => {
+      vb = clampVb(vb)
+      wrap.__mermaidCurViewBox = vb
+      setSvgViewBox(svg, vb)
+    }
+
+    const onPointerDown = e => {
+      // Allow only primary button for mouse
+      if (e.pointerType === 'mouse' && e.button !== 0) return
+      svg.setPointerCapture(e.pointerId)
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      if (state.pointers.size === 1) {
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      } else if (state.pointers.size === 2) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        state.startDist = Math.hypot(dx, dy)
+        state.startVb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        state.startCenter = { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
+      }
+    }
+
+    const onPointerMove = e => {
+      if (!state.pointers.has(e.pointerId)) return
+      state.pointers.set(e.pointerId, { x: e.clientX, y: e.clientY })
+
+      // Pan with 1 pointer
+      if (state.pointers.size === 1 && state.startVb) {
+        const p = [...state.pointers.values()][0]
+        const prev = { x: e.clientX - e.movementX, y: e.clientY - e.movementY }
+        // movementX/Y unreliable on touch, compute from stored last position
+        const last = wrap.__mermaidLastSinglePointer || p
+        const dxClient = p.x - last.x
+        const dyClient = p.y - last.y
+        wrap.__mermaidLastSinglePointer = p
+
+        const { rect } = clientToViewBox(p.x, p.y)
+        const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+        const dx = dxClient * (vb[2] / rect.width)
+        const dy = dyClient * (vb[3] / rect.height)
+        setCurVb([vb[0] - dx, vb[1] - dy, vb[2], vb[3]])
+        return
+      }
+
+      // Pinch zoom with 2 pointers
+      if (state.pointers.size === 2 && state.startVb && state.startDist > 0) {
+        const pts = [...state.pointers.values()]
+        const dx = pts[0].x - pts[1].x
+        const dy = pts[0].y - pts[1].y
+        const dist = Math.hypot(dx, dy)
+        if (!dist) return
+        const factor = state.startDist / dist // dist bigger => zoom in (viewBox smaller)
+
+        const cx = (pts[0].x + pts[1].x) / 2
+        const cy = (pts[0].y + pts[1].y) / 2
+        const centerClient = { x: cx, y: cy }
+
+        const pxy = clientToViewBox(centerClient.x, centerClient.y)
+        const cpx = pxy.x
+        const cpy = pxy.y
+
+        const vb = zoomAtPoint(state.startVb, factor, cpx, cpy)
+        setCurVb(vb)
+      }
+    }
+
+    const onPointerUpOrCancel = e => {
+      state.pointers.delete(e.pointerId)
+      if (state.pointers.size === 0) {
+        state.startVb = null
+        state.startDist = 0
+        state.startCenter = null
+        wrap.__mermaidLastSinglePointer = null
+      } else if (state.pointers.size === 1) {
+        // reset single pointer baseline to avoid jump
+        wrap.__mermaidLastSinglePointer = [...state.pointers.values()][0]
+      }
+    }
+
+    // Wheel zoom (mouse/trackpad)
+    const onWheel = e => {
+      // ctrlKey on mac trackpad pinch; we treat both as zoom
+      e.preventDefault()
+      const delta = e.deltaY
+      const zoomFactor = delta > 0 ? 1.1 : 0.9
+      const { x, y } = clientToViewBox(e.clientX, e.clientY)
+      const vb = (wrap.__mermaidCurViewBox || getSvgViewBox(svg)).slice()
+      setCurVb(zoomAtPoint(vb, zoomFactor, x, y))
+    }
+
+    const onDblClick = () => {
+      const init = wrap.__mermaidInitViewBox
+      if (!init) return
+      wrap.__mermaidCurViewBox = init.slice()
+      setSvgViewBox(svg, init)
+    }
+
+    svg.addEventListener('pointerdown', onPointerDown)
+    svg.addEventListener('pointermove', onPointerMove)
+    svg.addEventListener('pointerup', onPointerUpOrCancel)
+    svg.addEventListener('pointercancel', onPointerUpOrCancel)
+    svg.addEventListener('wheel', onWheel, { passive: false })
+    svg.addEventListener('dblclick', onDblClick)
+  }
+
+  const runMermaid = ele => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? '' : ''
+
+    ele.forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+
+      // Clear old render (themeChange/pjax will rerun)
+      const oldSvg = item.querySelector('svg')
+      if (oldSvg) oldSvg.remove()
+      item.__mermaidGestureBound = false
+
+      const config = mermaidSrc.dataset.config ? JSON.parse(mermaidSrc.dataset.config) : {}
+      if (!config.theme) {
+        config.theme = theme
+      }
+      const mermaidThemeConfig = `%%{init: ${JSON.stringify(config)}}%%\n`
+      const mermaidID = `mermaid-${index}`
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+      const renderMermaid = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+        if (true) initMermaidGestures(item)
+        item.__mermaidOriginalSvg = svg
+        if (true) attachMermaidViewerButton(item)
+      }
+
+
+      // mermaid v9 and v10 compatibility
+      typeof renderFn === 'string' ? renderMermaid(renderFn) : renderFn.then(({ svg }) => renderMermaid(svg))
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+
+    codeMermaidEle.forEach(ele => {
+      const preEle = document.createElement('pre')
+      preEle.className = 'mermaid-src'
+      preEle.hidden = true
+      preEle.textContent = ele.textContent
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.appendChild(preEle)
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaidFn)
+  }
+
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
 })()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
