@@ -1,5 +1,5 @@
 ---
-title: Redis之主从复制
+title: Redis之redisDb
 categories:
   - 后端
 tags: 

@@ -779,10 +779,9 @@ fancybox: true
 # see https://github.com/mermaid-js/mermaid
 mermaid:
   enable: true
-  # built-in themes: default/forest/dark/neutral
-  theme:
-    light: default
-    dark: dark
+  url: https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+  theme: dark
+
 
 # Note (Bootstrap Callout)
 note:
